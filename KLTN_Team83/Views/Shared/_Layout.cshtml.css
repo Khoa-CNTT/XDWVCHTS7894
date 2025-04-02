@@ -1,0 +1,120 @@
+﻿/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+body, html {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+.header-content {
+    text-align: center;
+    margin-top: 20px;
+}
+
+header h1, header p {
+    margin: 0;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Navigation */
+.menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+    .menu li {
+        margin: 0 15px;
+    }
+
+    .menu a {
+        text-decoration: none;
+        color: #007bff;
+        transition: color 0.3s;
+    }
+
+        .menu a:hover {
+            color: #0056b3;
+        }
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    margin: 50px 0;
+}
+
+    .hero .quote {
+        font-size: 24px;
+        font-style: italic;
+        color: #555;
+        animation: fadeIn 3s ease;
+    }
+
+.button-animate {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+    .button-animate:hover {
+        background-color: #218838;
+        transform: scale(1.1);
+    }
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.chat-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

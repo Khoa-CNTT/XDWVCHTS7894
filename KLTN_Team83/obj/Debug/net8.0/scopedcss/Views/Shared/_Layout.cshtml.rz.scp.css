@@ -12,6 +12,12 @@ body[b-faa5m3tm6o], html[b-faa5m3tm6o] {
     padding: 0;
 }
 
+/*Container*/
+.container[b-faa5m3tm6o] {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
 /* Header */
 .header-content[b-faa5m3tm6o] {
     text-align: center;
@@ -43,7 +49,7 @@ header h1[b-faa5m3tm6o], header p[b-faa5m3tm6o] {
     }
 
         .menu a:hover[b-faa5m3tm6o] {
-            color: #0056b3;
+            color: aquamarine;
         }
 
 /* Hero Section */

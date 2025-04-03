@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Z+U1ZN+18yavkHznG80yrX3l2hbr1OJnFSvFLvK3OXI=",
+  "Hash": "pdrZfdQtc9RqQlusS+thD08SG+NckzOv42WhkLKCbDg=",
   "Source": "KLTN_Team83",
   "BasePath": "_content/KLTN_Team83",
   "Mode": "Default",
@@ -31,8 +31,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "j16xxidein",
-      "Integrity": "1zUu8fNBxmYID+AwR/V/ceNBEAueH5YXrlNFjaDyZ/A=",
+      "Fingerprint": "3m24ptkt5f",
+      "Integrity": "O7Mzq3D8gUFlqr5QUP/72XWaag1yt3OS/Eqn7n6feGA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\obj\\Debug\\net8.0\\scopedcss\\bundle\\KLTN_Team83.styles.css"
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "j16xxidein",
-      "Integrity": "1zUu8fNBxmYID+AwR/V/ceNBEAueH5YXrlNFjaDyZ/A=",
+      "Fingerprint": "3m24ptkt5f",
+      "Integrity": "O7Mzq3D8gUFlqr5QUP/72XWaag1yt3OS/Eqn7n6feGA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\KLTN_Team83.bundle.scp.css"
@@ -1567,6 +1567,96 @@
       ]
     },
     {
+      "Route": "KLTN_Team83.3m24ptkt5f.bundle.scp.css",
+      "AssetFile": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\KLTN_Team83.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2507"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"O7Mzq3D8gUFlqr5QUP/72XWaag1yt3OS/Eqn7n6feGA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 03 Apr 2025 03:21:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3m24ptkt5f"
+        },
+        {
+          "Name": "label",
+          "Value": "KLTN_Team83.bundle.scp.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-O7Mzq3D8gUFlqr5QUP/72XWaag1yt3OS/Eqn7n6feGA="
+        }
+      ]
+    },
+    {
+      "Route": "KLTN_Team83.3m24ptkt5f.styles.css",
+      "AssetFile": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\obj\\Debug\\net8.0\\scopedcss\\bundle\\KLTN_Team83.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2507"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"O7Mzq3D8gUFlqr5QUP/72XWaag1yt3OS/Eqn7n6feGA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 03 Apr 2025 03:21:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3m24ptkt5f"
+        },
+        {
+          "Name": "label",
+          "Value": "KLTN_Team83.styles.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-O7Mzq3D8gUFlqr5QUP/72XWaag1yt3OS/Eqn7n6feGA="
+        }
+      ]
+    },
+    {
       "Route": "KLTN_Team83.bundle.scp.css",
       "AssetFile": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\KLTN_Team83.bundle.scp.css",
       "Selectors": [],
@@ -1577,7 +1667,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2375"
+          "Value": "2507"
         },
         {
           "Name": "Content-Type",
@@ -1585,11 +1675,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"1zUu8fNBxmYID+AwR/V/ceNBEAueH5YXrlNFjaDyZ/A=\""
+          "Value": "\"O7Mzq3D8gUFlqr5QUP/72XWaag1yt3OS/Eqn7n6feGA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 02 Apr 2025 02:26:28 GMT"
+          "Value": "Thu, 03 Apr 2025 03:21:26 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1599,97 +1689,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-1zUu8fNBxmYID+AwR/V/ceNBEAueH5YXrlNFjaDyZ/A="
-        }
-      ]
-    },
-    {
-      "Route": "KLTN_Team83.j16xxidein.bundle.scp.css",
-      "AssetFile": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\KLTN_Team83.bundle.scp.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2375"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"1zUu8fNBxmYID+AwR/V/ceNBEAueH5YXrlNFjaDyZ/A=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 02 Apr 2025 02:26:28 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "j16xxidein"
-        },
-        {
-          "Name": "label",
-          "Value": "KLTN_Team83.bundle.scp.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-1zUu8fNBxmYID+AwR/V/ceNBEAueH5YXrlNFjaDyZ/A="
-        }
-      ]
-    },
-    {
-      "Route": "KLTN_Team83.j16xxidein.styles.css",
-      "AssetFile": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\obj\\Debug\\net8.0\\scopedcss\\bundle\\KLTN_Team83.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2375"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"1zUu8fNBxmYID+AwR/V/ceNBEAueH5YXrlNFjaDyZ/A=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 02 Apr 2025 02:26:28 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "j16xxidein"
-        },
-        {
-          "Name": "label",
-          "Value": "KLTN_Team83.styles.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-1zUu8fNBxmYID+AwR/V/ceNBEAueH5YXrlNFjaDyZ/A="
+          "Value": "sha256-O7Mzq3D8gUFlqr5QUP/72XWaag1yt3OS/Eqn7n6feGA="
         }
       ]
     },
@@ -1704,7 +1704,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2375"
+          "Value": "2507"
         },
         {
           "Name": "Content-Type",
@@ -1712,11 +1712,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"1zUu8fNBxmYID+AwR/V/ceNBEAueH5YXrlNFjaDyZ/A=\""
+          "Value": "\"O7Mzq3D8gUFlqr5QUP/72XWaag1yt3OS/Eqn7n6feGA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 02 Apr 2025 02:26:28 GMT"
+          "Value": "Thu, 03 Apr 2025 03:21:26 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1726,7 +1726,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-1zUu8fNBxmYID+AwR/V/ceNBEAueH5YXrlNFjaDyZ/A="
+          "Value": "sha256-O7Mzq3D8gUFlqr5QUP/72XWaag1yt3OS/Eqn7n6feGA="
         }
       ]
     },

@@ -3,16 +3,40 @@
   "WorkspaceRootPath": "D:\\DATN\\KLTN_Team83\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\kltn_team83.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\kltn_team83.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\views\\shared\\_layout.cshtml.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\views\\shared\\_layout.cshtml.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\models\\blogmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\models\\blogmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\views\\shared\\_chatbot.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\views\\shared\\_chatbot.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\models\\blogmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\models\\blogmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\models\\chatbotmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,16 +47,8 @@
       "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\views\\blog\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\views\\blog\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -55,16 +71,8 @@
       "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\views\\shared\\blog.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\views\\shared\\blog.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\views\\shared\\_layout.cshtml.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\views\\shared\\_layout.cshtml.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\models\\chatbotrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -73,14 +81,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\views\\chatbot\\chatbot.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\views\\chatbot\\chatbot.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|d:\\datn\\kltn_team83\\kltn_team83\\views\\shared\\_chatbot.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{67C1EC0A-8CB2-4078-8471-0D2FDD1E6FF4}|KLTN_Team83\\KLTN_Team83.csproj|solutionrelative:kltn_team83\\views\\shared\\_chatbot.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -90,59 +90,102 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "BlogModel.cs",
-              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Models\\BlogModel.cs",
-              "RelativeDocumentMoniker": "KLTN_Team83\\Models\\BlogModel.cs",
-              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Models\\BlogModel.cs",
-              "RelativeToolTip": "KLTN_Team83\\Models\\BlogModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T04:41:15.779Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "KLTN_Team83\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "KLTN_Team83\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEYAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADQAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-29T07:30:05.941Z"
+              "WhenOpened": "2025-03-29T07:30:05.941Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Blog\\Index.cshtml",
-              "RelativeDocumentMoniker": "KLTN_Team83\\Views\\Blog\\Index.cshtml",
-              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Blog\\Index.cshtml",
-              "RelativeToolTip": "KLTN_Team83\\Views\\Blog\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAARAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "KLTN_Team83\\Views\\Account\\Register.cshtml",
+              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "KLTN_Team83\\Views\\Account\\Register.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-29T05:23:50.767Z"
+              "WhenOpened": "2025-04-01T15:47:30.739Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml.css",
+              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Shared\\_Layout.cshtml.css",
+              "RelativeDocumentMoniker": "KLTN_Team83\\Views\\Shared\\_Layout.cshtml.css",
+              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Shared\\_Layout.cshtml.css",
+              "RelativeToolTip": "KLTN_Team83\\Views\\Shared\\_Layout.cshtml.css",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAADQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-03-31T01:38:10.595Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\appsettings.json",
-              "RelativeDocumentMoniker": "KLTN_Team83\\appsettings.json",
-              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\appsettings.json",
-              "RelativeToolTip": "KLTN_Team83\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-29T07:24:59.772Z"
+              "Title": "_Chatbot.cshtml",
+              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Shared\\_Chatbot.cshtml",
+              "RelativeDocumentMoniker": "KLTN_Team83\\Views\\Shared\\_Chatbot.cshtml",
+              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Shared\\_Chatbot.cshtml",
+              "RelativeToolTip": "KLTN_Team83\\Views\\Shared\\_Chatbot.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-31T03:26:07.285Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "KLTN_Team83\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "KLTN_Team83\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-29T05:21:39.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "KLTN_Team83\\Views\\_ViewStart.cshtml",
+              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "KLTN_Team83\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-03T02:54:23.229Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "KLTN_Team83\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "KLTN_Team83\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-03T02:54:51.822Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "ChatbotModel.cs",
               "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Models\\ChatbotModel.cs",
               "RelativeDocumentMoniker": "KLTN_Team83\\Models\\ChatbotModel.cs",
@@ -154,32 +197,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "KLTN_Team83.csproj",
-              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\KLTN_Team83.csproj",
-              "RelativeDocumentMoniker": "KLTN_Team83\\KLTN_Team83.csproj",
-              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\KLTN_Team83.csproj",
-              "RelativeToolTip": "KLTN_Team83\\KLTN_Team83.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-03-31T08:15:12.429Z",
-              "EditorCaption": ""
+              "DocumentIndex": 10,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\appsettings.json",
+              "RelativeDocumentMoniker": "KLTN_Team83\\appsettings.json",
+              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\appsettings.json",
+              "RelativeToolTip": "KLTN_Team83\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-29T07:24:59.772Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Register.cshtml",
-              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Account\\Register.cshtml",
-              "RelativeDocumentMoniker": "KLTN_Team83\\Views\\Account\\Register.cshtml",
-              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Account\\Register.cshtml",
-              "RelativeToolTip": "KLTN_Team83\\Views\\Account\\Register.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 11,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Blog\\Index.cshtml",
+              "RelativeDocumentMoniker": "KLTN_Team83\\Views\\Blog\\Index.cshtml",
+              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Blog\\Index.cshtml",
+              "RelativeToolTip": "KLTN_Team83\\Views\\Blog\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T15:47:30.739Z"
+              "WhenOpened": "2025-03-29T05:23:50.767Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "KLTN_Team83\\Controllers\\HomeController.cs",
@@ -191,19 +233,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
+              "Title": "BlogModel.cs",
+              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Models\\BlogModel.cs",
+              "RelativeDocumentMoniker": "KLTN_Team83\\Models\\BlogModel.cs",
+              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Models\\BlogModel.cs",
+              "RelativeToolTip": "KLTN_Team83\\Models\\BlogModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T04:41:15.779Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Program.cs",
               "RelativeDocumentMoniker": "KLTN_Team83\\Program.cs",
               "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Program.cs",
               "RelativeToolTip": "KLTN_Team83\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABbAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T07:26:18.935Z"
+              "WhenOpened": "2025-03-29T07:26:18.935Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "ChatbotController.cs",
               "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Controllers\\ChatbotController.cs",
               "RelativeDocumentMoniker": "KLTN_Team83\\Controllers\\ChatbotController.cs",
@@ -215,7 +270,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Models\\User.cs",
               "RelativeDocumentMoniker": "KLTN_Team83\\Models\\User.cs",
@@ -227,7 +282,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "KLTN_Team83\\Data\\ApplicationDbContext.cs",
@@ -239,7 +294,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "Login.cshtml",
               "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "KLTN_Team83\\Views\\Account\\Login.cshtml",
@@ -251,19 +306,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "blog.cshtml",
-              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Shared\\blog.cshtml",
-              "RelativeDocumentMoniker": "KLTN_Team83\\Views\\Shared\\blog.cshtml",
-              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Shared\\blog.cshtml",
-              "RelativeToolTip": "KLTN_Team83\\Views\\Shared\\blog.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-31T09:12:27.444Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "launchSettings.json",
               "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "KLTN_Team83\\Properties\\launchSettings.json",
@@ -275,31 +318,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "_Layout.cshtml.css",
-              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Shared\\_Layout.cshtml.css",
-              "RelativeDocumentMoniker": "KLTN_Team83\\Views\\Shared\\_Layout.cshtml.css",
-              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Shared\\_Layout.cshtml.css",
-              "RelativeToolTip": "KLTN_Team83\\Views\\Shared\\_Layout.cshtml.css",
-              "ViewState": "AgIAABcAAAAAAAAAAAAAwF4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-03-31T01:38:10.595Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "_Chatbot.cshtml",
-              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Shared\\_Chatbot.cshtml",
-              "RelativeDocumentMoniker": "KLTN_Team83\\Views\\Shared\\_Chatbot.cshtml",
-              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Shared\\_Chatbot.cshtml",
-              "RelativeToolTip": "KLTN_Team83\\Views\\Shared\\_Chatbot.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-31T03:26:07.285Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "ChatbotRequest.cs",
               "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Models\\ChatbotRequest.cs",
               "RelativeDocumentMoniker": "KLTN_Team83\\Models\\ChatbotRequest.cs",
@@ -311,19 +330,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "KLTN_Team83\\Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "KLTN_Team83\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-29T05:21:39.484Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "Chatbot.cshtml",
               "DocumentMoniker": "D:\\DATN\\KLTN_Team83\\KLTN_Team83\\Views\\ChatBot\\Chatbot.cshtml",
               "RelativeDocumentMoniker": "KLTN_Team83\\Views\\ChatBot\\Chatbot.cshtml",

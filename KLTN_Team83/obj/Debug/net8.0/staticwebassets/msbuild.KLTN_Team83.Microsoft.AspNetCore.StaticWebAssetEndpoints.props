@@ -36,17 +36,17 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"xtxxf3hu2r"},{"Name":"integrity","Value":"sha256-hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo="},{"Name":"label","Value":"_content/KLTN_Team83/js/site.js"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"231"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo=\u0022"},{"Name":"Last-Modified","Value":"Sat, 29 Mar 2025 05:20:28 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/KLTN_Team83/KLTN_Team83.bundle.scp.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\KLTN_Team83.j16xxidein.bundle.scp.css'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/KLTN_Team83/KLTN_Team83.3m24ptkt5f.bundle.scp.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\KLTN_Team83.3m24ptkt5f.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-1zUu8fNBxmYID\u002BAwR/V/ceNBEAueH5YXrlNFjaDyZ/A="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2375"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00221zUu8fNBxmYID\u002BAwR/V/ceNBEAueH5YXrlNFjaDyZ/A=\u0022"},{"Name":"Last-Modified","Value":"Wed, 02 Apr 2025 02:26:28 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"3m24ptkt5f"},{"Name":"integrity","Value":"sha256-O7Mzq3D8gUFlqr5QUP/72XWaag1yt3OS/Eqn7n6feGA="},{"Name":"label","Value":"_content/KLTN_Team83/KLTN_Team83.bundle.scp.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2507"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022O7Mzq3D8gUFlqr5QUP/72XWaag1yt3OS/Eqn7n6feGA=\u0022"},{"Name":"Last-Modified","Value":"Thu, 03 Apr 2025 03:21:26 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/KLTN_Team83/KLTN_Team83.j16xxidein.bundle.scp.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\KLTN_Team83.j16xxidein.bundle.scp.css'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/KLTN_Team83/KLTN_Team83.bundle.scp.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\KLTN_Team83.3m24ptkt5f.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"j16xxidein"},{"Name":"integrity","Value":"sha256-1zUu8fNBxmYID\u002BAwR/V/ceNBEAueH5YXrlNFjaDyZ/A="},{"Name":"label","Value":"_content/KLTN_Team83/KLTN_Team83.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2375"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00221zUu8fNBxmYID\u002BAwR/V/ceNBEAueH5YXrlNFjaDyZ/A=\u0022"},{"Name":"Last-Modified","Value":"Wed, 02 Apr 2025 02:26:28 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-O7Mzq3D8gUFlqr5QUP/72XWaag1yt3OS/Eqn7n6feGA="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2507"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022O7Mzq3D8gUFlqr5QUP/72XWaag1yt3OS/Eqn7n6feGA=\u0022"},{"Name":"Last-Modified","Value":"Thu, 03 Apr 2025 03:21:26 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/KLTN_Team83/lib/bootstrap/dist/css/bootstrap-grid.agp80tu62r.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\bootstrap-grid.css'))</AssetFile>

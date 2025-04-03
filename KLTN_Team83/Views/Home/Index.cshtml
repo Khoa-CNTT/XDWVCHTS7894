@@ -1,8 +1,61 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    main {
+        margin: 0;
+        padding: 0;
+    }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    .banner {
+        width: 100%;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .banner:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+    .banner-1 {
+        background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    }
+
+    .banner-2 {
+        background: linear-gradient(135deg, #5ee7df, #b490ca);
+    }
+
+    .banner-3 {
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+    }
+
+    .banner-4 {
+        background: linear-gradient(135deg, #ff9a8b, #ff6a88);
+    }
+</style>
+<main class="container-fluid p-0">
+    <div class="banner banner-1">Fresh & Healthy Food</div>
+    <div class="banner banner-2">Delicious Smoothies</div>
+    <div class="banner banner-3">Organic Ingredients</div>
+    <div class="banner banner-4">Natural Wellness</div>
+</main>
+
+<script>
+    document.querySelectorAll('.banner').forEach(banner => {
+        banner.addEventListener('mouseenter', () => {
+            banner.style.transform = 'scale(1.05)';
+            banner.style.transition = '0.5s';
+        });
+        banner.addEventListener('mouseleave', () => {
+            banner.style.transform = 'scale(1)';
+        });
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

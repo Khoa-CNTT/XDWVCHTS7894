@@ -4,104 +4,102 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - KLTN_Team83</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/KLTN_Team83.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="~/css/chatbox.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-light border-bottom box-shadow mb-4">
-            <div class="container-fluid">
-                <a class="navbar-brand text-dark" asp-area="" asp-controller="Home" asp-action="Index">WellNess</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Trang Chủ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Contract" asp-action="Index">Contract</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="About" asp-action="Index">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-sm-2" type="search" placeholder="Nhập nội dung cần tìm...">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Tìm</button>
-                    </form>
-                    <div>
-                        <a class="login" asp-controller="Account" asp-action="Login">Đăng nhập</a> | <a asp-controller="Account" asp-action="Signup">Đăng kí</a>
-                    </div>
-                </div>
+    <header class="navbar navbar-expand-lg navbar-light bg-white py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <span class="fw-bold text-dark">WellNess</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto d-flex align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Plan">Plans</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">About</a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <div>
+                            <a class="login" asp-controller="Account" asp-action="Login">Đăng nhập</a> |
+                            <a asp-controller="Account" asp-action="Register">Đăng kí</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </nav>
-        
-        
+        </div>
     </header>
     <div class="container">
-        <main role="main" class="noidung">
-            @RenderBody()
-        </main>
-    </div>
-    
         
-    <footer>
-        <div class="social-icons">
-            <!-- Thêm icon mạng xã hội tại đây -->
+            @RenderBody()
+        
+    </div>
+    <div id="gemini-chatbox">
+        <div id="chatbox-header">
+            <span>Chat Dinh Dưỡng</span>
+            <button id="chatbox-close-btn">×</button>
         </div>
-            <div id="chatbox-container" style="position: fixed; bottom: 10px; right: 10px; width: 320px;">
-                <div id="chatbox-header" style="background: #007bff; color: white; padding: 10px; cursor: pointer; border-top-left-radius: 10px; border-top-right-radius: 10px;" onclick="toggleChatbox()">
-                    Chatbot WellNess
+        <div id="chatbox-messages">
+            <!-- Tin nhắn sẽ được thêm vào đây bằng JavaScript -->
+            <div class="message bot-message">Chào bạn! Tôi có thể giúp gì về dinh dưỡng?</div>
+        </div>
+        <div id="chatbox-input-area">
+            <input type="text" id="chatbox-input" placeholder="Nhập câu hỏi của bạn...">
+            <button id="chatbox-send-btn">Gửi</button>
+        </div>
+    </div>
+    <button id="chatbox-toggle-btn">Chat</button> <!-- Nút để mở/đóng chatbox -->
+        
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <img src="your-logo.png" alt="Wellness Lifestyle" class="footer-logo">
+                <p class="copyright">&copy; 2025 by DTU. Powered and secured by Team83.</p>
+            </div>
+            <div class="footer-right">
+                <div class="social-icons">
+                    <a href="your-facebook-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="your-twitter-link"><i class="fab fa-twitter"></i></a>
+                    <a href="your-pinterest-link"><i class="fab fa-pinterest"></i></a>
+                    <a href="your-instagram-link"><i class="fab fa-instagram"></i></a>
                 </div>
-                <div id="chatbox" style="display: none; background: white; border: 1px solid #ccc; padding: 10px; width: 100%; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                    <div id="chat-log" style="height: 230px; overflow-y: auto; border: 1px solid #ddd; padding: 5px;"></div>
-                    <input type="text" id="user-input" placeholder="Nhập tin nhắn..." style="width: 100%; margin-top: 5px;" />
-                    <button onclick="sendMessage()" style="width: 100%; margin-top: 5px;">Gửi</button>
+                <div class="footer-links">
+                    <a href="#">Home</a>
+                    <a href="#">Plan</a>
+                    <a href="#">Services</a>
+                    <a href="#">Blog</a>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
                 </div>
             </div>
-        }
-
-        <script>
-            function toggleChatbox() {
-                let chatbox = document.getElementById("chatbox");
-                chatbox.style.display = chatbox.style.display === "none" ? "block" : "none";
-            }
-
-            async function sendMessage() {
-                let input = document.getElementById("user-input");
-                let message = input.value;
-                if (!message.trim()) return;
-
-                let chatLog = document.getElementById("chat-log");
-                chatLog.innerHTML += `<div><b>Bạn:</b> ${message}</div>`;
-
-                let response = await fetch("/Chatbot/GetResponse", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(message)
-                });
-
-                let data = await response.json();
-                chatLog.innerHTML += `<div><b>Bot:</b> ${data.reply}</div>`;
-                chatLog.scrollTop = chatLog.scrollHeight;
-                input.value = "";
-            }
-        </script>
+        </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/chatbox.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
     @RenderSection("Footer", required: false)
 </body>

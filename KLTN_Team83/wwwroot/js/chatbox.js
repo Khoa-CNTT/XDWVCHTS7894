@@ -98,16 +98,16 @@
         chatbox.classList.toggle('visible');
         if (chatbox.classList.contains('visible')) {
             input.focus(); // Focus vào input khi mở
-            toggleBtn.textContent = 'Đóng Chat'; // Đổi chữ nút toggle
+            toggleBtn.textContent = 'Đóng ChatBot'; // Đổi chữ nút toggle
         } else {
-            toggleBtn.textContent = 'Chat'; // Đổi lại chữ
+            toggleBtn.textContent = 'Wellness ChatBot'; // Đổi lại chữ
         }
     });
 
     // Đóng chatbox bằng nút 'x'
     closeBtn.addEventListener('click', () => {
         chatbox.classList.remove('visible');
-        toggleBtn.textContent = 'Chat'; // Đổi lại chữ nút toggle
+        toggleBtn.textContent = 'Wellness ChatBot'; // Đổi lại chữ nút toggle
     });
 
 });

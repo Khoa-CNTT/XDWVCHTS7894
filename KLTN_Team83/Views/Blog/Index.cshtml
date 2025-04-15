@@ -1,5 +1,6 @@
 ﻿@model List<Blog>
 
+
 <div class="container">
 	<div class="row pt-4 pb-3">
 		<div class="col-6">
@@ -8,12 +9,12 @@
 			</h1>
 		</div>
 		<div class="col-6 text-end">
-			<a asp-action="CreateBlog" class="btn btn-primary">
+			<a asp-controller="Blog" asp-action="Create" class="btn btn-primary">
 				<i class="bi bi-plus-circle"></i> Create New
 			</a>
 		</div>
 	</div>
-	<table class="table table-bordered table-striped">
+	<table class="table table-bordered table-striped" >
 		<thead>
 			<tr>
 				<th>Title</th>
@@ -24,16 +25,22 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach (var Blog in Model)
+			@foreach (var obj in Model.OrderByDescending(u=>u.ngayTao))
 			{
 				<tr>
-					<td>@Blog.tilte</td>
-					<td>@Blog.content</td>
-					<td>@Blog.img</td>
-					<td>@Blog.ngayTao.ToString("dd/MM/yyyy")</td>
+					<td>@obj.tilte</td>
+					<td>@obj.content</td>
+					<td>@obj.img</td>
+					<td>@obj.ngayTao.ToString("dd/MM/yyyy")</td>
 					<td>
-						<a href="@Url.Action("Edit", "Blog", new { id = Blog.id_Blog })">Edit</a> |
-						<a href="@Url.Action("Delete", "Blog", new { id = Blog.id_Blog })">Delete</a>
+						<div class="w-75 btn-group" role="group">
+							<a asp-controller="Blog" asp-action="Edit" asp-route-id="@obj.id_Blog" class="btn btn-primary mx-2">
+								<i class="bi bi-pencil-square"></i>Edit
+							</a>
+							<a asp-controller="Blog" asp-action="Delete" asp-route-id="@obj.id_Blog" class="btn btn-danger mx-2">
+								<i class="bi bi-trash-fill"></i>Delete
+							</a>
+						</div>
 					</td>
 				</tr>
 			}

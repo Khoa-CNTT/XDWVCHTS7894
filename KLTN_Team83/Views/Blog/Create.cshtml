@@ -1,0 +1,47 @@
+﻿@model Blog
+
+<form method="post">
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary">Create Blog</h2>
+			<hr />
+		</div>
+		<div class="mb-3 row p-1">
+			<label asp-for="tilte" class="p-0">Tiêu Đề</label>
+			<input asp-for="tilte" type="text" class="form-control" />
+			<span asp-validation-for="tilte" class="text-danger"></span>
+		</div>
+		<div class="mb-3 row p-1">
+			<label asp-for="content" class="p-0">Nội Dung</label>
+			<input asp-for="content" class="form-control" />
+			<span asp-validation-for="content" class="text-danger"></span>
+		</div>
+		<div class="mb-3 row p-1">
+			<label asp-for="img" class="p-0"> Hình ảnh</label>
+			<input asp-for="img" accept="images/*" class="form-control" />
+			<span asp-validation-for="img" class="text-danger"></span>
+			@* <button type="submit">Upload</button> *@
+		</div>
+
+		@* thẻ tông kết lỗi: *@
+		<div asp-validation-summary="ModelOnly"></div>
+
+		<div class="row">
+			<div class="col-6 col-md-3">
+				<button type="submit" class="btn btn-primary form-control" style="width: 150px">Create</button>
+
+			</div>
+			<div class="col-6 col-md-3">
+				<a asp-controller="Blog" asp-action="Index" class="btn btn-secondary border form-control" style="width:150px">
+					Back to List
+				</a>
+			</div>
+		</div>
+	</div>
+</form>
+
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

@@ -1,5 +1,5 @@
 ﻿using KLTN_Team83;
-using KLTN_Team83.Data;
+using KLTN_Team83.DataAccess.Data;
 using KLTN_Team83.Services;
 using Microsoft.EntityFrameworkCore;
 

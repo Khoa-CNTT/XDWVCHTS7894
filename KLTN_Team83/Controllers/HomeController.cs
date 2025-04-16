@@ -18,11 +18,23 @@ namespace KLTN_Team83.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
         {
             return View();
         }
         public IActionResult Blog()
+        {
+            return View();
+        }
+        public IActionResult Plan()
+        {
+            return View();
+        }
+        public IActionResult Services()
+        {
+            return View();
+        }
+        public IActionResult Contact()
         {
             return View();
         }

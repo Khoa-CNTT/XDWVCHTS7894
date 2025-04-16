@@ -1,4 +1,4 @@
-﻿using KLTN_Team83.Data;
+﻿using KLTN_Team83.DataAccess.Data;
 using KLTN_Team83.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

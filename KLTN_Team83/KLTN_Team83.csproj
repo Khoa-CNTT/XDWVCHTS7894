@@ -23,5 +23,11 @@
     <Folder Include="wwwroot\Content\images\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KLTN_Team83.DataAccess\KLTN_Team83.DataAccess.csproj" />
+    <ProjectReference Include="..\KLTN_Team83.Models\KLTN_Team83.Models.csproj" />
+    <ProjectReference Include="..\KLTN_Team83.Utility\KLTN_Team83.Utility.csproj" />
+  </ItemGroup>
 	
 </Project>

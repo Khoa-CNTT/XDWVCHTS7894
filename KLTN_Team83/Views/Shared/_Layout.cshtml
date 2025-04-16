@@ -34,14 +34,16 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Services">Services</a>
                     </li>
-                    <li class="nav-item">
+					<li class="nav-item dropdown">
+						<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Blog">Blogs</a>
+					<li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">Blogs</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">About</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contacts</a>
                     </li>
                     <li class="nav-item">
                         <div>
@@ -49,7 +51,7 @@
                             <a asp-controller="Account" asp-action="Register">Đăng kí</a>
                         </div>
                     </li>
-                </ul>
+                </li>
             </div>
         </div>
     </header>
@@ -60,7 +62,7 @@
     </div>
     <div id="gemini-chatbox">
         <div id="chatbox-header">
-            <span>Wellness Bot</span>
+            <span >WELLNESS & LIFESTYLE</span>
             <button id="chatbox-close-btn">×</button>
         </div>
         <div id="chatbox-messages">
@@ -88,12 +90,12 @@
                     <a href="your-instagram-link"><i class="fab fa-instagram"></i></a>
                 </div>
                 <div class="footer-links">
-                    <a href="#">Home</a>
-                    <a href="#">Plan</a>
-                    <a href="#">Services</a>
-                    <a href="#">Blog</a>
-                    <a href="#">About</a>
-                    <a href="#">Contact</a>
+                    <a asp-controller="Home" asp-action="Index">Home</a>
+                    <a asp-controller="Home" asp-action="Plan">Plans</a>
+                    <a asp-controller="Home" asp-action="Services">Services</a>
+                    <a asp-controller="Home" asp-action="Blog">Blogs</a>
+                    <a asp-controller="Home" asp-action="About">About</a>
+                    <a asp-controller="Home" asp-action="Contact">Contacts</a>
                 </div>
             </div>
         </div>

@@ -10,6 +10,7 @@ namespace KLTN_Team83.Data
 
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<MyImage> MyImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -18,9 +19,9 @@ namespace KLTN_Team83.Data
             //        modelBuilder.Entity<User>()
             //            .HasKey(a => a.id_User);
             modelBuilder.Entity<Blog>().HasData(
-                new Blog { id_Blog = 1, id_Expert = 1, tilte = "user1", content = "user1@gmail.com", img = "Nam"  },
-                new Blog { id_Blog = 2, id_Expert = 1, tilte = "user2", content = "user1@gmail.com", img = "Nam" },
-                new Blog { id_Blog = 3, id_Expert = 1, tilte = "user3", content = "user1@gmail.com", img = "Nam" }
+                new Blog { id_Blog = 1, tilte = "user1", content = "user1@gmail.com", img = "nam.jpg" },
+                new Blog { id_Blog = 2, tilte = "user2", content = "user1@gmail.com", img = "Nam.jpg" },
+                new Blog { id_Blog = 3, tilte = "user3", content = "user1@gmail.com", img = "Healthy.jpg" }
                 );
             //        // Configure the primary key for the Admin entity
             //        modelBuilder.Entity<Admin>()

@@ -1,0 +1,49 @@
+﻿@model Blog
+
+<div class="card shadow border-0 mt-4">
+	<div class="card-header ml-0 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-primary py-2">Delete Blog</h2>
+			</div>
+		</div>
+		<div class="card-body">
+			<form method="post">
+				<input asp-for="id_Blog" hidden />
+				<div class="border p-3">
+					<div class="form-floating py-2 col-12">
+						<label asp-for="tilte" class="ms-2">Tiêu Đề</label>
+						<input asp-for="tilte" disabled class="form-control border-0 shadow" />
+					</div>
+					<div class="form-floating py-2 col-12">
+						<label asp-for="content" class="ms-2">Nội Dung</label>
+						<input asp-for="content" disabled class="form-control border-0 shadow" />
+					</div>
+					<div class="form-floating py-2 col-12">
+						<label asp-for="img" class="ms-2"> Hình ảnh</label>
+						<input asp-for="img" disabled accept="images/*" class="form-control border-0 shadow" />
+						@* <button type="submit">Upload</button> *@
+					</div>
+
+					<div class="row mt-3">
+						<div class="col-6 col-md-3">
+							<button type="submit" class="btn btn-danger form-control" style="width: 150px">Delete</button>
+						</div>
+						<div class="col-6 col-md-3">
+							<a asp-controller="Blog" asp-action="Index" class="btn btn-secondary border form-control" style="width:150px">
+								Back to List
+							</a>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

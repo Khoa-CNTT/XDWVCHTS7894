@@ -62,7 +62,7 @@ app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 // Map API controllers (nếu bạn dùng [ApiController] attribute)
 app.MapControllers(); // Đảm bảo có dòng này để map API controller

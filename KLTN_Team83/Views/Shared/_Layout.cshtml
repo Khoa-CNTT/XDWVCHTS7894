@@ -17,7 +17,7 @@
 <body>
     <header class="navbar navbar-expand-lg navbar-light bg-white py-3">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
+            <a class="navbar-brand d-flex align-items-center" asp-area="Customer" asp-controller="Home" asp-action="Index">
                 <span class="fw-bold text-dark">WellNess</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -26,29 +26,42 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto d-flex align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Plan">Plans</a>
+                        <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Plan">Plans</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Services">Services</a>
+                        <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Services">Services</a>
                     </li>
-					<li class="nav-item dropdown">
-						<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Blog">Blogs</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Content Managment
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Blog" asp-action="Index">Blogs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Account" asp-action="Index">Accounts</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
 					<li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">Blogs</a>
+                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="Blog" asp-action="Index">Blogs</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="About">About</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contacts</a>
+                        <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Contact">Contacts</a>
                     </li>
                     <li class="nav-item">
                         <div>
-                            <a class="login" asp-controller="Account" asp-action="Login">Đăng nhập</a> |
-                            <a asp-controller="Account" asp-action="Register">Đăng kí</a>
+                            <a class="login" asp-area="Customer" asp-controller="Home" asp-action="Login">Đăng nhập</a> |
+                            <a asp-area="Customer" asp-controller="Home" asp-action="Register">Đăng kí</a>
                         </div>
                     </li>
                 </li>
@@ -71,7 +84,9 @@
         </div>
         <div id="chatbox-input-area">
             <input type="text" id="chatbox-input" placeholder="Nhập câu hỏi của bạn...">
-            <button id="chatbox-send-btn">Gửi</button>
+            <button id="chatbox-send-btn">
+                Gửi <i class="bi bi-send"></i>
+            </button>
         </div>
     </div>
     <button id="chatbox-toggle-btn">Wellness ChatBot</button> <!-- Nút để mở/đóng chatbox -->
@@ -90,12 +105,12 @@
                     <a href="your-instagram-link"><i class="fab fa-instagram"></i></a>
                 </div>
                 <div class="footer-links">
-                    <a asp-controller="Home" asp-action="Index">Home</a>
-                    <a asp-controller="Home" asp-action="Plan">Plans</a>
-                    <a asp-controller="Home" asp-action="Services">Services</a>
-                    <a asp-controller="Home" asp-action="Blog">Blogs</a>
-                    <a asp-controller="Home" asp-action="About">About</a>
-                    <a asp-controller="Home" asp-action="Contact">Contacts</a>
+                    <a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+                    <a asp-area="Customer" asp-controller="Home" asp-action="Plan">Plans</a>
+                    <a asp-area="Customer" asp-controller="Home" asp-action="Services">Services</a>
+                    <a asp-area="Customer" asp-controller="Home" asp-action="Blog">Blogs</a>
+                    <a asp-area="Customer" asp-controller="Home" asp-action="About">About</a>
+                    <a asp-area="Customer" asp-controller="Home" asp-action="Contact">Contacts</a>
                 </div>
             </div>
         </div>

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\KLTN_Team83.Utility\KLTN_Team83.Utility.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@* <style> *@
+@*     main { *@
+@*         margin: 0; *@
+@*         padding: 0; *@
+@*     } *@
+
+@*     .banner { *@
+@*         width: 100%; *@
+@*         height: 400px; *@
+@*         display: flex; *@
+@*         align-items: center; *@
+@*         justify-content: center; *@
+@*         color: white; *@
+@*         font-size: 2rem; *@
+@*         font-weight: bold; *@
+@*         transition: transform 0.3s ease-in-out; *@
+@*     } *@
+
+@*         .banner:hover { *@
+@*             transform: scale(1.05); *@
+@*             filter: brightness(1.2); *@
+@*         } *@
+
+@*     .banner-1 { *@
+@*         background: linear-gradient(135deg, #ff7eb3, #ff758c); *@
+@*     } *@
+
+@*     .banner-2 { *@
+@*         background: linear-gradient(135deg, #5ee7df, #b490ca); *@
+@*     } *@
+
+@*     .banner-3 { *@
+@*         background: linear-gradient(135deg, #6a11cb, #2575fc); *@
+@*     } *@
+
+@*     .banner-4 { *@
+@*         background: linear-gradient(135deg, #ff9a8b, #ff6a88); *@
+@*     } *@
+@* </style> *@
+@* <main class="container-fluid p-0"> *@
+    <div class="banner-container">
+        <div class="banner">
+            <div class="overlay">
+                <h1>"Our Food Should Be Our Medicine & Our Medicine Should Be Our Food"</h1>
+                <button class="btn btn-primary">Book a Session</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-container">
+        <div class="image-section">
+            <img src="images/woman.jpg" alt="Woman cooking healthy food">
+        </div>
+        <div class="text-button-section">
+            <h2>Meet Amy</h2>
+            <p>I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click "Edit Text" or double click me to add your own content, and make changes to the font. I'm a great place for you to tell a story and let your users know a little more about you.</p>
+            <button class="read-more-btn">Read More</button>
+            <div class="second-image-section">
+                <img src="images/vegetable.jpg" alt="Second image description">
+            </div>
+        </div>
+    </section>
+
+    <div class="bottom-section">
+        <section class="dietitian-counseling-section">
+            <h2>Dietitian Counseling</h2>
+            <div class="counseling-block">
+                <div class="counseling-info">
+                    <h2>Initial Assessment</h2>
+                    <p>1 hr</p>
+                    <p>$75</p>
+                    <button class="book-now-btn">Book Now</button>
+                </div>
+                <div class="counseling-image">
+                    <img src="images/food.jpg" alt="Dietitian Counseling Food">
+                </div>
+            </div>
+            <button class="all-sessions-btn">All Sessions</button>
+        </section>
+    </div>
+
+    <section class="cloned-content-container">
+        <div class="image-section">
+            <img src="images/tips.jpg" alt="Tips">
+        </div>
+        <div class="text-button-section">
+            <h2>Meet Amy</h2>
+            <p>I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click "Edit Text" or double click me to add your own content, and make changes to the font. I'm a great place for you to tell a story and let your users know a little more about you.</p>
+            <button class="read-more-btn">Read More</button>
+            <div class="second-image-block">
+                <img src="images/vegetable.jpg" alt="Second image description" style="width: 400px; height: 510px;">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span>Admin</span>
+                        <span>Mar 22, 2023</span>
+                    </div>
+                    <h2>How Dietitians Fuel for the Morning</h2>
+                    <div class="post-footer">
+                        <span>0</span>
+                        <span>1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@* </main> *@
+
+<script>
+    document.querySelectorAll('.banner').forEach(banner => {
+        banner.addEventListener('mouseenter', () => {
+            banner.style.transform = 'scale(1.05)';
+            banner.style.transition = '0.5s';
+        });
+        banner.addEventListener('mouseleave', () => {
+            banner.style.transform = 'scale(1)';
+        });
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

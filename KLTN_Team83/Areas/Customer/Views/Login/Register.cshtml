@@ -1,0 +1,36 @@
+﻿@model Account
+
+
+
+    <h1>Đăng Ký</h1>
+    <form asp-action="Register" method="post" class="row">
+        
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="reg_username">Tên đăng nhập:</label>
+            <input type="text" id="reg_username" name="reg_username" required>
+        </div>
+        <div class="form-group">
+            <label for="reg_password">Mật khẩu:</label>
+            <input type="password" id="reg_password" name="reg_password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Xác nhận mật khẩu:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+        </div>
+        <button type="submit" class="btn">Register</button>
+    <p class="mt-2">Đã có tài khoản? <a asp-area="Customer" asp-controller="Login" asp-action="Login">Đăng nhập</a></p>
+    </form>
+    <a asp-action="Login">Đã có tài khoản? Đăng nhập</a>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

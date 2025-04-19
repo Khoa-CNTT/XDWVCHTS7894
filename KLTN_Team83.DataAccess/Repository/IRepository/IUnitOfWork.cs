@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace KLTN_Team83.DataAccess.Repository.IRepository
+{
+    public interface IUnitOfWork
+    {
+        IAccountRepository Account { get; }
+        IBlogRepository Blog { get; }
+        void Save();
+    }
+}

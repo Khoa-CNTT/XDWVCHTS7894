@@ -1,5 +1,7 @@
 ﻿using KLTN_Team83;
 using KLTN_Team83.DataAccess.Data;
+using KLTN_Team83.DataAccess.Repository;
+using KLTN_Team83.DataAccess.Repository.IRepository;
 using KLTN_Team83.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+//Interface và Repository
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Configuration.AddJsonFile("appsettings.json");
 builder.Services.Configure<GeminiOptions>(

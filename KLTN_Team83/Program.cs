@@ -13,6 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 //Interface và Repository
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 
 builder.Configuration.AddJsonFile("appsettings.json");
 builder.Services.Configure<GeminiOptions>(

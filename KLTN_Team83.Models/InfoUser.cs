@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KLTN_Team83.Models
 {
@@ -13,7 +14,10 @@ namespace KLTN_Team83.Models
         public int id_User { get; set; }
 
         [Required]
-        public int id_Account { get; set; }
+        public int id_Acc { get; set; }
+        [ForeignKey("id_Acc")]
+        public Account Account { get; set; }
+
         [Required]
         [Display(Name = "Họ và tên")]
         public string fullName { get; set; }

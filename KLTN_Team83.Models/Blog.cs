@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KLTN_Team83.Models
 {
@@ -21,5 +22,9 @@ namespace KLTN_Team83.Models
 
         public string img { get; set; }
         public DateTime ngayTao { get; set; }
+
+        public int id_TypeBlog { get; set; }
+        [ForeignKey("id_TypeBlog")]
+        public TypeBlog TypeBlog { get; set; }
     }
 }

@@ -1,9 +1,12 @@
-﻿using KLTN_Team83;
+using KLTN_Team83;
 using KLTN_Team83.DataAccess.Data;
 using KLTN_Team83.DataAccess.Repository;
 using KLTN_Team83.DataAccess.Repository.IRepository;
 using KLTN_Team83.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using KLTN_Team83.Utility;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +14,22 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-//Interface và Repository
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 
+builder.Services.AddIdentity<IdentityUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+builder.Services.ConfigureApplicationCookie(option =>
+{
+    option.LoginPath = $"/Identity/Account/Login";
+    option.LogoutPath = $"/Identity/Account/Logout";
+    option.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+});
+builder.Services.AddRazorPages();
+
+//Interface và Repository
+builder.Services.AddScoped<IBlogRepository, BlogRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IEmailSender, EmailSender>();
+
+//Add services appsetting
 builder.Configuration.AddJsonFile("appsettings.json");
 builder.Services.Configure<GeminiOptions>(
     builder.Configuration.GetSection("Gemini")
@@ -58,6 +73,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.MapRazorPages();
 
 // --- Kích hoạt Session Middleware ---
 // Quan trọng: Phải đặt UseSession() trước UseEndpoints() hoặc MapControllerRoute()

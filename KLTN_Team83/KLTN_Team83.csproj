@@ -8,9 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\**" />
+    <Compile Remove="wwwroot\Content\**" />
+    <Content Remove="Controllers\**" />
+    <Content Remove="wwwroot\Content\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <EmbeddedResource Remove="wwwroot\Content\**" />
+    <None Remove="Controllers\**" />
+    <None Remove="wwwroot\Content\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Google_GenerativeAI" Version="2.5.6" />
     <PackageReference Include="LLMSharp.Google.Ai.Generativelanguage.V1Beta2" Version="1.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.3">
       <PrivateAssets>all</PrivateAssets>
@@ -20,15 +34,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="wwwroot\Content\images\" />
-    <Folder Include="wwwroot\images\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\KLTN_Team83.DataAccess\KLTN_Team83.DataAccess.csproj" />
     <ProjectReference Include="..\KLTN_Team83.Models\KLTN_Team83.Models.csproj" />
     <ProjectReference Include="..\KLTN_Team83.Utility\KLTN_Team83.Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Data\" />
   </ItemGroup>
 	
 </Project>

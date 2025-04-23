@@ -10,37 +10,49 @@
 		<div class="card-body">
 			<form method="post">
 				<input asp-for="id_Blog" hidden />
-				<div class="border p-3">
-					<div class="form-floating py-2 col-12">
-						<label asp-for="tilte" class="ms-2">Tiêu Đề</label>
-						<input asp-for="tilte" class="form-control border-0 shadow" />
-						<span asp-validation-for="tilte" class="text-danger"></span>
-					</div>
-					<div class="form-floating py-2 col-12">
-						<label asp-for="content" class="ms-2">Nội Dung</label>
-						<input asp-for="content" class="form-control border-0 shadow" />
-						<span asp-validation-for="content" class="text-danger"></span>
-					</div>
-					<div class="form-floating py-2 col-12">
-						<label asp-for="img" class="ms-2"> Hình ảnh</label>
-						<input asp-for="img" accept="images/*" class="form-control border-0 shadow" />
-						<span asp-validation-for="img" class="text-danger"></span>
-						@* <button type="submit">Upload</button> *@
-					</div>
+				<div class="row">
+					<div class="col-10">
+						<div class="border p-3">
+							<div class="form-floating py-2 col-12">
+								<label asp-for="tilte" class="ms-2">Tiêu Đề</label>
+								<input asp-for="tilte" class="form-control border-0 shadow" />
+								<span asp-validation-for="tilte" class="text-danger"></span>
+							</div>
+							<div class="py-2 col-12">
+								<label asp-for="content" class="ms-2 text-muted">Nội Dung</label>
+								<textarea asp-for="content" class="form-control border-0 shadow">
+						</textarea>
+							</div>
+							<div class="form-floating py-2 col-12">
+								<label asp-for="img" class="ms-2"> Hình ảnh</label>
+								<input type="file" name="file" class="form-control border-0 shadow" />
+								<span asp-validation-for="img" class="text-danger"></span>
+								@* <button type="submit">Upload</button> *@
+							</div>
+							<div class="form-floating py-2 col-12">
+								<label asp-for="id_TypeBlog" class="ms-2">Type Blog</label>
+								<input asp-for="id_TypeBlog" class="form-control border-0 shadow" />
+								<span asp-validation-for="id_TypeBlog" class="text-danger"></span>
+							</div>
 
-					@* thẻ tông kết lỗi: *@
-					<div asp-validation-summary="ModelOnly"></div>
+							@* thẻ tông kết lỗi: *@
+							<div asp-validation-summary="ModelOnly"></div>
 
-					<div class="row mt-3">
-						<div class="col-6 col-md-3">
-							<button type="submit" class="btn btn-primary form-control" style="width: 150px">Update</button>
+							<div class="row mt-3">
+								<div class="col-6 col-md-3">
+									<button type="submit" class="btn btn-primary form-control" style="width: 150px">Update</button>
 
+								</div>
+								<div class="col-6 col-md-3">
+									<a asp-controller="Blog" asp-action="Index" class="btn btn-secondary border form-control" style="width:150px">
+										Back to List
+									</a>
+								</div>
+							</div>
 						</div>
-						<div class="col-6 col-md-3">
-							<a asp-controller="Blog" asp-action="Index" class="btn btn-secondary border form-control" style="width:150px">
-								Back to List
-							</a>
-						</div>
+					</div>
+					<div class="col-2">
+						@* <img src="@Model.img" style="width:150px; border-radius: 5px; border:1px solid #bbb9b9" /> *@
 					</div>
 				</div>
 			</form>
@@ -50,6 +62,26 @@
 
 
 @section Scripts {
+	<script>
+		tinymce.init({
+		  selector: 'textarea',
+		  plugins: [
+			// Core editing features
+			'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+			// Your account includes a free trial of TinyMCE premium features
+			// Try the most popular premium features until May 5, 2025:
+			'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
+		  ],
+		  toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+		  tinycomments_mode: 'embedded',
+		  tinycomments_author: 'Author name',
+		  mergetags_list: [
+			{ value: 'First.Name', title: 'First Name' },
+			{ value: 'Email', title: 'Email' },
+		  ],
+		  ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+		});
+	</script>
 	@{
 		<partial name="_ValidationScriptsPartial" />
 	}

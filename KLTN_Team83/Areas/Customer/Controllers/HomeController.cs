@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using KLTN_Team83.DataAccess.Repository.IRepository;
 using KLTN_Team83.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,12 @@ namespace KLTN_Team83.Areas.Customer.Controllers
     {
         // Khai báo logger để ghi log
         private readonly ILogger<HomeController> _logger;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
@@ -26,6 +29,7 @@ namespace KLTN_Team83.Areas.Customer.Controllers
         }
         public IActionResult Blog()
         {
+            IEnumerable<Blog> BlogList = _unitOfWork.Blog.GetAll(includeProperties: "Blog");
             return View();
         }
         public IActionResult Plan()

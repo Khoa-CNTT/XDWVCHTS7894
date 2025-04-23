@@ -1,12 +1,15 @@
 ﻿using KLTN_Team83.DataAccess.Data;
 using KLTN_Team83.DataAccess.Repository.IRepository;
 using KLTN_Team83.Models;
+using KLTN_Team83.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace KLTN_Team83.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class AccountController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -67,7 +70,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
                 _unitOfWork.Account.Update(obj);
                 _unitOfWork.Save();
                 TempData["success"] = "Account update successfully";
-                return RedirectToAction("Index", "Account");
+                return RedirectToAction("Index");
             }
             return View();
         }
@@ -87,6 +90,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
             }
             return View(accFromDb);
         }
+
         //Xóa account khỏi database
         [HttpPost, ActionName("Delete")]
 
@@ -99,7 +103,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
             }
             _unitOfWork.Account.Remove(obj);
             _unitOfWork.Save();
-            return RedirectToAction("Index", "Account");
+            return RedirectToAction("Index");
 
         }
     }

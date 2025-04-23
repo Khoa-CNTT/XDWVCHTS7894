@@ -10,16 +10,16 @@ using KLTN_Team83.Models;
 
 namespace KLTN_Team83.DataAccess.Repository
 {
-    public class BlogRepository : Repository<Blog>, IBlogRepository
+    public class TypeBlogRepository : Repository<TypeBlog>, ITypeBlogRepository
     {
         private ApplicationDbContext _db;
-        public BlogRepository(ApplicationDbContext db) : base(db)
+        public TypeBlogRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
-        public void Update(Blog obj)
+        public void Update(TypeBlog obj)
         {
-            _db.Blogs.Update(obj);
+            _db.TypeBlogs.Update(obj);
         }
         
         

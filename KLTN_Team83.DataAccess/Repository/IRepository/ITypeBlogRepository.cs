@@ -7,9 +7,9 @@ using KLTN_Team83.Models;
 
 namespace KLTN_Team83.DataAccess.Repository.IRepository
 {
-    public interface IBlogRepository : IRepository<Blog>
+    public interface ITypeBlogRepository : IRepository<TypeBlog>
     {
-        void Update(Blog obj);
+        void Update(TypeBlog obj);
         //Task<Account> GetByIdAsync(int id);
         //Task<IEnumerable<Account>> GetAllAsync();
         //Task AddAsync(Account obj);

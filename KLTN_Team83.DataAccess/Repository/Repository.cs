@@ -7,17 +7,19 @@ using System.Threading.Tasks;
 using KLTN_Team83.DataAccess.Repository.IRepository;
 using KLTN_Team83.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace KLTN_Team83.DataAccess.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        public readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
         internal DbSet<T> dbSet;
         public Repository(ApplicationDbContext db)
         {
             _db = db;
-            this.dbSet = db.Set<T>();
+            this.dbSet = _db.Set<T>();
+            _db.Blogs.Include(u => u.TypeBlog).Include(u=>u.id_TypeBlog);
         }
 
         public void Add(T entity)
@@ -25,16 +27,30 @@ namespace KLTN_Team83.DataAccess.Repository
             dbSet.Add(entity);
         }
 
-        public T Get(Expression<Func<T, bool>> filter)
+        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
             query = query.Where(filter);
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
             return query.FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(string? includeProperties=null)
         {
             IQueryable<T> query = dbSet;
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach(var includeProp in includeProperties.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
             return query.ToList();
         }
 

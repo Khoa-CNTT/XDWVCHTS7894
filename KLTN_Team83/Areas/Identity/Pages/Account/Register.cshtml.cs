@@ -110,6 +110,8 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account
             [ValidateNever]
             public IEnumerable<SelectListItem> RoleList { get; set; }
 
+            [Required]
+            public string Name { get; set; }
             public string? PhoneNumber { get; set; }
             public string? Gender { get; set; }
             public string? Weight { get; set; }
@@ -150,6 +152,11 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                user.Name = Input.Name;
+                user.PhoneNumber = Input.PhoneNumber;
+                user.Gender=Input.Gender;
+                user.Height = Input.Height;
+                user.Weight = Input.Weight;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)

@@ -20,7 +20,7 @@ namespace KLTN_Team83.Models
 
         [DisplayName("Image")]   
 
-        public string img { get; set; }
+        public string? img { get; set; }
         public DateTime ngayTao { get; set; }
 
         public int id_TypeBlog { get; set; }

@@ -106,7 +106,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
                 },
                 new Content {
                     Role = "model",
-                    Parts = new List<Part> { new Part { Text = "Đã hiểu! Tôi sẽ trả lời bằng định dạng MarkdownView và sử dụng thông tin cá nhân của bạn (nếu có) để tư vấn. Bạn cần thông tin gì hôm nay?" } }
+                    Parts = new List<Part> { new Part { Text = "Đã hiểu! Tôi sẽsử dụng thông tin cá nhân của bạn (nếu có) để tư vấn. Bạn cần thông tin gì hôm nay?" } }
                 }
             };
                     chatHistory.InsertRange(0, initialInstructions); // Chèn vào đầu

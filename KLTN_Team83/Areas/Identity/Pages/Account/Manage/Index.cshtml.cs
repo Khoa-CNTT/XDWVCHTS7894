@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using KLTN_Team83.Models;
 
 namespace KLTN_Team83.Areas.Identity.Pages.Account.Manage
 {
@@ -16,13 +17,16 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly ApplicationUser _applicationUser;
 
         public IndexModel(
             UserManager<IdentityUser> userManager,
+            //ApplicationUser applicationUser,
             SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            //_applicationUser = applicationUser;
         }
 
         /// <summary>
@@ -58,18 +62,26 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            public string Name { get; set; }
+            public string Gender { get; set; }
+            public string Height { get; set; }
+            public string Weight { get; set; }
         }
 
         private async Task LoadAsync(IdentityUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            //var gender = await _applicationUser.Gender.Where(applicationUser=>applicationUser.);
+            //var weight = await _applicationUser.Weight.Get();
+            //var height = await _userManager.GetUserNameAsync(user);
 
             Username = userName;
 
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber
+               
             };
         }
 

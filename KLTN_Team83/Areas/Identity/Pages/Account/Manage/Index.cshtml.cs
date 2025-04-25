@@ -76,7 +76,7 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account.Manage
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            //var gender = await _unitOfWork.ApplicationUser.Where(applicationUser=>applicationUser.);
+            //await gender = _unitOfWork.ApplicationUser.Where(applicationUser=>applicationUser.);
             //var weight = await _applicationUser.Weight.Get();
             //var height = await _userManager.GetUserNameAsync(user);
 

@@ -90,8 +90,8 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account
             public string Name { get; set; }
             public string? PhoneNumber { get; set; }
             public string? Gender { get; set; }
-            public string? Weight { get; set; }
-            public string? Height { get; set; }
+            public double? Weight { get; set; }
+            public double? Height { get; set; }
         }
         
         public IActionResult OnGet() => RedirectToPage("./Login");

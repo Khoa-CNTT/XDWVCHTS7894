@@ -13,9 +13,9 @@ namespace KLTN_Team83.Models
         [Required]
         public string Name { get; set; }
 
-        public string? Height { get; set; }
-        public string? Weight { get; set; }
-        public string? Age { get; set; }
+        public double? Height { get; set; }
+        public double? Weight { get; set; }
+        public int? Age { get; set; }
         public string? Gender { get; set; }
     }
 }

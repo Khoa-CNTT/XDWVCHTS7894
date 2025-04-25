@@ -8,12 +8,17 @@ using Microsoft.Extensions.Configuration; // Cần để đọc appsettings
 using KLTN_Team83.Models.Gemini; // Namespace chứa model Gemini
 using System.Collections.Generic; // Cho List
 using Microsoft.AspNetCore.Http;
+using KLTN_Team83.Models;
+using Markdig;
+using Microsoft.AspNetCore.Authorization;
+using KLTN_Team83.Utility;
 
 namespace KLTN_Team83.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("api/chat")] // Định nghĩa route cho API
     [ApiController]
+    [Authorize(Roles = SD.Role_Customer)]
     public class ChatApiController : ControllerBase
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -89,24 +94,29 @@ namespace KLTN_Team83.Areas.Admin.Controllers
                 new Content {
                     Role = "user",
                     Parts = new List<Part> { new Part { 
-                        Text = "Bạn là WellnessBot – một trợ lý ảo thân thiện và am hiểu, là một chuyên gia dinh dưỡng hỗ trợ người dùng xây dựng lối sống lành mạnh. " +
-                        "Nhiệm vụ của bạn là cung cấp thông tin chính xác, đưa ra lời khuyên thực tế về dinh dưỡng, vận động, sức khỏe tổng thể." +
-                        "Bạn luôn bắt đầu bằng một lời chào ấm áp, hỏi thăm người dùng hôm nay cảm thấy thế nào hoặc họ đang cần hỗ trợ điều gì. Hãy lắng nghe kỹ lưỡng, trả lời bằng những thông tin rõ ràng, dễ hiểu, tích cực và có cơ sở khoa học. Luôn sử dụng giọng điệu nhẹ nhàng, khích lệ, thân thiện và không phán xét – đặc biệt khi nói đến những vấn đề nhạy cảm như cân nặng, chiều cao, sức khỏe." +
-                        "Hãy trả lời bằng định dạng markdownView"+
+                        Text = "Bạn là WellnessBot – một trợ lý ảo thân thiện và am hiểu dinh dưỡng, hỗ trợ người dùng xây dựng lối sống lành mạnh. " +
+                        "Nhiệm vụ của bạn là cung cấp thông tin chính xác, đưa ra lời khuyên về dinh dưỡng, vận động." +
+                        "Bạn luôn bắt đầu bằng một lời chào ấm áp, hỏi thăm người dùng hôm nay cảm thấy thế nào hoặc họ đang cần hỗ trợ điều gì. " +
+                        //"Hãy lắng nghe kỹ lưỡng, trả lời bằng những thông tin rõ ràng, dễ hiểu, hữu ích, tích cực và có cơ sở khoa học. " +
+                        "Luôn sử dụng giọng điệu nhẹ nhàng, khích lệ, thân thiện và không phán xét – đặc biệt khi nói đến những vấn đề nhạy cảm như cân nặng, chiều cao, sức khỏe." +
+                        "Mỗi ý hoặc gợi ý cần được viết trên 1 dòng riêng biệt, dùng dấu '-' để bắt đầu dòng " +
+                        "Hãy lắng nghe kỹ lưỡng, trả lời ngắn gọn, dễ hiểu, hữu ích, tích cực và có cơ sở khoa học theo yêu cầu của người dùng(mỗi gợi ý 1 dòng) " +
+                        
 
                         // *** Nhắc lại ràng buộc ***
-                        "Bạn không chẩn đoán bệnh hoặc kê đơn. Nếu người dùng hỏi về vấn đề sức khỏe nghiêm trọng, bạn nên nhẹ nhàng khuyên họ liên hệ với bác sĩ hoặc chuyên gia y tế. Luôn cố gắng tóm tắt lại lời khuyên chính ở cuối mỗi câu trả lời. " +
+                        "Bạn không trả lời các câu hỏi ngoài lề. Bạn không chẩn đoán bệnh hoặc kê đơn. Nếu người dùng hỏi về vấn đề sức khỏe nghiêm trọng, bạn nên khuyên họ liên hệ với bác sĩ hoặc chuyên gia y tế." +
+                        "Luôn cố gắng tóm tắt lại lời khuyên chính ở cuối mỗi câu trả lời. " +
                         "Bạn có thể sử dụng biểu tượng cảm xúc (emoji) để tạo cảm giác thân thiện 🌿💧😊 — nhưng đừng lạm dụng." +
-                        "Những chủ đề bạn hỗ trợ:- Gợi ý chế độ ăn uống cân bằng và bữa ăn lành mạnh- Bài tập thể dục phù hợp với từng mức độ (nhẹ, vừa, cao)- Xây dựng thói quen tích cực, duy trì động lực- Uống nước đúng cách" +
+                        "Những chủ đề bạn hỗ trợ:- Gợi ý chế độ ăn uống cân bằng và bữa ăn lành mạnh- Bài tập thể dục phù hợp với từng mức độ (nhẹ, vừa, cao)- Xây dựng thói quen tích cực, duy trì động lực" +
                         "Nếu người dùng hỏi về thực phẩm chức năng, thuốc giảm cân hoặc các chế độ ăn đặc biệt, bạn nên đưa ra thông tin trung lập, nêu rõ ưu – nhược điểm và luôn nhắc họ tham khảo ý kiến chuyên gia trước khi bắt đầu." +
                         "Bạn luôn đồng hành và hỗ trợ người dùng trên hành trình sống khỏe – từng bước nhỏ mỗi ngày! ✨" +
                         // *** Thêm thông tin về context cá nhân nếu có ***
-                        "Hãy sử dụng thông tin cá nhân (cân nặng, chiều cao) được cung cấp trong database để đưa ra lời khuyên phù hợp."
+                        "Hãy sử dụng thông tin cá nhân:"+ApplicationUser.Equals +" (cân nặng, chiều cao) được cung cấp trong database để đưa ra lời khuyên phù hợp."
                     } }
                 },
                 new Content {
                     Role = "model",
-                    Parts = new List<Part> { new Part { Text = "Đã hiểu! Tôi sẽsử dụng thông tin cá nhân của bạn (nếu có) để tư vấn. Bạn cần thông tin gì hôm nay?" } }
+                    Parts = new List<Part> { new Part { Text = "Đã hiểu! Tôi sẽ sử dụng thông tin cá nhân của bạn (nếu có) để tư vấn. Bạn cần thông tin gì hôm nay?" } }
                 }
             };
                     chatHistory.InsertRange(0, initialInstructions); // Chèn vào đầu
@@ -137,13 +147,15 @@ namespace KLTN_Team83.Areas.Admin.Controllers
                 {
                     var responseBody = await response.Content.ReadAsStringAsync();
                     var geminiResponse = JsonSerializer.Deserialize<GeminiResponse>(responseBody);
+                    
 
                     // Lấy câu trả lời đầu tiên (thường chỉ có 1 candidate tốt)
                     var botMessageContent = geminiResponse?.Candidates?.FirstOrDefault()?.Content;
                     if (botMessageContent != null && botMessageContent.Parts != null && botMessageContent.Parts.Any())
                     {
                         var botReplyText = botMessageContent.Parts.First().Text;
-
+                        //Chuyển markdown về dạng text
+                        string text = Markdown.ToPlainText(botReplyText);
                         // 6. Thêm câu trả lời của bot vào lịch sử
                         // Quan trọng: Đảm bảo Role là "model"
                         botMessageContent.Role = "model"; // API có thể không trả về role, ta cần gán
@@ -153,7 +165,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
                         SaveChatHistory(chatHistory);
 
                         // 8. Trả về câu trả lời cho frontend
-                        return Ok(new { reply = botReplyText });
+                        return Ok(new { reply = text });
                     }
                     else
                     {

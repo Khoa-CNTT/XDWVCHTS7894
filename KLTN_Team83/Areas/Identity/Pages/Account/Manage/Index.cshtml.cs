@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using KLTN_Team83.Models;
+using KLTN_Team83.DataAccess.Repository.IRepository;
 
 namespace KLTN_Team83.Areas.Identity.Pages.Account.Manage
 {
@@ -17,16 +18,19 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly ApplicationUser _applicationUser;
+        //private readonly ApplicationUser _applicationUser;
+        private readonly IUnitOfWork _unitOfWork;
 
         public IndexModel(
             UserManager<IdentityUser> userManager,
             //ApplicationUser applicationUser,
+            IUnitOfWork unitOfWork,
             SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             //_applicationUser = applicationUser;
+            _unitOfWork = unitOfWork;
         }
 
         /// <summary>
@@ -72,7 +76,7 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account.Manage
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            //var gender = await _applicationUser.Gender.Where(applicationUser=>applicationUser.);
+            //var gender = await _unitOfWork.ApplicationUser.Where(applicationUser=>applicationUser.);
             //var weight = await _applicationUser.Weight.Get();
             //var height = await _userManager.GetUserNameAsync(user);
 

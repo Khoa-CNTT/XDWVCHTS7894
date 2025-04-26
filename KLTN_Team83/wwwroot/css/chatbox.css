@@ -1,8 +1,21 @@
-﻿/* Nút mở/đóng chính */
-#chatbox-toggle-btn {
+﻿.chat-group {
     position: fixed;
+    display: block;
     bottom: 20px;
     right: 20px;
+}
+/* Nút mở/đóng chính */
+#chatbox-toggle-btn {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+#chatbox-btn {
     padding: 10px 15px;
     background-color: #28a745;
     color: white;
@@ -45,6 +58,7 @@
 
 #chatbox-header {
     background-color: #28a745;
+    color: white;
     padding: 15px;
     border-bottom: 1px solid #ccc;
     font-weight: bold;
@@ -58,7 +72,7 @@
     border: none;
     font-size: 1.2em;
     cursor: pointer;
-    color: #555;
+    color: white;
 }
 
 #chatbox-messages {
@@ -95,7 +109,7 @@
     /* Hiển thị thinking indicator */
     .bot-message.thinking::after {
         content: '...';
-        display: inline-block;
+        display: inline;
         animation: typing 1s steps(3, end) infinite;
     }
 
@@ -133,6 +147,7 @@
     border: none;
     border-radius: 15px;
     cursor: pointer;
+    display: inline-flex;
 }
 
     #chatbox-send-btn:disabled {

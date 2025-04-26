@@ -98,7 +98,7 @@
         chatbox.classList.toggle('visible');
         if (chatbox.classList.contains('visible')) {
             input.focus(); // Focus vào input khi mở
-            toggleBtn.textContent = 'Đóng ChatBot'; // Đổi chữ nút toggle
+            toggleBtn.textContent = 'Close ChatBot'; // Đổi chữ nút toggle
         } else {
             toggleBtn.textContent = 'Wellness ChatBot'; // Đổi lại chữ
         }

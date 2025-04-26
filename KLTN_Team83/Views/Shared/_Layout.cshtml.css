@@ -363,10 +363,12 @@ cloned-content-container .post-footer {
 .social-icons {
     display: flex;
     margin-bottom: 15px; /* Add space between icons and links */
+    flex-direction: column; /* Stack social icons and links */
+    align-items: flex-end; /* Align to the right */
 }
 
     .social-icons a {
-        display: inline-block;
+        display: block;
         margin-left: 10px;
         color: white;
     }

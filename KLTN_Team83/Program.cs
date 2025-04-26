@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using KLTN_Team83.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using KLTN_Team83.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

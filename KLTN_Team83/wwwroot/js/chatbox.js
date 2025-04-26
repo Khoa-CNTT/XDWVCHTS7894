@@ -12,7 +12,7 @@
     function displayMessage(text, sender) { // sender là 'user' hoặc 'bot'
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message', `${sender}-message`);
-        messageDiv.textContent = text;
+        messageDiv.innerHTML = text;
         messagesContainer.appendChild(messageDiv);
         // Tự động cuộn xuống tin nhắn mới nhất
         messagesContainer.scrollTop = messagesContainer.scrollHeight;

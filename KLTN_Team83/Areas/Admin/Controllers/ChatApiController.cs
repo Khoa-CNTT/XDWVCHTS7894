@@ -155,7 +155,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
                     {
                         var botReplyText = botMessageContent.Parts.First().Text;
                         //Chuyển markdown về dạng text
-                        string text = Markdown.ToPlainText(botReplyText);
+                        string text = Markdown.ToHtml(botReplyText);
                         // 6. Thêm câu trả lời của bot vào lịch sử
                         // Quan trọng: Đảm bảo Role là "model"
                         botMessageContent.Role = "model"; // API có thể không trả về role, ta cần gán

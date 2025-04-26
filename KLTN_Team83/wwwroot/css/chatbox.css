@@ -154,3 +154,7 @@
         background-color: #28a745;
         cursor: not-allowed;
     }
+
+p {
+    font-family:Calibri , "Times New Roman", Times, serif;
+}

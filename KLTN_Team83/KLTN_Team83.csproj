@@ -43,6 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Views\Product\" />
     <Folder Include="Areas\Identity\Data\" />
   </ItemGroup>
 	

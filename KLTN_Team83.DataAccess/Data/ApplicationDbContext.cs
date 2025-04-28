@@ -15,6 +15,8 @@ namespace KLTN_Team83.DataAccess.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<InfoUser> Users { get; set; }
+        //public DbSet<Expert> Experts { get; set; }
+        public DbSet<Category> Categories { get; set; }
         //public DbSet<MyImage> MyImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -24,6 +26,12 @@ namespace KLTN_Team83.DataAccess.Data
             //        // Configure the primary key for the User entity
             //        modelBuilder.Entity<User>()
             //            .HasKey(a => a.id_User);
+            modelBuilder.Entity<Category>().HasData(
+                new Category { DisplayOrder = 1, Id_Category = 1, Name = "Thức ăn" },
+                new Category { DisplayOrder = 2, Id_Category = 2, Name = "Thức uống" },
+                new Category { DisplayOrder = 3, Id_Category = 3, Name = "Thức ăn dinh dưỡng" },
+                new Category { DisplayOrder = 4, Id_Category = 4, Name = "Thực phẩm hỗ trợ" }
+                );
             modelBuilder.Entity<TypeBlog>().HasData(
                 new TypeBlog { id_TypeBlog = 1, Name = "Food", Description = "Thông tin về thức ăn dinh dưỡng" },
                 new TypeBlog { id_TypeBlog = 2, Name = "Health", Description = "Thông tin về sức khỏe" },

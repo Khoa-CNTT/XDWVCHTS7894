@@ -31,13 +31,13 @@ namespace KLTN_Team83.Areas.Admin.Controllers
         // CHỨC NĂNG THÊM BLOG
         public IActionResult Create(IFormFile? file )
         {
-            IEnumerable<SelectListItem> TypeBlogList = _unitOfWork.TypeBlog.GetAll(includeProperties:"TypeBlog").Select(u => new SelectListItem
-            {
-                Text = u.Name,
-                Value = u.id_TypeBlog.ToString()
-            });
+            //IEnumerable<SelectListItem> TypeBlogList = _unitOfWork.TypeBlog.GetAll(includeProperties:"TypeBlog").Select(u => new SelectListItem
+            //{
+            //    Text = u.Name,
+            //    Value = u.id_TypeBlog.ToString()
+            //});
 
-            ViewBag.TypeBlogList = TypeBlogList;
+            //ViewBag.TypeBlogList = TypeBlogList;
             //ViewData["TypeBlogList"] = TypeBlogList;
             return View();
         }

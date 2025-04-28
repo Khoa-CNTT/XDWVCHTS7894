@@ -12,85 +12,96 @@ namespace KLTN_Team83.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = SD.Role_Admin)]
-    
-    public class TypeBlogController : Controller
+    public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _db;
-        public TypeBlogController(ApplicationDbContext db)
+        public CategoryController(ApplicationDbContext db)
         {
             _db = db;
         }
         public IActionResult Index()
         {
-            List<TypeBlog> objTypeBlogList = _db.TypeBlogs.ToList();
-            return View(objTypeBlogList);
+            List<Category> objCategoryList = _db.Categories.ToList();
+            return View(objCategoryList);
         }
 
-        // CHỨC NĂNG THÊM TYPEBLOG
+        // CHỨC NĂNG THÊM CATEGORY
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult Create(TypeBlog obj)
+        public IActionResult Create(Category obj)
         {
+            if(obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("Name", "Display Order cannot be the same as Name.");
+            }
+            if (obj.Name == null || obj.Name.ToLower() == "")
+            {
+                ModelState.AddModelError("", "Category Name cannot be empty!");
+            }
+            if (_db.Categories.Any(u => u.Name == obj.Name))
+            {
+                ModelState.AddModelError("Name", "Category Name already exists!");
+            }
             if (ModelState.IsValid)
             {
-                _db.TypeBlogs.Add(obj);
+                _db.Categories.Add(obj);
                 _db.SaveChanges();
-                TempData["success"] = "TypeBlog created successfully!";
+                TempData["success"] = "Category created successfully!";
                 return RedirectToAction("Index");
             }
             return View();
         }
 
-        // CHỨC NĂNG SỬA TYPEBLOG
+        // CHỨC NĂNG SỬA CATEGORY
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-            TypeBlog? categoryFromDb = _db.TypeBlogs.Find(id);
-            if (categoryFromDb == null)
+            Category? categoryFromDb = _db.Categories.Find(id);
+            if(categoryFromDb == null)
             {
                 return NotFound();
             }
             return View();
         }
         [HttpPost]
-        public IActionResult Edit(TypeBlog obj)
+        public IActionResult Edit(Category obj)
         {
-            if (obj.Name == obj.Description.ToString())
+            if (obj.Name == obj.DisplayOrder.ToString())
             {
-                ModelState.AddModelError("Name", "Description cannot be the same as Name.");
+                ModelState.AddModelError("Name", "Display Order cannot be the same as Name.");
             }
             if (obj.Name == null || obj.Name.ToLower() == "")
             {
-                ModelState.AddModelError("", "TypeBlog Name cannot be empty!");
+                ModelState.AddModelError("", "Category Name cannot be empty!");
             }
-            if (_db.TypeBlogs.Any(u => u.Name == obj.Name))
+            if (_db.Categories.Any(u => u.Name == obj.Name))
             {
-                ModelState.AddModelError("Name", "TypeBlog Name already exists!");
+                ModelState.AddModelError("Name", "Category Name already exists!");
             }
             if (ModelState.IsValid)
             {
-                _db.TypeBlogs.Update(obj);
+                _db.Categories.Update(obj);
                 _db.SaveChanges();
-                TempData["success"] = "TypeBlog updated successfully!";
+                TempData["success"] = "Category updated successfully!";
                 return RedirectToAction("Index");
             }
             return View();
         }
 
-        // CHỨC NĂNG XÓA TYPEBLOG
+        // CHỨC NĂNG XÓA CATEGORY
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-            TypeBlog? categoryFromDb = _db.TypeBlogs.Find(id);
+            Category? categoryFromDb = _db.Categories.Find(id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -101,14 +112,14 @@ namespace KLTN_Team83.Areas.Admin.Controllers
         [ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            TypeBlog? obj = _db.TypeBlogs.Find(id);
+            Category? obj = _db.Categories.Find(id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.TypeBlogs.Update(obj);
+            _db.Categories.Update(obj);
             _db.SaveChanges();
-            TempData["success"] = "TypeBlog deleted successfully!";
+            TempData["success"] = "Category deleted successfully!";
             return RedirectToAction("Index");
         }
     }

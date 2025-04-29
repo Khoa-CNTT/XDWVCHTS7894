@@ -42,9 +42,7 @@ namespace KLTN_Team83.DataAccess.Repository
             return query.FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll(
-            //string? includeProperties=null
-            )
+        public IEnumerable<T> GetAll()
         {
             IQueryable<T> query = dbSet;
             //if (!string.IsNullOrEmpty(includeProperties))

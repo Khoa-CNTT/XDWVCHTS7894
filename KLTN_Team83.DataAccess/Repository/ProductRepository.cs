@@ -18,7 +18,20 @@ namespace KLTN_Team83.DataAccess.Repository
         }
         public void Update(Product obj)
         {
-            _db.Products.Update(obj);
+            var objFromDb = _db.Products.FirstOrDefault(u => u.Id_Product == obj.Id_Product);
+            if(objFromDb != null)
+            {
+                objFromDb.NameProduct = obj.NameProduct;
+                objFromDb.Price = obj.Price;
+                objFromDb.Price50 = obj.Price50;
+                objFromDb.Price100 = obj.Price100;
+                objFromDb.Description = obj.Description;
+                objFromDb.NCC = obj.NCC;
+                if (obj.ImgageUrl != null)
+                {
+                    objFromDb.ImgageUrl = obj.ImgageUrl;
+                }
+            }
         }
     }
     

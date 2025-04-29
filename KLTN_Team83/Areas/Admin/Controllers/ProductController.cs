@@ -29,7 +29,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
         }
 
         // CHỨC NĂNG THÊM TYPEBLOG
-        public IActionResult Create()
+        public IActionResult Upsert( int? id)
         {
             ProductVM productVM = new()
             {
@@ -40,11 +40,20 @@ namespace KLTN_Team83.Areas.Admin.Controllers
                 }),
                 Product = new Product()
             };
-
-            return View(productVM);
+            if(id==null|| id == 0)
+            {
+                //create
+                return View(productVM);
+            }
+            else
+            {
+                //update
+                productVM.Product = _db.Product.Get(u => u.Id_Product == id);
+                return View(productVM);
+            }
         }
         [HttpPost]
-        public IActionResult Create(ProductVM productVM)
+        public IActionResult Upsert(ProductVM productVM, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
@@ -64,49 +73,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
             }
         }
 
-        // CHỨC NĂNG SỬA TYPEBLOG
-        public IActionResult Edit(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            Product? productFromDb = _db.Product.Get(u=>u.Id_Product==id);
-            if (productFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(productFromDb);
-
-        }
-        [HttpPost]
-        public IActionResult Edit(ProductVM productVM)
-        {
-            if (productVM.Product.NameProduct == null || productVM.Product.NameProduct.ToLower() == "")
-            {
-                ModelState.AddModelError("", "NameProduct cannot be empty!");
-            }
-            if (_db.Product.GetAll().Any(u => u.NameProduct == productVM.Product.NameProduct))
-            {
-                ModelState.AddModelError("NameProduct", "NameProduct already exists!");
-            }
-            if (ModelState.IsValid)
-            {
-                _db.Product.Update(productVM.Product);
-                _db.Save();
-                TempData["success"] = "Product created successfully!";
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                productVM.CategoryList = _db.Category.GetAll().Select(u => new SelectListItem
-                {
-                    Text = u.Name,
-                    Value = u.Id_Category.ToString()
-                });
-                return View(productVM);
-            }
-        }
+        
 
         // CHỨC NĂNG XÓA TYPEBLOG
         public IActionResult Delete(int? id)

@@ -1,10 +1,10 @@
-﻿@model List<TypeBlog>
+﻿@model List<Product>
 
 <div class="card shadow border-0 my-4">
 	<div class="card-header ml-0 py-3">
 		<div class="row">
 			<div class="col-12 text-center">
-				<h2 class="text-primary py-2">TYPE BLOG LIST</h2>
+				<h2 class="text-primary py-2">PRODUCT LIST</h2>
 			</div>
 		</div>
 		<div class="card-body">
@@ -13,7 +13,7 @@
 					
 				</div>
 				<div class="col-6 text-end">
-					<a asp-controller="TypeBlog" asp-action="Create" class="btn btn-primary">
+					<a asp-controller="Product" asp-action="Create" class="btn btn-primary">
 						<i class="bi bi-plus-circle"></i> Create New
 					</a>
 				</div>
@@ -21,23 +21,29 @@
 			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
-						<th>Name</th>
-						<th>Desciption</th>
-						<th>Actions</th>
+						<th>Name Product</th>
+						<th>Description</th>
+						<th>Nhà Cung Cấp</th>
+						<th>Price</th>
+						<th>Category</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					@foreach (var obj in Model.OrderBy(u => u.id_TypeBlog))
+					@foreach (var obj in Model.OrderBy(u => u.NameProduct))
 					{
 						<tr>
-							<td>@obj.Name</td>
+							<td>@obj.NameProduct</td>
 							<td>@obj.Description</td>
+							<td>@obj.NCC</td>
+							<td>@obj.Price</td>
+							<td>@obj.Id_Category</td>
 							<td>
 								<div class="w-75 btn-group" role="group">
-									<a asp-controller="TypeBlog" asp-action="Edit" asp-route-id="@obj.id_TypeBlog" class="btn btn-primary mx-2">
+									<a asp-controller="Product" asp-action="Edit" asp-route-id="@obj.Id_Product" class="btn btn-primary mx-2">
 										<i class="bi bi-pencil-square"></i>Edit
 									</a>
-									<a asp-controller="TypeBlog" asp-action="Delete" asp-route-id="@obj.id_TypeBlog" class="btn btn-danger mx-2">
+									<a asp-controller="Product" asp-action="Delete" asp-route-id="@obj.Id_Product" class="btn btn-danger mx-2">
 										<i class="bi bi-trash-fill"></i>Delete
 									</a>
 								</div>

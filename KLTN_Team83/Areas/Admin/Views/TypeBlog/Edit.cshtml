@@ -12,9 +12,9 @@
 				<input asp-for="id_TypeBlog" hidden />
 				<div class="border p-3 ">
 					<div class="form-floating py-2 col-12">
-						<label asp-for="Name" class="ms-2">Chuyên mục</label>
-						<input asp-for="Name" class="form-control border-0 shadow" />
-						<span asp-validation-for="Name" class="text-danger"></span>
+						<label asp-for="@Model.Name" class="ms-2">Chuyên mục</label>
+						<input asp-for="@Model.Name" class="form-control border-0 shadow" />
+						<span asp-validation-for="@Model.Name" class="text-danger"></span>
 					</div>
 					<div class="form-floating py-2 col-12">
 						<label asp-for="Description" class="ms-2">Mô tả</label>

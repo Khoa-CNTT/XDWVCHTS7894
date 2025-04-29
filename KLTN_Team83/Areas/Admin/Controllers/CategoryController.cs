@@ -14,14 +14,14 @@ namespace KLTN_Team83.Areas.Admin.Controllers
     [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        public CategoryController(ApplicationDbContext db)
+        private readonly ICategoryRepository _repo;
+        public CategoryController(ICategoryRepository db)
         {
-            _db = db;
+            _repo = db;
         }
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _db.Categories.ToList();
+            List<Category> objCategoryList = _repo.GetAll().ToList();
             return View(objCategoryList);
         }
 
@@ -41,14 +41,14 @@ namespace KLTN_Team83.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("", "Category Name cannot be empty!");
             }
-            if (_db.Categories.Any(u => u.Name == obj.Name))
+            if (_repo.GetAll().Any(u => u.Name == obj.Name))
             {
                 ModelState.AddModelError("Name", "Category Name already exists!");
             }
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
+                _repo.Add(obj);
+                _repo.Save();
                 TempData["success"] = "Category created successfully!";
                 return RedirectToAction("Index");
             }
@@ -62,7 +62,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _db.Categories.Find(id);
+            Category? categoryFromDb = _repo.Get(u=>u.Id_Category==id);
             if(categoryFromDb == null)
             {
                 return NotFound();
@@ -80,14 +80,14 @@ namespace KLTN_Team83.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("", "Category Name cannot be empty!");
             }
-            if (_db.Categories.Any(u => u.Name == obj.Name))
+            if (_repo.GetAll().Any(u => u.Name == obj.Name))
             {
                 ModelState.AddModelError("Name", "Category Name already exists!");
             }
             if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
+                _repo.Update(obj);
+                _repo.Save();
                 TempData["success"] = "Category updated successfully!";
                 return RedirectToAction("Index");
             }
@@ -101,7 +101,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _db.Categories.Find(id);
+            Category? categoryFromDb = _repo.Get(u => u.Id_Category == id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -112,13 +112,13 @@ namespace KLTN_Team83.Areas.Admin.Controllers
         [ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category? obj = _db.Categories.Find(id);
+            Category? obj = _repo.Get(u => u.Id_Category == id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.Categories.Update(obj);
-            _db.SaveChanges();
+            _repo.Remove(obj);
+            _repo.Save();
             TempData["success"] = "Category deleted successfully!";
             return RedirectToAction("Index");
         }

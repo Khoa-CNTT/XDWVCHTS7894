@@ -15,14 +15,14 @@ namespace KLTN_Team83.Areas.Admin.Controllers
     
     public class TypeBlogController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        public TypeBlogController(ApplicationDbContext db)
+        private readonly IUnitOfWork _db;
+        public TypeBlogController(IUnitOfWork db)
         {
             _db = db;
         }
         public IActionResult Index()
         {
-            List<TypeBlog> objTypeBlogList = _db.TypeBlogs.ToList();
+            List<TypeBlog> objTypeBlogList = _db.TypeBlog.GetAll().ToList();
             return View(objTypeBlogList);
         }
 
@@ -36,8 +36,8 @@ namespace KLTN_Team83.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.TypeBlogs.Add(obj);
-                _db.SaveChanges();
+                _db.TypeBlog.Add(obj);
+                _db.Save();
                 TempData["success"] = "TypeBlog created successfully!";
                 return RedirectToAction("Index");
             }
@@ -51,12 +51,12 @@ namespace KLTN_Team83.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            TypeBlog? categoryFromDb = _db.TypeBlogs.Find(id);
-            if (categoryFromDb == null)
+            TypeBlog? typeBlogFromDb = _db.TypeBlog.Get(u=>u.id_TypeBlog==id);
+            if (typeBlogFromDb == null)
             {
                 return NotFound();
             }
-            return View();
+            return View(typeBlogFromDb);
         }
         [HttpPost]
         public IActionResult Edit(TypeBlog obj)
@@ -69,14 +69,14 @@ namespace KLTN_Team83.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("", "TypeBlog Name cannot be empty!");
             }
-            if (_db.TypeBlogs.Any(u => u.Name == obj.Name))
+            if (_db.TypeBlog.GetAll().Any(u => u.Name == obj.Name))
             {
                 ModelState.AddModelError("Name", "TypeBlog Name already exists!");
             }
             if (ModelState.IsValid)
             {
-                _db.TypeBlogs.Update(obj);
-                _db.SaveChanges();
+                _db.TypeBlog.Update(obj);
+                _db.Save();
                 TempData["success"] = "TypeBlog updated successfully!";
                 return RedirectToAction("Index");
             }
@@ -90,24 +90,24 @@ namespace KLTN_Team83.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            TypeBlog? categoryFromDb = _db.TypeBlogs.Find(id);
-            if (categoryFromDb == null)
+            TypeBlog? typeBlogFromDb = _db.TypeBlog.Get(u => u.id_TypeBlog == id);
+            if (typeBlogFromDb == null)
             {
                 return NotFound();
             }
-            return View();
+            return View(typeBlogFromDb);
         }
         [HttpPost]
         [ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            TypeBlog? obj = _db.TypeBlogs.Find(id);
+            TypeBlog? obj = _db.TypeBlog.Get(u => u.id_TypeBlog == id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.TypeBlogs.Update(obj);
-            _db.SaveChanges();
+            _db.TypeBlog.Remove(obj);
+            _db.Save();
             TempData["success"] = "TypeBlog deleted successfully!";
             return RedirectToAction("Index");
         }

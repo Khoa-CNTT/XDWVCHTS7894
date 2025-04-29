@@ -4,6 +4,7 @@ using KLTN_Team83.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KLTN_Team83.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250429025654_addProductToDb")]
+    partial class addProductToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -298,9 +301,6 @@ namespace KLTN_Team83.DataAccess.Migrations
                     b.Property<int>("Id_Category")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImgageUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("NCC")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -330,7 +330,6 @@ namespace KLTN_Team83.DataAccess.Migrations
                             Id_Product = 1,
                             Description = "Thịt bò tươi ngon",
                             Id_Category = 1,
-                            ImgageUrl = "",
                             NCC = "Đá Chẹt",
                             NameProduct = "Thịt bò",
                             Price = 20.0,
@@ -342,7 +341,6 @@ namespace KLTN_Team83.DataAccess.Migrations
                             Id_Product = 2,
                             Description = "Nước điện giải có ga bù nước",
                             Id_Category = 2,
-                            ImgageUrl = "",
                             NCC = "Long Châu",
                             NameProduct = "Nước điện giải",
                             Price = 10.0,
@@ -354,7 +352,6 @@ namespace KLTN_Team83.DataAccess.Migrations
                             Id_Product = 3,
                             Description = "Kẹo có thuốc xổ",
                             Id_Category = 4,
-                            ImgageUrl = "",
                             NCC = "Quang Linh",
                             NameProduct = "Kẹo rau Kera",
                             Price = 50.0,

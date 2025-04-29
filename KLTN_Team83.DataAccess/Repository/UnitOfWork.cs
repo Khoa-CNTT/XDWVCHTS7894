@@ -15,6 +15,8 @@ namespace KLTN_Team83.DataAccess.Repository
         public IBlogRepository Blog { get; private set; }
         public ITypeBlogRepository TypeBlog { get; private set; }
         public IApplicationUserRepository ApplicationUser { get; private set; }
+        public IProductRepository Product { get; private set; }
+        public ICategoryRepository Category { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -22,6 +24,8 @@ namespace KLTN_Team83.DataAccess.Repository
             Blog = new BlogRepository(_db);
             TypeBlog = new TypeBlogRepository(_db);
             ApplicationUser = new ApplicationUserRepository(_db);
+            Product = new ProductRepository(_db);
+            Category = new CategoryRepository(_db);
         }
         
         public void Save() {

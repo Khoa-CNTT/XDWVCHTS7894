@@ -17,6 +17,7 @@ namespace KLTN_Team83.DataAccess.Data
         public DbSet<InfoUser> Users { get; set; }
         //public DbSet<Expert> Experts { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
         //public DbSet<MyImage> MyImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,6 +32,11 @@ namespace KLTN_Team83.DataAccess.Data
                 new Category { DisplayOrder = 2, Id_Category = 2, Name = "Thức uống" },
                 new Category { DisplayOrder = 3, Id_Category = 3, Name = "Thức ăn dinh dưỡng" },
                 new Category { DisplayOrder = 4, Id_Category = 4, Name = "Thực phẩm hỗ trợ" }
+                );
+            modelBuilder.Entity<Product>().HasData(
+                new Product { Id_Product = 1, Id_Category = 1, NameProduct = "Thịt bò", NCC="Đá Chẹt", Price = 20, Price50=18, Price100=15, Description = "Thịt bò tươi ngon", ImgageUrl="" },
+                new Product { Id_Product = 2, Id_Category = 2, NameProduct = "Nước điện giải", NCC = "Long Châu", Price = 10, Price50 = 8, Price100 = 5, Description = "Nước điện giải có ga bù nước", ImgageUrl = "" },
+                new Product { Id_Product =3, Id_Category = 4, NameProduct = "Kẹo rau Kera", NCC = "Quang Linh", Price =50, Price50 = 45, Price100 = 43, Description = "Kẹo có thuốc xổ", ImgageUrl = "" }
                 );
             modelBuilder.Entity<TypeBlog>().HasData(
                 new TypeBlog { id_TypeBlog = 1, Name = "Food", Description = "Thông tin về thức ăn dinh dưỡng" },

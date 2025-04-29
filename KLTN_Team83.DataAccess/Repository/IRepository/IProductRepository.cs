@@ -7,9 +7,8 @@ using KLTN_Team83.Models;
 
 namespace KLTN_Team83.DataAccess.Repository.IRepository
 {
-    public interface ITypeBlogRepository : IRepository<TypeBlog>
+    public interface IProductRepository : IRepository<Product>
     {
-        void Update(TypeBlog obj);
+        void Update(Product obj);
     }
-    
 }

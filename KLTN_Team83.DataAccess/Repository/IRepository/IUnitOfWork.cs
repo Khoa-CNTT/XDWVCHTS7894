@@ -12,6 +12,8 @@ namespace KLTN_Team83.DataAccess.Repository.IRepository
         IBlogRepository Blog { get; }
         ITypeBlogRepository TypeBlog { get; }
         IApplicationUserRepository ApplicationUser { get; }
+        IProductRepository Product { get; }
+        ICategoryRepository Category { get; }
         void Save();
     }
 }

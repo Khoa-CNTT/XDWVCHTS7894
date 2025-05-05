@@ -25,7 +25,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            List<Product> objProductList = _db.Product.GetAll().ToList();
+            List<Product> objProductList = _db.Product.GetAll(includeProperties:"Category").ToList();
             
             return View(objProductList);
         }
@@ -134,5 +134,14 @@ namespace KLTN_Team83.Areas.Admin.Controllers
             TempData["success"] = "Product deleted successfully!";
             return RedirectToAction("Index");
         }
+
+
+        #region
+        [HttpGet]
+        public IActionResult GetAll() {
+            List<Product> objProductList = _db.Product.GetAll(includeProperties: "Category").ToList();
+            return Json(new { data = objProductList });
+        }
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
-﻿using KLTN_Team83.DataAccess.Data;
+﻿using Google.Ai.Generativelanguage.V1Beta2;
+using KLTN_Team83.DataAccess.Data;
 using KLTN_Team83.DataAccess.Repository;
 using KLTN_Team83.DataAccess.Repository.IRepository;
 using KLTN_Team83.Models;
@@ -104,43 +105,37 @@ namespace KLTN_Team83.Areas.Admin.Controllers
             }
         }
 
-        
-
-        // CHỨC NĂNG XÓA TYPEBLOG
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            Product? productFromDb = _db.Product.Get(u => u.Id_Product == id);
-            if (productFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(productFromDb);
-        }
-        [HttpPost]
-        [ActionName("Delete")]
-        public IActionResult DeletePOST(int? id)
-        {
-            Product? obj = _db.Product.Get(u => u.Id_Product == id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            _db.Product.Remove(obj);
-            _db.Save();
-            TempData["success"] = "Product deleted successfully!";
-            return RedirectToAction("Index");
-        }
-
 
         #region
         [HttpGet]
         public IActionResult GetAll() {
             List<Product> objProductList = _db.Product.GetAll(includeProperties: "Category").ToList();
             return Json(new { data = objProductList });
+        }
+
+        // CHỨC NĂNG XÓA PRODUCT
+        [HttpDelete]
+        public IActionResult Delete(int? id)
+        {
+            var productToBeDelete = _db.Product.Get(u => u.Id_Product == id);
+            if (productToBeDelete == null)
+            {
+                return Json(new { success = false, message = "Error while Delete" });
+            }
+            //xóa ảnh cũ
+            var oldImagePath =
+                            Path.Combine(_hostEnvironment.WebRootPath, 
+                            productToBeDelete.ImgageUrl.TrimStart('\\'));
+            if (System.IO.File.Exists(oldImagePath))
+            {
+                System.IO.File.Delete(oldImagePath);
+            }
+
+            _db.Product.Remove(productToBeDelete);
+            _db.Save();
+
+            List<Product> objProductList = _db.Product.GetAll(includeProperties: "Category").ToList();
+            return Json(new { success = true, message = "Delete Successful" });
         }
         #endregion
     }

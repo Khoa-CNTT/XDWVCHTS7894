@@ -38,7 +38,13 @@ namespace KLTN_Team83.Areas.Customer.Controllers
         }
         public IActionResult Services()
         {
-            return View();
+            IEnumerable<Product> ProductList = _unitOfWork.Product.GetAll(includeProperties: "Category");
+            return View(ProductList);
+        }
+
+        public IActionResult DetailProduct(int id) {
+            Product Product = _unitOfWork.Product.Get(u=>u.Id_Product==id,includeProperties: "Category");
+            return View(Product);
         }
         public IActionResult Contact()
         {

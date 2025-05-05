@@ -10,11 +10,6 @@ namespace KLTN_Team83.DataAccess.Repository.IRepository
     public interface IBlogRepository : IRepository<Blog>
     {
         void Update(Blog obj);
-        //Task<Account> GetByIdAsync(int id);
-        //Task<IEnumerable<Account>> GetAllAsync();
-        //Task AddAsync(Account obj);
-        //Task RemoveAsync(Account obj);
-        //Task RemoveRangeAsync(IEnumerable<Account> obj);
     }
     
 }

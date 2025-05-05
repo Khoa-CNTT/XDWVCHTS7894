@@ -19,7 +19,16 @@ namespace KLTN_Team83.DataAccess.Repository
         }
         public void Update(Blog obj)
         {
-            _db.Blogs.Update(obj);
+            var objFromDb = _db.Blogs.FirstOrDefault(u => u.id_Blog == obj.id_Blog);
+            if (objFromDb != null)
+            {
+                objFromDb.tilte = obj.tilte;
+                objFromDb.content = obj.content;
+                if (obj.ImageUrl != null)
+                {
+                    objFromDb.ImageUrl = obj.ImageUrl;
+                }
+            }
         }
         
         

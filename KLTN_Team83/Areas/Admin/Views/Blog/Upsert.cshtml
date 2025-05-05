@@ -1,46 +1,60 @@
-﻿@model Blog
+﻿@model BlogVM
 
 <div class="card shadow border-0 mt-4">
 	<div class="card-header ml-0 py-3">
 		<div class="row">
 			<div class="col-12 text-center">
-				<h2 class="text-primary py-2">Create Blog</h2>
+				<h2 class="text-primary py-2">@(Model.Blog.id_Blog != 0 ? "Update" : "Create") Blog</h2>
 			</div>
 		</div>
 		<div class="card-body">
 			<form method="post" class="row" enctype="multipart/form-data">
+				<input asp-for="Blog.id_Blog" hidden />
+				<input asp-for="Blog.ImageUrl" hidden />
 				<div class="row">
 					<div class="col-10">
 						<div class="border p-3">
 							<div class="form-floating py-2 col-12">
-								<label asp-for="tilte" class="ms-2">Tiêu Đề</label>
-								<input asp-for="tilte" class="form-control border-0 shadow" />
-								<span asp-validation-for="tilte" class="text-danger"></span>
+								<label asp-for="Blog.tilte" class="ms-2"></label>
+								<input asp-for="Blog.tilte" class="form-control border-0 shadow" />
+								<span asp-validation-for="Blog.tilte" class="text-danger"></span>
 							</div>
 							<div class="py-2 col-12">
-								<label asp-for="content" class="ms-2 text-muted">Nội Dung</label>
-								<textarea asp-for="content" class="form-control border-0 shadow">
-						</textarea>
+								<label asp-for="Blog.content" class="ms-2 text-muted"></label>
+								<textarea asp-for="Blog.content" class="form-control border-0 shadow"></textarea>
+								<span asp-validation-for="Blog.content" class="text-danger"></span>
 							</div>
 							<div class="form-floating py-2 col-12">
-								<label asp-for="img" class="ms-2"> Hình ảnh</label>
+								<label asp-for="Blog.ImageUrl" class="ms-2"> Hình ảnh</label>
 								<input type="file" name="file" class="form-control border-0 shadow" />
-								<span asp-validation-for="img" class="text-danger"></span>
+								<span asp-validation-for="Blog.ImageUrl" class="text-danger"></span>
 								@* <button type="submit">Upload</button> *@
 							</div>
 							<div class="form-floating py-2 col-12">
-								<label asp-for="id_TypeBlog" class="ms-2">Type Blog</label>
-								<select asp-for="id_TypeBlog" asp-items="ViewBag.TypeBlogList" class="form-select border-0 shadow">
+								<label asp-for="Blog.id_TypeBlog" class="ms-2">Type Blog</label>
+								@* <select asp-for="Blog.id_TypeBlog" asp-items="ViewBag.TypeBlogList" class="form-select border-0 shadow"> *@
+								@* 	<option disabled selected>Select TypeBlog</option> *@
+								@* </select> *@
+								<select asp-for="@Model.Blog.id_TypeBlog" asp-items="@Model.TypeBlogList" class="form-select border-0 shadow">
 									<option disabled selected>Select TypeBlog</option>
 								</select>
+								<span asp-validation-for="Blog.id_TypeBlog" class="text-danger"></span>
+								@* <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select"></select> *@
 							</div>
 
-							@* thẻ tông kết lỗi:
+							@* thẻ tông kết lỗi: *@
 							<div asp-validation-summary="ModelOnly"></div>
 
 							<div class="row mt-3">
 								<div class="col-6 col-md-3">
-									<button type="submit" class="btn btn-primary form-control" style="width: 150px">Update</button>
+									@if (Model.Blog.id_Blog != 0)
+									{
+										<button type="submit" class="btn btn-primary form-control" style="width: 150px">Update</button>
+									}
+									else
+									{
+										<button type="submit" class="btn btn-primary form-control" style="width: 150px">Create</button>
+									}
 
 								</div>
 								<div class="col-6 col-md-3">
@@ -52,7 +66,7 @@
 						</div>
 					</div>
 					<div class="col-2">
-						@* <img src="@Model.img" style="width:150px; border-radius: 5px; border:1px solid #bbb9b9" /> *@
+						<img src="@Model.Blog.ImageUrl" width="100%" style=" border-radius: 5px; border:1px solid #bbb9b9" />
 					</div>
 				</div>
 			</form>

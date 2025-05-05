@@ -2,6 +2,7 @@
 using KLTN_Team83.DataAccess.Repository;
 using KLTN_Team83.DataAccess.Repository.IRepository;
 using KLTN_Team83.Models;
+using KLTN_Team83.Models.ViewModels;
 using KLTN_Team83.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,152 +15,135 @@ namespace KLTN_Team83.Areas.Admin.Controllers
     [Authorize(Roles = SD.Role_Admin)]
     public class BlogController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _db;
         private readonly IWebHostEnvironment _hostEnvironment;
-        public BlogController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
+        public BlogController(IUnitOfWork db, IWebHostEnvironment hostEnvironment)
         {
-            _unitOfWork = unitOfWork;
+            _db = db;
             _hostEnvironment = hostEnvironment;
         }
         public IActionResult Index()
         {
-            List<Blog> objBlogList = _unitOfWork.Blog.GetAll().ToList();
+            List<Blog> objBlogList = _db.Blog.GetAll().ToList();
             
             return View(objBlogList);
         }
 
         // CHỨC NĂNG THÊM BLOG
-        public IActionResult Create(IFormFile? file )
+        public IActionResult Upsert(int? id)
         {
-            IEnumerable<SelectListItem> TypeBlogList = _unitOfWork.TypeBlog.GetAll().Select(u => new SelectListItem
+            BlogVM blogVM = new()
             {
-                Text = u.Name,
-                Value = u.id_TypeBlog.ToString()
-            });
-
-            ViewBag.TypeBlogList = TypeBlogList;
-            //ViewData["TypeBlogList"] = TypeBlogList;
-            return View();
-        }
-        //Thêm blog vào database
-        [HttpPost]
-        public IActionResult Create(Blog obj, IFormFile? file)
-        {
-            ////kiểm tra có giống nhau hay ko
-            //if (obj.tilte == obj.content)
-            //{
-            //    ModelState.AddModelError("tilte", "Mật khẩu không được trùng với tên đăng nhập.");
-            //}
-            //obj.ngayTao = DateTime.Now;
-
-            //ktra tiêu đề có giống với tiêu đề đã có hay ko
-            if (obj.tilte!=null && obj.tilte.ToLower() == "")
+                TypeBlogList = _db.TypeBlog.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.id_TypeBlog.ToString()
+                }),
+                Blog = new Blog()
+            };
+            blogVM.Blog.ngayTao = DateTime.Now;
+            if (id == null || id == 0)
             {
-                ModelState.AddModelError("", "Tiêu đề đã được dùng!");
+                blogVM.Blog.ngayTao = DateTime.Now;
+                //create
+                return View(blogVM);
             }
-            
-            obj.ngayTao = DateTime.Now;
+            else
+            {
+                blogVM.Blog.ngayTao = DateTime.Now;
+                //update
+                blogVM.Blog = _db.Blog.Get(u => u.id_Blog == id);
+                return View(blogVM);
+            }
+        }
+        [HttpPost]
+        public IActionResult Upsert(BlogVM blogVM, IFormFile? file)
+        {
+            blogVM.Blog.ngayTao = DateTime.Now;
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _hostEnvironment.WebRootPath;
-                if(file != null)
+                if (file != null)
                 {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string upload = Path.Combine(wwwRootPath, @"images\blog");
-
-                    if(!string.IsNullOrEmpty(obj.img))
+                    string uploads = Path.Combine(wwwRootPath, @"images\blog");
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
                     {
+                        file.CopyTo(fileStreams);
+                    }
+                    if (!string.IsNullOrEmpty(blogVM.Blog.ImageUrl))
+                    {
+                        blogVM.Blog.ngayTao = DateTime.Now;
                         //delete old image
-                        var oldImagePath = Path.Combine(wwwRootPath, obj.img.TrimStart('\\'));
+                        var oldImagePath =
+                            Path.Combine(wwwRootPath, blogVM.Blog.ImageUrl.TrimStart('\\'));
                         if (System.IO.File.Exists(oldImagePath))
                         {
                             System.IO.File.Delete(oldImagePath);
                         }
                     }
-                    using (var fileStream = new FileStream(Path.Combine(upload, fileName), FileMode.Create))
-                    {
-                        file.CopyTo(fileStream);
-                    }
-                    obj.img = @"\images\blog\" + fileName;
+                    blogVM.Blog.ImageUrl = @"\images\blog\" + fileName;
                 }
-                if(obj.id_Blog == 0)
+                blogVM.Blog.ngayTao = DateTime.Now;
+                if (blogVM.Blog.id_Blog == 0)
                 {
-                    _unitOfWork.Blog.Add(obj);
+                    blogVM.Blog.ngayTao = DateTime.Now;
+                    _db.Blog.Add(blogVM.Blog);
                 }
                 else
                 {
-                    _unitOfWork.Blog.Update(obj);
+                    blogVM.Blog.ngayTao = DateTime.Now;
+                    _db.Blog.Update(blogVM.Blog);
                 }
-
-
-                _unitOfWork.Blog.Add(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Blog created successfully";
-                return RedirectToAction("Index", "Blog");
+                blogVM.Blog.ngayTao = DateTime.Now;
+                _db.Save();
+                TempData["success"] = "Blog created successfully!";
+                return RedirectToAction("Index");
             }
-            return View();
+            else
+            {
+                blogVM.TypeBlogList = _db.TypeBlog.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.id_TypeBlog.ToString()
+                });
+                return View(blogVM);
+            }
         }
 
-        // CHỨC NĂNG SỬA BLOG
-        public IActionResult Edit(int? id)
+
+        #region
+        [HttpGet]
+        public IActionResult GetAll()
         {
-            if(id==null || id == 0)
-            {
-                return NotFound();
-            }
-            Blog? blogFromDb = _unitOfWork.Blog.Get(u=>u.id_Blog==id);
-            //Blog? blogFromDb1 = _db.Blogs.FirstOrDefault(u => u.id_Blog == id);
-            //Blog? blogFromDb2 = _db.Blogs.Where(u => u.id_Blog == id).FirstOrDefault();
-            if (blogFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(blogFromDb);
+            List<Blog> objBlogList = _db.Blog.GetAll(includeProperties: "TypeBlog").ToList();
+            return Json(new { data = objBlogList });
         }
-        //Thêm blog vào database
-        [HttpPost]
-        public IActionResult Edit(Blog obj)
-        {
-            obj.ngayTao = DateTime.Now;
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Blog.Update(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Blog update successfully";
-                return RedirectToAction("Index", "Blog");
-            }
-            return View();
-        }
-
 
         // CHỨC NĂNG XÓA BLOG
+        [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            if (id == null || id == 0)
+            var blogToBeDelete = _db.Blog.Get(u => u.id_Blog == id);
+            if (blogToBeDelete == null)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Error while Delete" });
             }
-            Blog? blogFromDb = _unitOfWork.Blog.Get(u => u.id_Blog == id);
-            if (blogFromDb == null)
+            //xóa ảnh cũ
+            var oldImagePath =
+                            Path.Combine(_hostEnvironment.WebRootPath,
+                            blogToBeDelete.ImageUrl.TrimStart('\\'));
+            if (System.IO.File.Exists(oldImagePath))
             {
-                return NotFound();
+                System.IO.File.Delete(oldImagePath);
             }
-            return View(blogFromDb);
-        }
-        //Thêm blog vào database
-        [HttpPost, ActionName("Delete")]
 
-        public IActionResult DeletePOST(int? id)
-        {
-            Blog? obj = _unitOfWork.Blog.Get(u => u.id_Blog == id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            _unitOfWork.Blog.Remove(obj);
-            _unitOfWork.Save();
-            return RedirectToAction("Index", "Blog");
-            
+            _db.Blog.Remove(blogToBeDelete);
+            _db.Save();
+
+            List<Blog> objBlogList = _db.Blog.GetAll(includeProperties: "TypeBlog").ToList();
+            return Json(new { success = true, message = "Delete Successful" });
         }
+        #endregion
     }
 }

@@ -31,7 +31,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
             return View(objProductList);
         }
 
-        // CHỨC NĂNG THÊM TYPEBLOG
+        // CHỨC NĂNG THÊM PRODUCT
         public IActionResult Upsert( int? id)
         {
             ProductVM productVM = new()

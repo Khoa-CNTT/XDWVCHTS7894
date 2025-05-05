@@ -29,11 +29,11 @@ namespace KLTN_Team83.Models
         [Required]
         [Display(Name = "Price for 50+")]
         [Range(1, 1000)]
-        public double? Price50 { get; set; }
+        public double Price50 { get; set; }
         [Required]
         [Display(Name = "Price for 100+")]
         [Range(1, 1000)]
-        public double? Price100 { get; set; }
+        public double Price100 { get; set; }
 
         public int Id_Category { get; set; }
         [ForeignKey("Id_Category")]

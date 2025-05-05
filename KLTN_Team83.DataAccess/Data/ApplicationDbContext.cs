@@ -47,16 +47,16 @@ namespace KLTN_Team83.DataAccess.Data
                 new TypeBlog { id_TypeBlog = 6, Name = "Diet", Description = "Thông tin về chế độ ăn uống" }
                 );
             modelBuilder.Entity<Blog>().HasData(
-                new Blog { id_Blog = 1, id_TypeBlog = 1, tilte = "Rau củ", content = "Rau củ quả tốt cho hệ tiêu hóa", img = "raucu.jpg" },
-                new Blog { id_Blog = 2, id_TypeBlog = 1, tilte = "Uống nước", content = "Uống nước giúp cơ thể lưu thông máu tốt hơn", img = "nuoc.jpg" },
-                new Blog { id_Blog = 3, id_TypeBlog = 3, tilte = "Bơi lội", content = "Bơi lội giúp phát triển chiều cao", img = "boi.jpg" },
-                new Blog { id_Blog = 4, id_TypeBlog = 5, tilte = "Ngủ đủ giấc", content = "Ngủ đủ giấc giúp cơ thể khỏe mạnh hon", img = "ngu.jpg" },
-                new Blog { id_Blog = 5, id_TypeBlog = 3, tilte = "Tập thể dục", content = "Tập thể dục giúp cơ thể khỏe mạnh hơn", img = "theduc.jpg" },
-                new Blog { id_Blog = 6, id_TypeBlog = 3, tilte = "Tập Yoga", content = "Tập Yoga giúp cơ thể dẻo dai hơn", img = "yoga.jpg" },
-                new Blog { id_Blog = 7, id_TypeBlog = 2, tilte = "Corona", content ="Virut Corona làm suy giảm hệ miễn dịch", img = "corona.jpg"},
-                new Blog { id_Blog = 8, id_TypeBlog = 2, tilte = "Bệnh tiểu đường", content = "Bệnh tiểu đường làm suy giảm hệ miễn dịch", img = "tieu.jpg" },
-                new Blog { id_Blog = 9, id_TypeBlog = 2, tilte = "Bệnh tim mạch", content = "Bệnh tim mạch làm suy giảm hệ miễn dịch", img = "tim.jpg" },
-                new Blog { id_Blog = 10, id_TypeBlog = 2, tilte = "Bệnh ung thư", content = "Bệnh ung thư làm suy giảm hệ miễn dịch", img = "ungthu.jpg" }
+                new Blog { id_Blog = 1, id_TypeBlog = 1, tilte = "Rau củ", content = "Rau củ quả tốt cho hệ tiêu hóa", ImageUrl = "raucu.jpg" },
+                new Blog { id_Blog = 2, id_TypeBlog = 1, tilte = "Uống nước", content = "Uống nước giúp cơ thể lưu thông máu tốt hơn", ImageUrl = "nuoc.jpg" },
+                new Blog { id_Blog = 3, id_TypeBlog = 3, tilte = "Bơi lội", content = "Bơi lội giúp phát triển chiều cao", ImageUrl = "boi.jpg" },
+                new Blog { id_Blog = 4, id_TypeBlog = 5, tilte = "Ngủ đủ giấc", content = "Ngủ đủ giấc giúp cơ thể khỏe mạnh hon", ImageUrl = "ngu.jpg" },
+                new Blog { id_Blog = 5, id_TypeBlog = 3, tilte = "Tập thể dục", content = "Tập thể dục giúp cơ thể khỏe mạnh hơn", ImageUrl = "theduc.jpg" },
+                new Blog { id_Blog = 6, id_TypeBlog = 3, tilte = "Tập Yoga", content = "Tập Yoga giúp cơ thể dẻo dai hơn", ImageUrl = "yoga.jpg" },
+                new Blog { id_Blog = 7, id_TypeBlog = 2, tilte = "Corona", content ="Virut Corona làm suy giảm hệ miễn dịch", ImageUrl = "corona.jpg"},
+                new Blog { id_Blog = 8, id_TypeBlog = 2, tilte = "Bệnh tiểu đường", content = "Bệnh tiểu đường làm suy giảm hệ miễn dịch", ImageUrl = "tieu.jpg" },
+                new Blog { id_Blog = 9, id_TypeBlog = 2, tilte = "Bệnh tim mạch", content = "Bệnh tim mạch làm suy giảm hệ miễn dịch", ImageUrl = "tim.jpg" },
+                new Blog { id_Blog = 10, id_TypeBlog = 2, tilte = "Bệnh ung thư", content = "Bệnh ung thư làm suy giảm hệ miễn dịch", ImageUrl = "ungthu.jpg" }
 
                 );
             modelBuilder.Entity<Account>().HasData(

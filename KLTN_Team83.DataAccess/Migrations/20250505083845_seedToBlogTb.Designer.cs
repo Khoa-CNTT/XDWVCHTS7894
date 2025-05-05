@@ -4,6 +4,7 @@ using KLTN_Team83.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KLTN_Team83.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250505083845_seedToBlogTb")]
+    partial class seedToBlogTb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,9 +74,6 @@ namespace KLTN_Team83.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id_Blog"));
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("content")
                         .IsRequired()
                         .HasMaxLength(5000)
@@ -81,6 +81,9 @@ namespace KLTN_Team83.DataAccess.Migrations
 
                     b.Property<int>("id_TypeBlog")
                         .HasColumnType("int");
+
+                    b.Property<string>("img")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ngayTao")
                         .HasColumnType("datetime2");
@@ -100,90 +103,90 @@ namespace KLTN_Team83.DataAccess.Migrations
                         new
                         {
                             id_Blog = 1,
-                            ImageUrl = "raucu.jpg",
                             content = "Rau củ quả tốt cho hệ tiêu hóa",
                             id_TypeBlog = 1,
+                            img = "raucu.jpg",
                             ngayTao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             tilte = "Rau củ"
                         },
                         new
                         {
                             id_Blog = 2,
-                            ImageUrl = "nuoc.jpg",
                             content = "Uống nước giúp cơ thể lưu thông máu tốt hơn",
                             id_TypeBlog = 1,
+                            img = "nuoc.jpg",
                             ngayTao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             tilte = "Uống nước"
                         },
                         new
                         {
                             id_Blog = 3,
-                            ImageUrl = "boi.jpg",
                             content = "Bơi lội giúp phát triển chiều cao",
                             id_TypeBlog = 3,
+                            img = "boi.jpg",
                             ngayTao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             tilte = "Bơi lội"
                         },
                         new
                         {
                             id_Blog = 4,
-                            ImageUrl = "ngu.jpg",
                             content = "Ngủ đủ giấc giúp cơ thể khỏe mạnh hon",
                             id_TypeBlog = 5,
+                            img = "ngu.jpg",
                             ngayTao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             tilte = "Ngủ đủ giấc"
                         },
                         new
                         {
                             id_Blog = 5,
-                            ImageUrl = "theduc.jpg",
                             content = "Tập thể dục giúp cơ thể khỏe mạnh hơn",
                             id_TypeBlog = 3,
+                            img = "theduc.jpg",
                             ngayTao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             tilte = "Tập thể dục"
                         },
                         new
                         {
                             id_Blog = 6,
-                            ImageUrl = "yoga.jpg",
                             content = "Tập Yoga giúp cơ thể dẻo dai hơn",
                             id_TypeBlog = 3,
+                            img = "yoga.jpg",
                             ngayTao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             tilte = "Tập Yoga"
                         },
                         new
                         {
                             id_Blog = 7,
-                            ImageUrl = "corona.jpg",
                             content = "Virut Corona làm suy giảm hệ miễn dịch",
                             id_TypeBlog = 2,
+                            img = "corona.jpg",
                             ngayTao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             tilte = "Corona"
                         },
                         new
                         {
                             id_Blog = 8,
-                            ImageUrl = "tieu.jpg",
                             content = "Bệnh tiểu đường làm suy giảm hệ miễn dịch",
                             id_TypeBlog = 2,
+                            img = "tieu.jpg",
                             ngayTao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             tilte = "Bệnh tiểu đường"
                         },
                         new
                         {
                             id_Blog = 9,
-                            ImageUrl = "tim.jpg",
                             content = "Bệnh tim mạch làm suy giảm hệ miễn dịch",
                             id_TypeBlog = 2,
+                            img = "tim.jpg",
                             ngayTao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             tilte = "Bệnh tim mạch"
                         },
                         new
                         {
                             id_Blog = 10,
-                            ImageUrl = "ungthu.jpg",
                             content = "Bệnh ung thư làm suy giảm hệ miễn dịch",
                             id_TypeBlog = 2,
+                            img = "ungthu.jpg",
                             ngayTao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             tilte = "Bệnh ung thư"
                         });

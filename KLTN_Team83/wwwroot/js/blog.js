@@ -55,9 +55,6 @@ function Delete(url) {
                         toastr.error(data.message);
                     }
                 },
-                //title: "Deleted!",
-                //text: "Your file has been deleted.",
-                //icon: "success"
             });
         }
     });

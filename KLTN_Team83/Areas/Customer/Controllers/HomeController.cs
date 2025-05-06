@@ -29,8 +29,8 @@ namespace KLTN_Team83.Areas.Customer.Controllers
         }
         public IActionResult Blog()
         {
-            //IEnumerable<Blog> BlogList = _unitOfWork.Blog.GetAll(includeProperties: "Blog");
-            return View();
+            IEnumerable<Blog> BlogList = _unitOfWork.Blog.GetAll(includeProperties: "TypeBlog");
+            return View(BlogList);
         }
         public IActionResult Plan()
         {

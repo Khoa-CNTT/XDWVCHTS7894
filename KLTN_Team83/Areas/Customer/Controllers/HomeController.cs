@@ -78,6 +78,7 @@ namespace KLTN_Team83.Areas.Customer.Controllers
                 // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm mới
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
             }
+            TempData["success"] = "Thêm sản phẩm vào giỏ hàng thành công";
 
             _unitOfWork.ShoppingCart.Add(shoppingCart);
             _unitOfWork.Save();

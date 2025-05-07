@@ -8,7 +8,7 @@ using KLTN_Team83.DataAccess.Repository.IRepository;
 
 namespace KLTN_Team83.DataAccess.Repository
 {
-    public class UnitOfWork: IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private ApplicationDbContext _db;
         public IAccountRepository Account { get; private set; }
@@ -29,8 +29,9 @@ namespace KLTN_Team83.DataAccess.Repository
             Category = new CategoryRepository(_db);
             ShoppingCart = new ShoppingCartRepository(_db);
         }
-        
-        public void Save() {
+
+        public void Save()
+        {
             _db.SaveChanges();
         }
     }

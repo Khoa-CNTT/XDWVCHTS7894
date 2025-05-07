@@ -14,6 +14,7 @@ namespace KLTN_Team83.DataAccess.Repository.IRepository
         IApplicationUserRepository ApplicationUser { get; }
         IProductRepository Product { get; }
         ICategoryRepository Category { get; }
+        IShoppingCartRepository ShoppingCart { get; }
         void Save();
     }
 }

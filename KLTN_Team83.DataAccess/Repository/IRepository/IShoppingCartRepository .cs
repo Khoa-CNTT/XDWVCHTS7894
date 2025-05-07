@@ -7,9 +7,8 @@ using KLTN_Team83.Models;
 
 namespace KLTN_Team83.DataAccess.Repository.IRepository
 {
-    public interface IApplicationUserRepository : IRepository<ApplicationUser>
+    public interface IShoppingCartRepository : IRepository<ShoppingCart>
     {
-        void Update(ApplicationUser obj);
+        void Update(ShoppingCart obj);
     }
-    
 }

@@ -11,18 +11,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using KLTN_Team83.Models;
 using KLTN_Team83.DataAccess.Repository.IRepository;
+using Humanizer;
 
 namespace KLTN_Team83.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         //private readonly ApplicationUser _applicationUser;
         private readonly IUnitOfWork _unitOfWork;
 
         public IndexModel(
-            UserManager<IdentityUser> userManager,
+            UserManager<ApplicationUser> userManager,
             //ApplicationUser applicationUser,
             IUnitOfWork unitOfWork,
             SignInManager<IdentityUser> signInManager)
@@ -72,7 +73,7 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account.Manage
             public string Weight { get; set; }
         }
 
-        private async Task LoadAsync(IdentityUser user)
+        private async Task LoadAsync(ApplicationUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
@@ -84,7 +85,8 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                //Gender = gender,
                
             };
         }

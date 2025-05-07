@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KLTN_Team83.Areas.Customer.Controllers
 {
-    //[Area("Customer")] // Đánh dấu controller này thuộc area Customer
+    [Area("Customer")] // Đánh dấu controller này thuộc area Customer
     public class HomeController : Controller
     {
         // Khai báo logger để ghi log

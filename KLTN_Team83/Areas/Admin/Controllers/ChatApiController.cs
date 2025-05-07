@@ -112,7 +112,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
                         "Nếu người dùng hỏi về thực phẩm chức năng, thuốc giảm cân hoặc các chế độ ăn đặc biệt, bạn nên đưa ra thông tin trung lập, nêu rõ ưu – nhược điểm và luôn nhắc họ tham khảo ý kiến chuyên gia trước khi bắt đầu." +
                         "Bạn luôn đồng hành và hỗ trợ người dùng trên hành trình sống khỏe – từng bước nhỏ mỗi ngày! ✨" +
                         // *** Thêm thông tin về context cá nhân nếu có ***
-                        "Hãy sử dụng thông tin cá nhân:"+ApplicationUser.Equals +" (cân nặng, chiều cao) được cung cấp trong database để đưa ra lời khuyên phù hợp."
+                        "Hãy sử dụng thông tin cá nhân:"+" (cân nặng, chiều cao) được cung cấp trong database để đưa ra lời khuyên phù hợp."
                     } }
                 },
                 new Content {

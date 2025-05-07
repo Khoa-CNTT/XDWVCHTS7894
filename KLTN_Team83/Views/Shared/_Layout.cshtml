@@ -1,5 +1,6 @@
 ﻿@using KLTN_Team83.Utility
 @using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -79,6 +80,11 @@
                             </ul>
                         </li>
                     }
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+                            <i class="bi bi-cart"></i> &nbsp;(0)
+                        </a>
+                    </li>
                 </ul>
                 <partial name="_LoginPartial" />
             </div>

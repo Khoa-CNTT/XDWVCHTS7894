@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KLTN_Team83.Areas.Customer.Controllers
 {
-    //[Area("Customer")] // Đánh dấu controller này thuộc area Customer
+    [Area("Customer")] // Đánh dấu controller này thuộc area Customer
     public class HomeController : Controller
     {
         // Khai báo logger để ghi log
@@ -78,6 +78,7 @@ namespace KLTN_Team83.Areas.Customer.Controllers
                 // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm mới
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
             }
+            TempData["success"] = "Thêm sản phẩm vào giỏ hàng thành công";
 
             _unitOfWork.ShoppingCart.Add(shoppingCart);
             _unitOfWork.Save();

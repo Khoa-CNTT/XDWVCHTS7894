@@ -17,13 +17,13 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         //private readonly ApplicationUser _applicationUser;
         private readonly IUnitOfWork _unitOfWork;
 
         public IndexModel(
-            UserManager<ApplicationUser> userManager,
+            UserManager<IdentityUser> userManager,
             //ApplicationUser applicationUser,
             IUnitOfWork unitOfWork,
             SignInManager<IdentityUser> signInManager)
@@ -73,7 +73,7 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account.Manage
             public string Weight { get; set; }
         }
 
-        private async Task LoadAsync(ApplicationUser user)
+        private async Task LoadAsync(IdentityUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);

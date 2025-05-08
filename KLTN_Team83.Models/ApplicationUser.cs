@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace KLTN_Team83.Models
 {
@@ -17,5 +19,13 @@ namespace KLTN_Team83.Models
         public double? Weight { get; set; }
         public int? Age { get; set; }
         public string? Gender { get; set; }
+        public int? Id_Company { get; set; }
+        [ForeignKey("Id_Company")]
+        [ValidateNever]
+        public Company? Company { get; set; }
+
+        //Ko thêm vào DB
+        [NotMapped]
+        public string Role { get; set; }
     }
 }

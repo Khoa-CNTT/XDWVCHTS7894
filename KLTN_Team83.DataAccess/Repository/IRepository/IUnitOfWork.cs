@@ -8,13 +8,13 @@ namespace KLTN_Team83.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork
     {
-        IAccountRepository Account { get; }
         IBlogRepository Blog { get; }
         ITypeBlogRepository TypeBlog { get; }
         IApplicationUserRepository ApplicationUser { get; }
         IProductRepository Product { get; }
         ICategoryRepository Category { get; }
         IShoppingCartRepository ShoppingCart { get; }
+        ICompanyRepository Company { get; }
         void Save();
     }
 }

@@ -13,11 +13,10 @@ namespace KLTN_Team83.DataAccess.Data
         public DbSet<TypeBlog> TypeBlogs { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        public DbSet<Account> Accounts { get; set; }
-        public DbSet<InfoUser> Users { get; set; }
         //public DbSet<Expert> Experts { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Company> Companies { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         //public DbSet<MyImage> MyImages { get; set; }
 
@@ -59,13 +58,6 @@ namespace KLTN_Team83.DataAccess.Data
                 new Blog { id_Blog = 9, id_TypeBlog = 2, tilte = "Bệnh tim mạch", content = "Bệnh tim mạch làm suy giảm hệ miễn dịch", ImageUrl = "tim.jpg" },
                 new Blog { id_Blog = 10, id_TypeBlog = 2, tilte = "Bệnh ung thư", content = "Bệnh ung thư làm suy giảm hệ miễn dịch", ImageUrl = "ungthu.jpg" }
 
-                );
-            modelBuilder.Entity<Account>().HasData(
-                new Account { id_Acc = 4, email = "nltkhanh3009@gmail.com", passWord = "Tkgame2603", role = "user" },
-                new Account { id_Acc = 5, email = "felixfinn3009@gmail.com", passWord = "Tkg@me2603", role = "admin" }
-                );
-            modelBuilder.Entity<InfoUser>().HasData(
-                new InfoUser { id_User = 1, id_Acc = 4, fullName = "Nguyễn Lê Trung Khánh", age = 22, gender = "Male", height = 176, weight = 84 }
                 );
             //        // Configure the primary key for the Admin entity
             //        modelBuilder.Entity<Admin>()

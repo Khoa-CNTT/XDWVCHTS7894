@@ -11,6 +11,6 @@ namespace KLTN_Team83.Models.ViewModels
     {
         public ApplicationUser ApplicationUser { get; set; }
         public IEnumerable<SelectListItem> RoleList { get; set; }
-        public IQueryable<SelectListItem> CompanyList { get; set; }
+        public IEnumerable<SelectListItem> CompanyList { get; set; }
     }
 }

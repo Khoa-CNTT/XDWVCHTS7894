@@ -17,12 +17,12 @@ function loadDataTable() {
                 data: 'id_Company',
                 render: function (data) {
                     return `
-                        <div class=" w-75 btn-group" role="group">
-                            <a href="/Admin/Company/Upsert?id=${data}" class="btn btn-success text-white mx-2" style="cursor:pointer">
-                                <i class="bi bi-pencil-square"></i>Edit
+                        <div class="text-center" role="group">
+                            <a href="/Admin/Company/Upsert?id=${data}" class="btn btn-success text-white" style="cursor:pointer; width:100px">
+                                <i class="bi bi-pencil-square"></i> Edit
                             </a>
-                            <a onclick=Delete('/Admin/Company/Delete/${data}') class="btn btn-danger text-white mx-2" style="cursor:pointer">
-                                <i class="bi bi-trash-fill"></i>Delete
+                            <a onclick=Delete('/Admin/Company/Delete/${data}') class="btn btn-danger text-white" style="cursor:pointer; width:120px">
+                                <i class="bi bi-trash-fill"></i> Delete
                             </a>
                         </div>
                     `;

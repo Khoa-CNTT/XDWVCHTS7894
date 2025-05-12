@@ -18,6 +18,9 @@ namespace KLTN_Team83.DataAccess.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<Conversation> Conversations { get; set; }
+        public DbSet<Infomation> Infomations { get; set; }
         //public DbSet<MyImage> MyImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

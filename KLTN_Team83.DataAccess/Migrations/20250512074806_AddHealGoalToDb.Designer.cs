@@ -4,6 +4,7 @@ using KLTN_Team83.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KLTN_Team83.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250512074806_AddHealGoalToDb")]
+    partial class AddHealGoalToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -229,9 +232,6 @@ namespace KLTN_Team83.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_Goal"));
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime>("TargetDate")
                         .HasColumnType("datetime2");
 
@@ -246,8 +246,6 @@ namespace KLTN_Team83.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id_Goal");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Goals");
                 });
@@ -737,15 +735,6 @@ namespace KLTN_Team83.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("TypeBlog");
-                });
-
-            modelBuilder.Entity("KLTN_Team83.Models.Goal", b =>
-                {
-                    b.HasOne("KLTN_Team83.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("KLTN_Team83.Models.HabitEntry", b =>

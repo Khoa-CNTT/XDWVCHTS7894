@@ -18,6 +18,7 @@ namespace KLTN_Team83.DataAccess.Repository
         public ICategoryRepository Category { get; private set; }
         public IShoppingCartRepository ShoppingCart { get; private set; }
         public ICompanyRepository Company { get; private set; }
+        public IGoalRepository Goal { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -28,6 +29,7 @@ namespace KLTN_Team83.DataAccess.Repository
             Category = new CategoryRepository(_db);
             ShoppingCart = new ShoppingCartRepository(_db);
             Company = new CompanyRepository(_db);
+            Goal = new GoalRepository(_db);
         }
 
         public void Save()

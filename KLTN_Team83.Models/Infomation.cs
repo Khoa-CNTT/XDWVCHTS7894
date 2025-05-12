@@ -13,7 +13,7 @@ namespace KLTN_Team83.Models
     public class Infomation
     {
         [Key]
-        public int Id_User { get; set; }
+        public string Id { get; set; }
         [ForeignKey("Id")]
         [ValidateNever]
         public IdentityUser Identity  { get; set; }

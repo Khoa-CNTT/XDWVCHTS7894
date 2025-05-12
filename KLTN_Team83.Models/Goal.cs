@@ -14,6 +14,7 @@ namespace KLTN_Team83.Models
         public int Id_Goal { get; set; }
         [Required]
         public string UserId { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
         public GoalType Type { get; set; }
         public double TargetValue { get; set; }
         public DateTime TargetDate { get; set; }

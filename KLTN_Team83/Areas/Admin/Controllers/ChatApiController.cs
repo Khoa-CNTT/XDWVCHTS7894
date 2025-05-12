@@ -13,6 +13,8 @@ using Markdig;
 using Microsoft.AspNetCore.Authorization;
 using KLTN_Team83.Utility;
 using Microsoft.AspNetCore.Identity;
+using KLTN_Team83.DataAccess.Repository.IRepository;
+using System.Security.Claims;
 
 namespace KLTN_Team83.Areas.Admin.Controllers
 {
@@ -26,12 +28,14 @@ namespace KLTN_Team83.Areas.Admin.Controllers
         private readonly IConfiguration _configuration;
         private readonly string _geminiApiKey;
         private readonly string _geminiApiUrl;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ChatApiController(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+        public ChatApiController(IHttpClientFactory httpClientFactory, IConfiguration configuration, IUnitOfWork unitOfWork)
         {
             _httpClientFactory = httpClientFactory;
             _configuration = configuration;
             _geminiApiKey = _configuration["Gemini:ApiKey"]; // Đọc API Key từ config
+            _unitOfWork = unitOfWork;
 
             if (string.IsNullOrEmpty(_geminiApiKey))
             {
@@ -84,6 +88,11 @@ namespace KLTN_Team83.Areas.Admin.Controllers
 
                 // 0. Lấy lịch sử chat từ Session
                 var chatHistory = GetChatHistory();
+                // 0.1. Lấy thông tin cá nhân từ database
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var user = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
+                var height = user.Height;
+                var weight = user.Weight;
 
                 // *** ÁP DỤNG PROMPT ENGINEERING ***
 
@@ -112,7 +121,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
                         "Nếu người dùng hỏi về thực phẩm chức năng, thuốc giảm cân hoặc các chế độ ăn đặc biệt, bạn nên đưa ra thông tin trung lập, nêu rõ ưu – nhược điểm và luôn nhắc họ tham khảo ý kiến chuyên gia trước khi bắt đầu." +
                         "Bạn luôn đồng hành và hỗ trợ người dùng trên hành trình sống khỏe – từng bước nhỏ mỗi ngày! ✨" +
                         // *** Thêm thông tin về context cá nhân nếu có ***
-                        "Hãy sử dụng thông tin cá nhân:"+" (cân nặng, chiều cao) được cung cấp trong database để đưa ra lời khuyên phù hợp."
+                        "Hãy sử dụng thông tin cá nhân:"+"chiều cao(cm):"+height+",cân nặng(kg):"+weight+"được cung cấp trong database để đưa ra lời khuyên phù hợp."
                     } }
                 },
                 new Content {

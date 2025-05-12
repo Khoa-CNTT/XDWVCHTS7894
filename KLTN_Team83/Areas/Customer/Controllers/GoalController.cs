@@ -4,27 +4,28 @@ using Microsoft.EntityFrameworkCore;
 using KLTN_Team83.Models;
 using KLTN_Team83.DataAccess.Data;
 using Microsoft.AspNetCore.Identity;
+using KLTN_Team83.DataAccess.Repository.IRepository;
+using System.Security.Claims;
 
 namespace KLTN_Team83.Areas.Customer.Controllers
 {
     [Authorize]
+    [Area("Customer")] // Đánh dấu controller này thuộc area Customer
     public class GoalController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public GoalController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public GoalController(IUnitOfWork unitOfWork, UserManager<IdentityUser> userManager)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
             _userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
         {
-            var userId = _userManager.GetUserId(User);
-            var goals = await _context.Goals
-                .Where(g => g.UserId == userId)
-                .ToListAsync();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var goals = _unitOfWork.Goal.Get(g => g.UserId == userId);
             return View(goals);
         }
 
@@ -34,22 +35,22 @@ namespace KLTN_Team83.Areas.Customer.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Goal goal)
+        public async Task<IActionResult> Create(Goal obj)
         {
             if (ModelState.IsValid)
             {
-                goal.UserId = _userManager.GetUserId(User);
-                _context.Add(goal);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                obj.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                _unitOfWork.Goal.Add(obj);
+                _unitOfWork.Goal.Save();
+                TempData["success"] = "Goal created successfully!";
+                return RedirectToAction("Index");
             }
-            return View(goal);
+            return View(obj);
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(string? id)
         {
-            var goal = await _context.Goals.FindAsync(id);
+            var goal = _unitOfWork.Goal.Get(g => g.UserId == id);
             if (goal == null || goal.UserId != _userManager.GetUserId(User))
             {
                 return NotFound();
@@ -59,7 +60,7 @@ namespace KLTN_Team83.Areas.Customer.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Goal goal)
+        public async Task<IActionResult> Edit(int? id, Goal goal)
         {
             if (id != goal.Id_Goal) return NotFound();
 
@@ -67,23 +68,23 @@ namespace KLTN_Team83.Areas.Customer.Controllers
             {
                 try
                 {
-                    goal.UserId = _userManager.GetUserId(User);
-                    _context.Update(goal);
-                    await _context.SaveChangesAsync();
+                    goal.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    _unitOfWork.Goal.Update(goal);
+                    _unitOfWork.Goal.Save();
                     return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!_context.Goals.Any(e => e.Id_Goal == goal.Id_Goal)) return NotFound();
+                    if (!_unitOfWork.Goal.GetAll().Any(e => e.Id_Goal == goal.Id_Goal)) return NotFound();
                     throw;
                 }
             }
             return View(goal);
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(string? id)
         {
-            var goal = await _context.Goals.FindAsync(id);
+            var goal = _unitOfWork.Goal.Get(g => g.UserId == id);
             if (goal == null || goal.UserId != _userManager.GetUserId(User))
             {
                 return NotFound();
@@ -93,13 +94,13 @@ namespace KLTN_Team83.Areas.Customer.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string? id)
         {
-            var goal = await _context.Goals.FindAsync(id);
+            var goal = _unitOfWork.Goal.Get(g => g.UserId == id);
             if (goal != null)
             {
-                _context.Goals.Remove(goal);
-                await _context.SaveChangesAsync();
+                _unitOfWork.Goal.Remove(goal);
+                _unitOfWork.Goal.Save();
             }
             return RedirectToAction(nameof(Index));
         }

@@ -9,12 +9,13 @@ using Microsoft.EntityFrameworkCore;
 namespace KLTN_Team83.Areas.Customer.Controllers
 {
     [Authorize]
+    [Area("Customer")] // Đánh dấu controller này thuộc area Customer
     public class DashboardController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public DashboardController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public DashboardController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -37,7 +38,7 @@ namespace KLTN_Team83.Areas.Customer.Controllers
 
             var model = new DashboardVM
             {
-                User = user,
+                User = (ApplicationUser)user,
                 Goals = goals,
                 Habits = habits,
                 TodayHabitEntries = todayHabitEntries,

@@ -35,6 +35,9 @@
                         <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Plan">Plans</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Customer" asp-controller="Goal" asp-action="Index">Goal</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Services">Services</a>
                     </li>
                     <li class="nav-item">
@@ -90,13 +93,15 @@
             </div>
         </div>
     </header>
-    <div class="container">
-        <partial name="_Notification" />
-        @RenderBody()
-
-    </div>
+    <div class="page-wrapper d-flex flex-column min-vh-100">
+        <main class="flex-grow-1">
+            <div class="container">
+                <partial name="_Notification" />
+                @RenderBody()
+            </div>
+        </main>
     
-    <div class="chat-group">
+        <div class="chat-group">
         <div class="social-icons">
             <a href="https://www.facebook.com/nltkhanh3009" style="color:gray"><i class="bi bi-facebook"></i></a>
             <a href="https://github.com/Khoa-CNTT/XDWVCHTS7894" style="color:gray"><i class="bi bi-github"></i> </a>
@@ -132,24 +137,24 @@
             <!-- Thẻ ẩn để JS lấy UserId (cần ở _Layout hoặc trang chính) -->
             @* <div id="user-info-data" data-userid="@UserManager.GetUserId(User)" style="display:none;"></div> *@
 
-            <div>
-                <h3><button id="chatbox-btn"><i class="bi bi-whatsapp"></i></button></h3>
-                <div id="expert-list">
-                    <p>Chọn chuyên gia:</p>
-                    <button class="expert-select-btn" data-expertid="EXPERT_USER_ID_1">Chuyên gia A</button>
-                    <button class="expert-select-btn" data-expertid="EXPERT_USER_ID_2">Chuyên gia B</button>
-                </div>
+            @* <div> *@
+            @*     <h3><button id="chatbox-btn"><i class="bi bi-whatsapp"></i></button></h3> *@
+            @*     <div id="expert-list"> *@
+            @*         <p>Chọn chuyên gia:</p> *@
+            @*         <button class="expert-select-btn" data-expertid="EXPERT_USER_ID_1">Chuyên gia A</button> *@
+            @*         <button class="expert-select-btn" data-expertid="EXPERT_USER_ID_2">Chuyên gia B</button> *@
+            @*     </div> *@
 
-                <div id="p2p-chatbox" style="border:1px solid #ccc; width: 350px; height: 400px; display: flex; flex-direction: column; margin-top:10px;">
-                    <div id="p2p-chatbox-messages" style="flex-grow: 1; overflow-y: auto; padding: 10px;">
-                        <!-- Tin nhắn sẽ hiển thị ở đây -->
-                    </div>
-                    <div style="display:flex; padding: 5px;">
-                        <input type="text" id="p2p-chatbox-input" style="flex-grow: 1;" placeholder="Nhập tin nhắn..." />
-                        <button id="p2p-chatbox-send-btn">Gửi</button>
-                    </div>
-                </div>
-            </div>
+            @*     <div id="p2p-chatbox" style="border:1px solid #ccc; width: 350px; height: 400px; display: flex; flex-direction: column; margin-top:10px;"> *@
+            @*         <div id="p2p-chatbox-messages" style="flex-grow: 1; overflow-y: auto; padding: 10px;"> *@
+            @*             <!-- Tin nhắn sẽ hiển thị ở đây --> *@
+            @*         </div> *@
+            @*         <div style="display:flex; padding: 5px;"> *@
+            @*             <input type="text" id="p2p-chatbox-input" style="flex-grow: 1;" placeholder="Nhập tin nhắn..." /> *@
+            @*             <button id="p2p-chatbox-send-btn">Gửi</button> *@
+            @*         </div> *@
+            @*     </div> *@
+            @* </div> *@
 
             <!-- Link đến script P2P chat (đặt ở cuối body) -->
             <!-- <script src="~/js/dompurify.min.js"></script>  Nếu chưa có DOMPurify -->
@@ -159,7 +164,7 @@
     </div>
     
         
-    <footer class="footer">
+        <footer class="footer">
         <div class="footer-container">
             <div class="footer-left">
                 <img src="your-logo.png" alt="Wellness Lifestyle" class="footer-logo">
@@ -183,6 +188,7 @@
             </div>
         </div>
     </footer>
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

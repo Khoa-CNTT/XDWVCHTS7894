@@ -1,0 +1,40 @@
+﻿@model KLTN_Team83.Models.ViewModels.DashboardVM
+@{
+    ViewData["Title"] = "Bảng điều khiển";
+}
+
+<h2>Xin chào, @Model.User.UserName!</h2>
+
+<h4>Thông tin cá nhân</h4>
+<ul>
+    <li>Tuổi: @Model.User.Age</li>
+    <li>Giới tính: @Model.User.Gender</li>
+    <li>Chiều cao: @Model.User.Height cm</li>
+    <li>Cân nặng: @Model.User.Weight kg</li>
+    <li>Mục tiêu: @Model.User.HealthGoal</li>
+</ul>
+
+<h4>Mục tiêu sức khỏe</h4>
+<ul>
+    @foreach (var goal in Model.Goals)
+    {
+        <li>@goal.Type - @goal.TargetValue (đến @goal.TargetDate.ToShortDateString())</li>
+    }
+</ul>
+
+<h4>Thói quen hôm nay</h4>
+<ul>
+    @foreach (var habit in Model.Habits)
+    {
+        var entry = Model.TodayHabitEntries.FirstOrDefault(e => e.HabitId == habit.Id_Habit);
+        <li>@habit.Name - @(entry?.IsCompleted == true ? "✅ Hoàn thành" : "❌ Chưa")</li>
+    }
+</ul>
+
+<h4>Lịch trình hôm nay</h4>
+<ul>
+    @foreach (var item in Model.TodaySchedule)
+    {
+        <li>@item.StartTime.ToShortTimeString() - @item.Title</li>
+    }
+</ul>

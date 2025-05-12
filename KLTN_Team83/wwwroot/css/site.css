@@ -45,7 +45,21 @@
 main {
     padding: 0 112px;
 }
-
+html, body {
+    height: 100%;
+    margin: 0;
+}
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.flex-grow-1 {
+    flex-grow: 1;
+}
+.container {
+    flex: 1;
+}
 .banner-container {
     position: relative;
     width: 100%;

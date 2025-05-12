@@ -13,15 +13,21 @@ namespace KLTN_Team83.DataAccess.Data
         public DbSet<TypeBlog> TypeBlogs { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        //public DbSet<Expert> Experts { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
-        public DbSet<Message> Messages { get; set; }
-        public DbSet<Conversation> Conversations { get; set; }
-        public DbSet<Infomation> Infomations { get; set; }
-        //public DbSet<MyImage> MyImages { get; set; }
+        //public DbSet<Message> Messages { get; set; }
+        //public DbSet<Conversation> Conversations { get; set; }
+        //public DbSet<Infomation> Infomations { get; set; }
+        //mục tiêu
+        public DbSet<Goal> Goals { get; set; }
+        //thói quen
+        public DbSet<Habit> Habits { get; set; }
+        //nhập thói quen
+        public DbSet<HabitEntry> HabitEntries { get; set; }
+        //thời gian biểu
+        public DbSet<ScheduleItem> ScheduleItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -19,6 +19,7 @@ namespace KLTN_Team83.Models
         public double? Weight { get; set; }
         public int? Age { get; set; }
         public string? Gender { get; set; }
+        public string? HealthGoal { get; set; }
         public int? Id_Company { get; set; }
         [ForeignKey("Id_Company")]
         [ValidateNever]

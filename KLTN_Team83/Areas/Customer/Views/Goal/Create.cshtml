@@ -1,12 +1,11 @@
 ﻿@model Goal
-@{
-    ViewData["Title"] = Model.Id_Goal == 0 ? "Tạo mục tiêu" : "Chỉnh sửa mục tiêu";
-}
+@* @{ *@
+@*     ViewData["Title"] = Model.Id_Goal == 0 ? "Tạo mục tiêu" : "Chỉnh sửa mục tiêu"; *@
+@* } *@
 
 <h2>@ViewData["Title"]</h2>
 
 <form asp-action="@ViewContext.RouteData.Values["action"]" method="post">
-    <input asp-for="@Model.ApplicationUser.Id" hidden />
     <div class="mb-3">
         <label asp-for="Type" class="form-label"></label>
         <select asp-for="Type" asp-items="Html.GetEnumSelectList<GoalType>()" class="form-control"></select>
@@ -22,4 +21,3 @@
     <button type="submit" class="btn btn-success">Lưu</button>
     <a asp-action="Index" class="btn btn-secondary">Hủy</a>
 </form>
-

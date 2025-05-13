@@ -18,7 +18,14 @@ namespace KLTN_Team83.DataAccess.Repository
         }
         public void Update(ApplicationUser obj)
         {
-            _db.ApplicationUsers.Update(obj);
+            var objFromDb = _db.ApplicationUsers.FirstOrDefault(u => u.Id == obj.Id);
+            objFromDb.Name = obj.Name;
+            objFromDb.Height = obj.Height;
+            objFromDb.Weight = obj.Weight;
+            objFromDb.Age = obj.Age;
+            objFromDb.Gender = obj.Gender;
+            objFromDb.HealthGoal = obj.HealthGoal;
+            objFromDb.Id_Company = obj.Id_Company;
         }
 
     }

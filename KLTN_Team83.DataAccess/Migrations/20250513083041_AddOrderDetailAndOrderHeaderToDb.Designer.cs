@@ -4,6 +4,7 @@ using KLTN_Team83.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KLTN_Team83.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250513083041_AddOrderDetailAndOrderHeaderToDb")]
+    partial class AddOrderDetailAndOrderHeaderToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -439,6 +442,44 @@ namespace KLTN_Team83.DataAccess.Migrations
                     b.HasIndex("Id_Category");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id_Product = 1,
+                            Description = "Thịt bò tươi ngon",
+                            Id_Category = 1,
+                            ImgageUrl = "",
+                            NCC = "Đá Chẹt",
+                            NameProduct = "Thịt bò",
+                            Price = 20.0,
+                            Price100 = 15.0,
+                            Price50 = 18.0
+                        },
+                        new
+                        {
+                            Id_Product = 2,
+                            Description = "Nước điện giải có ga bù nước",
+                            Id_Category = 2,
+                            ImgageUrl = "",
+                            NCC = "Long Châu",
+                            NameProduct = "Nước điện giải",
+                            Price = 10.0,
+                            Price100 = 5.0,
+                            Price50 = 8.0
+                        },
+                        new
+                        {
+                            Id_Product = 3,
+                            Description = "Kẹo có thuốc xổ",
+                            Id_Category = 4,
+                            ImgageUrl = "",
+                            NCC = "Quang Linh",
+                            NameProduct = "Kẹo rau Kera",
+                            Price = 50.0,
+                            Price100 = 43.0,
+                            Price50 = 45.0
+                        });
                 });
 
             modelBuilder.Entity("KLTN_Team83.Models.ScheduleItem", b =>
@@ -768,9 +809,6 @@ namespace KLTN_Team83.DataAccess.Migrations
                     b.Property<int?>("Age")
                         .HasColumnType("int");
 
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
@@ -785,15 +823,6 @@ namespace KLTN_Team83.DataAccess.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PostalCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StreetAddress")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("Weight")

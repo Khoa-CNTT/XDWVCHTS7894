@@ -2,12 +2,16 @@
 using System.Security.Claims;
 using KLTN_Team83.DataAccess.Repository.IRepository;
 using KLTN_Team83.Models;
+using KLTN_Team83.Models.ViewModels;
+using KLTN_Team83.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 
 namespace KLTN_Team83.Areas.Customer.Controllers
 {
     [Area("Customer")] // Đánh dấu controller này thuộc area Customer
+    [Authorize]
     public class HomeController : Controller
     {
         // Khai báo logger để ghi log
@@ -48,12 +52,12 @@ namespace KLTN_Team83.Areas.Customer.Controllers
             return View(ProductList);
         }
 
-        public IActionResult DetailProduct(int id) {
+        public IActionResult DetailProduct(int productId) {
             ShoppingCart cart = new()
             {
-                Product = _unitOfWork.Product.Get(u => u.Id_Product == id, includeProperties: "Category"),
+                Product = _unitOfWork.Product.Get(u => u.Id_Product == productId, includeProperties: "Category,ProductImages"),
                 Count = 1,
-                Id_Product = id
+                Id_Product = productId
             };
             return View(cart);
         }
@@ -74,18 +78,21 @@ namespace KLTN_Team83.Areas.Customer.Controllers
             if (cartFromDb != null)
             {
                 // Nếu sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
+                //shopping cart exists
                 cartFromDb.Count += shoppingCart.Count;
                 _unitOfWork.ShoppingCart.Update(cartFromDb);
+                _unitOfWork.Save();
             }
             else
             {
                 // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm mới
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
+                _unitOfWork.Save();
+                HttpContext.Session.SetInt32(SD.SessionCart,
+                _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).Count());
             }
             TempData["success"] = "Thêm sản phẩm vào giỏ hàng thành công";
 
-            _unitOfWork.ShoppingCart.Add(shoppingCart);
-            _unitOfWork.Save();
             return RedirectToAction(nameof(Services));
         }
         public IActionResult Contact()

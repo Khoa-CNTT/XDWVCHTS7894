@@ -19,18 +19,15 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        //private readonly ApplicationUser _applicationUser;
         private readonly IUnitOfWork _unitOfWork;
 
         public IndexModel(
             UserManager<IdentityUser> userManager,
-            //ApplicationUser applicationUser,
             IUnitOfWork unitOfWork,
             SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            //_applicationUser = applicationUser;
             _unitOfWork = unitOfWork;
         }
 
@@ -77,17 +74,23 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account.Manage
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            //await gender = _unitOfWork.ApplicationUser.Where(applicationUser=>applicationUser.);
-            //var weight = await _applicationUser.Weight.Get();
-            //var height = await _userManager.GetUserNameAsync(user);
+            var applicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == user.Id);
+            var name = applicationUser.Name;
+            var height = applicationUser.Height;
+            var weight = applicationUser.Weight;
+            var gender = applicationUser.Gender;
 
             Username = userName;
 
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
-                //Gender = gender,
-               
+                Name = name,
+                Gender = gender,
+                Height = height.ToString(),
+                Weight = weight.ToString(),
+
+
             };
         }
 
@@ -118,6 +121,20 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account.Manage
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var userId = _userManager.GetUserId(User);
+            var applicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
+            var name = applicationUser.Name;
+            var height = applicationUser.Height;
+            var weight = applicationUser.Weight;
+            var gender = applicationUser.Gender;
+            if (Input.Name != name) { 
+                var setNameResult = await _userManager.SetUserNameAsync(user, Input.Name);
+                if (!setNameResult.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to set name.";
+                }
+            }
+
             if (Input.PhoneNumber != phoneNumber)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
@@ -127,6 +144,20 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+            if (Input.Height != height.ToString())
+            {
+                applicationUser.Height = Convert.ToDouble(Input.Height);
+            }
+            if (Input.Weight != weight.ToString())
+            {
+                applicationUser.Weight = Convert.ToDouble(Input.Weight);
+            }
+            if (Input.Gender != gender)
+            {
+                applicationUser.Gender=Input.Gender;
+            }
+            _unitOfWork.ApplicationUser.Update(applicationUser);
+            _unitOfWork.Save();
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";

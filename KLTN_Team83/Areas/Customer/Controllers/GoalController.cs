@@ -85,7 +85,7 @@ namespace KLTN_Team83.Areas.Customer.Controllers
         public async Task<IActionResult> Delete(string? id)
         {
             var goal = _unitOfWork.Goal.Get(g => g.UserId == id);
-            if (goal == null || goal.UserId != _userManager.GetUserId(User))
+            if (goal == null || goal.UserId != User.FindFirstValue(ClaimTypes.NameIdentifier))
             {
                 return NotFound();
             }
@@ -94,9 +94,9 @@ namespace KLTN_Team83.Areas.Customer.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string? id)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
-            var goal = _unitOfWork.Goal.Get(g => g.UserId == id);
+            var goal = _unitOfWork.Goal.Get(g => g.Id_Goal == id);
             if (goal != null)
             {
                 _unitOfWork.Goal.Remove(goal);

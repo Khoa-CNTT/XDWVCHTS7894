@@ -9,21 +9,22 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace KLTN_Team83.Models
 {
-    public class ShoppingCart
+    public class OrderDetail
     {
-        public int Id { get; set; }
+        [Key]
+        public int Id_OD { get; set; }
+        public int Id_OH { get; set; }
+        [ForeignKey("Id_OH")]
+        [ValidateNever]
+        public OrderHeader OrderHeader { get; set; }
+
         public int Id_Product { get; set; }
         [ForeignKey("Id_Product")]
         [ValidateNever]
         public Product Product { get; set; }
-        [Range(1, 1000,ErrorMessage ="Please enter a value between 1 and 1000")]
-        public int Count { get; set; }
-        public string ApplicationUserId { get; set; }
-        [ForeignKey("ApplicationUserId")]
-        [ValidateNever]
-        public ApplicationUser ApplicationUser { get; set; }
 
-        [NotMapped]
+        public int Count { get; set; }
         public double Price { get; set; }
+
     }
 }

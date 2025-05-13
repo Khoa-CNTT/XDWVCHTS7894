@@ -14,6 +14,11 @@ namespace KLTN_Team83.Models
     {
         [Required]
         public string Name { get; set; }
+        public string? StreetAddress { get; set; }
+        public string? City { get; set; }
+        public string? State { get; set; }
+        public string? PostalCode { get; set; }
+
 
         public double? Height { get; set; }
         public double? Weight { get; set; }

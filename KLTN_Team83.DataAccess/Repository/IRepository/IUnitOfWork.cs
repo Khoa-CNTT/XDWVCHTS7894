@@ -16,6 +16,9 @@ namespace KLTN_Team83.DataAccess.Repository.IRepository
         IShoppingCartRepository ShoppingCart { get; }
         ICompanyRepository Company { get; }
         IGoalRepository Goal { get; }
+        IOrderDetailRepository OrderDetail { get; }
+        IOrderHeaderRepository OrderHeader { get; }
+
         void Save();
     }
 }

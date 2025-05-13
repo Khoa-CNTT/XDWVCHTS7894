@@ -13,22 +13,22 @@ function loadDataTable() {
             { data: 'nameProduct', "width": "20%" },
             { data: 'description', "width": "30%" },
             { data: 'ncc', "width": "10%" },
-            { data: 'price', "width": "8%" },
-            { data: 'category.name', "width": "12%" },
+            { data: 'price', "width": "5%" },
+            { data: 'category.name', "width": "10%" },
             {
                 data: 'id_Product',
                 render: function (data) {
                     return `
                         <div class="text-center" role="group">
-                            <a href="/Admin/Product/Upsert?id=${data}" class="btn btn-success text-white" style="cursor:pointer; width:100px">
+                            <a href="/Admin/Product/Upsert?id=${data}" class="btn btn-success text-white" style="cursor:pointer; width:150px">
                                 <i class="bi bi-pencil-square"></i>Edit
                             </a>
-                            <a onclick=Delete('/Admin/Product/Delete/${data}') class="btn btn-danger text-white" style="cursor:pointer; width:120px">
+                            <a onclick=Delete('/Admin/Product/Delete/${data}') class="btn btn-danger text-white" style="cursor:pointer; width:150px">
                                 <i class="bi bi-trash-fill"></i>Delete
                             </a>
                         </div>
                     `;
-                }, "width": "20%"
+                }, "width": "25%"
             }
         ]
     });

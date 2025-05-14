@@ -27,10 +27,11 @@ namespace KLTN_Team83.DataAccess.Repository
                 objFromDb.Price100 = obj.Price100;
                 objFromDb.Description = obj.Description;
                 objFromDb.NCC = obj.NCC;
-                if (obj.ImgageUrl != null)
-                {
-                    objFromDb.ImgageUrl = obj.ImgageUrl;
-                }
+                objFromDb.ProductImages =obj.ProductImages;
+                //if (obj.ImgageUrl != null)
+                //{
+                //    objFromDb.ImgageUrl = obj.ImgageUrl;
+                //}
             }
         }
     }

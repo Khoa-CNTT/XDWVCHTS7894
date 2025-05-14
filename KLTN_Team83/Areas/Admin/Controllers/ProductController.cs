@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace KLTN_Team83.Areas.Admin.Controllers
 {
@@ -19,7 +20,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _db;
         private readonly IWebHostEnvironment _hostEnvironment;
-        public ProductController(IUnitOfWork db, IWebHostEnvironment hostEnvironment)
+        public ProductController(IUnitOfWork db, IWebHostEnvironment hostEnvironment, IUnitOfWork unitOfWork)
         {
             _db = db;
             _hostEnvironment = hostEnvironment;
@@ -51,38 +52,17 @@ namespace KLTN_Team83.Areas.Admin.Controllers
             else
             {
                 //update
-                productVM.Product = _db.Product.Get(u => u.Id_Product == id);
+                productVM.Product = _db.Product.Get(u => u.Id_Product == id, includeProperties: "ProductImages");
                 return View(productVM);
             }
         }
         [HttpPost]
-        public IActionResult Upsert(ProductVM productVM, IFormFile? file)
+        public IActionResult Upsert(ProductVM productVM, List<IFormFile> files)
         {
             
             if (ModelState.IsValid)
             {
-                string wwwRootPath = _hostEnvironment.WebRootPath;
-                if (file != null)
-                {
-                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string uploads = Path.Combine(wwwRootPath, @"images\product");
-                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
-                    {
-                        file.CopyTo(fileStreams);
-                    }
-                    if (!string.IsNullOrEmpty(productVM.Product.ImgageUrl))
-                    {
-                        //delete old image
-                        var oldImagePath =
-                            Path.Combine(wwwRootPath, productVM.Product.ImgageUrl.TrimStart('\\'));
-                        if (System.IO.File.Exists(oldImagePath))
-                        {
-                            System.IO.File.Delete(oldImagePath);
-                        }
-                    }
-                    productVM.Product.ImgageUrl = @"\images\product\" + fileName;
-                }
-                if (productVM.Product.Id_Product==0)
+                if (productVM.Product.Id_Product == 0)
                 {
                     _db.Product.Add(productVM.Product);
                 }
@@ -90,8 +70,46 @@ namespace KLTN_Team83.Areas.Admin.Controllers
                 {
                     _db.Product.Update(productVM.Product);
                 }
+
                 _db.Save();
-                TempData["success"] = "Product created successfully!";
+
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                if (files != null)
+                {
+                    foreach (IFormFile file in files)
+                    {
+                        string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName); 
+                        string productPath = @"images\products\product-" + productVM.Product.Id_Product;
+                        string uploads = Path.Combine(wwwRootPath, productPath);
+
+                        if(!Directory.Exists(uploads))
+                        {
+                            Directory.CreateDirectory(uploads);
+                        }
+
+                        using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
+                        {
+                            file.CopyTo(fileStream);
+                        }
+
+                        ProductImage productImage = new ProductImage()
+                        {
+                            ImageUrl = @"\" + productPath + @"\" + fileName,
+                            Id_Product = productVM.Product.Id_Product,
+                        };
+
+                        if (productVM.Product.ProductImages == null)
+                        {
+                            productVM.Product.ProductImages = new List<ProductImage>();
+                        }
+                        productVM.Product.ProductImages.Add(productImage);
+                        
+                    }
+                    _db.Product.Update(productVM.Product);
+                    _db.Save();
+                }
+                
+                TempData["success"] = "Product created/update successfully!";
                 return RedirectToAction("Index");
             }
             else
@@ -103,6 +121,30 @@ namespace KLTN_Team83.Areas.Admin.Controllers
                 });
                     return View(productVM);
             }
+        }
+
+        public IActionResult DeleteImg (int imageId)
+        {
+            var imageToBeDelete = _db.ProductImage.Get(u => u.Id_ProductImg == imageId);
+            int productId = imageToBeDelete.Id_Product;
+            if (imageToBeDelete != null)
+            {
+                if(!string.IsNullOrEmpty(imageToBeDelete.ImageUrl))
+                {
+                    //xóa ảnh cũ
+                    var oldImagePath =
+                                    Path.Combine(_hostEnvironment.WebRootPath,
+                                    imageToBeDelete.ImageUrl.TrimStart('\\'));
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
+                _db.ProductImage.Remove(imageToBeDelete);
+                _db.Save();
+                TempData["success"] = "Image deleted successfully!";
+            }
+            return RedirectToAction(nameof(Upsert), new { id = productId });
         }
 
 
@@ -122,13 +164,18 @@ namespace KLTN_Team83.Areas.Admin.Controllers
             {
                 return Json(new { success = false, message = "Error while Delete" });
             }
-            //xóa ảnh cũ
-            var oldImagePath =
-                            Path.Combine(_hostEnvironment.WebRootPath, 
-                            productToBeDelete.ImgageUrl.TrimStart('\\'));
-            if (System.IO.File.Exists(oldImagePath))
+            //xóa toàn bộ ảnh
+            string productPath = @"images\products\product-" + id;
+            string uploads = Path.Combine(_hostEnvironment.WebRootPath, productPath);
+
+            if (Directory.Exists(uploads))
             {
-                System.IO.File.Delete(oldImagePath);
+                string[] filePaths = Directory.GetFiles(uploads);
+                foreach (string filePath in filePaths)
+                {
+                    System.IO.File.Delete(filePath);
+                }
+                Directory.Delete(uploads);
             }
 
             _db.Product.Remove(productToBeDelete);

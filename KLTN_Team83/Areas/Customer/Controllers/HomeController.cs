@@ -11,7 +11,6 @@ using Microsoft.CodeAnalysis;
 namespace KLTN_Team83.Areas.Customer.Controllers
 {
     [Area("Customer")] // Đánh dấu controller này thuộc area Customer
-    [Authorize]
     public class HomeController : Controller
     {
         // Khai báo logger để ghi log
@@ -48,17 +47,21 @@ namespace KLTN_Team83.Areas.Customer.Controllers
         }
         public IActionResult Services()
         {
-            IEnumerable<Product> ProductList = _unitOfWork.Product.GetAll(includeProperties: "Category");
+            IEnumerable<Product> ProductList = _unitOfWork.Product.GetAll(includeProperties: "Category,ProductImages");
             return View(ProductList);
         }
 
-        public IActionResult DetailProduct(int productId) {
+        public IActionResult DetailProduct(int id) {
             ShoppingCart cart = new()
             {
-                Product = _unitOfWork.Product.Get(u => u.Id_Product == productId, includeProperties: "Category,ProductImages"),
+                Product = _unitOfWork.Product.Get(u => u.Id_Product == id, includeProperties: "Category,ProductImages"),
                 Count = 1,
-                Id_Product = productId
+                Id_Product = id
             };
+            if (cart.Product == null)
+            {
+                return NotFound(); // hoặc redirect sang trang lỗi
+            }
             return View(cart);
         }
 

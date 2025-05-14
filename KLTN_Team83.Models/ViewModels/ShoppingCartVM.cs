@@ -8,7 +8,7 @@ namespace KLTN_Team83.Models.ViewModels
 {
     public class ShoppingCartVM
     {
-        public IEnumerable<ShoppingCart> ListShoppingCart { get; set; }
+        public IEnumerable<ShoppingCart> ShoppingCartList { get; set; }
         public OrderHeader OrderHeader { get; set; }
     }
 }

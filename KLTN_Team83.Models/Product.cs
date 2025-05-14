@@ -39,7 +39,8 @@ namespace KLTN_Team83.Models
         [ForeignKey("Id_Category")]
         [ValidateNever]
         public Category Category { get; set; }
+        
         [ValidateNever]
-        public string? ImgageUrl { get; set; }   
+        public List<ProductImage> ProductImages { get; set; }   
     }
 }

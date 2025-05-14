@@ -11,7 +11,9 @@ namespace KLTN_Team83.Models
 {
     public class ShoppingCart
     {
-        public int Id { get; set; }
+        [Key]
+        public int Id_SP { get; set; }
+        [Required]
         public int Id_Product { get; set; }
         [ForeignKey("Id_Product")]
         [ValidateNever]

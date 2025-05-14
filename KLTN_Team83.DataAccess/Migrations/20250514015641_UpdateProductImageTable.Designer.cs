@@ -4,6 +4,7 @@ using KLTN_Team83.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KLTN_Team83.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250514015641_UpdateProductImageTable")]
+    partial class UpdateProductImageTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -489,11 +492,11 @@ namespace KLTN_Team83.DataAccess.Migrations
 
             modelBuilder.Entity("KLTN_Team83.Models.ShoppingCart", b =>
                 {
-                    b.Property<int>("Id_SP")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_SP"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ApplicationUserId")
                         .IsRequired()
@@ -505,7 +508,7 @@ namespace KLTN_Team83.DataAccess.Migrations
                     b.Property<int>("Id_Product")
                         .HasColumnType("int");
 
-                    b.HasKey("Id_SP");
+                    b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
 

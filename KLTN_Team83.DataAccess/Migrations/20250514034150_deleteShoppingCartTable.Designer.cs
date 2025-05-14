@@ -4,6 +4,7 @@ using KLTN_Team83.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KLTN_Team83.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250514034150_deleteShoppingCartTable")]
+    partial class deleteShoppingCartTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -487,33 +490,6 @@ namespace KLTN_Team83.DataAccess.Migrations
                     b.ToTable("ScheduleItems");
                 });
 
-            modelBuilder.Entity("KLTN_Team83.Models.ShoppingCart", b =>
-                {
-                    b.Property<int>("Id_SP")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_SP"));
-
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id_Product")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id_SP");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("Id_Product");
-
-                    b.ToTable("ShoppingCarts");
-                });
-
             modelBuilder.Entity("KLTN_Team83.Models.TypeBlog", b =>
                 {
                     b.Property<int>("id_TypeBlog")
@@ -902,25 +878,6 @@ namespace KLTN_Team83.DataAccess.Migrations
                         .HasForeignKey("Id_Product")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("KLTN_Team83.Models.ShoppingCart", b =>
-                {
-                    b.HasOne("KLTN_Team83.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("KLTN_Team83.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("Id_Product")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApplicationUser");
 
                     b.Navigation("Product");
                 });

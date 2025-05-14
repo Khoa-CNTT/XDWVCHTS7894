@@ -1,45 +1,17 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@* <style> *@
-@*     main { *@
-@*         margin: 0; *@
-@*         padding: 0; *@
-@*     } *@
-
-@*     .banner { *@
-@*         width: 100%; *@
-@*         height: 400px; *@
-@*         display: flex; *@
-@*         align-items: center; *@
-@*         justify-content: center; *@
-@*         color: white; *@
-@*         font-size: 2rem; *@
-@*         font-weight: bold; *@
-@*         transition: transform 0.3s ease-in-out; *@
-@*     } *@
-
-@*         .banner:hover { *@
-@*             transform: scale(1.05); *@
-@*             filter: brightness(1.2); *@
-@*         } *@
-
-@*     .banner-1 { *@
-@*         background: linear-gradient(135deg, #ff7eb3, #ff758c); *@
-@*     } *@
-
-@*     .banner-2 { *@
-@*         background: linear-gradient(135deg, #5ee7df, #b490ca); *@
-@*     } *@
-
-@*     .banner-3 { *@
-@*         background: linear-gradient(135deg, #6a11cb, #2575fc); *@
-@*     } *@
-
-@*     .banner-4 { *@
-@*         background: linear-gradient(135deg, #ff9a8b, #ff6a88); *@
-@*     } *@
-@* </style> *@
+<style>
+    .banner-container {
+        position: relative;
+        width: 100%;
+        height: 600px;
+        background-image: url('images/banner.jpg');
+        background-size: cover;
+        background-position: center;
+        margin: 0 auto;
+    }
+</style>
 @* <main class="container-fluid p-0"> *@
     <div class="banner-container">
         <div class="banner">

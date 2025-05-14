@@ -121,6 +121,10 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account
             public double? Weight { get; set; }
             public double? Height { get; set; }
             public int? Id_Company { get; set; }
+            public string? State { get; set; }
+            public string? StreetAddress { get; set; }
+            public string? City { get; set; }
+            public string? PostalCode { get; set; }
             [ValidateNever]
             public IEnumerable<SelectListItem> CompanyList { get; set; }
 
@@ -170,6 +174,10 @@ namespace KLTN_Team83.Areas.Identity.Pages.Account
                 user.Gender=Input.Gender;
                 user.Height = Input.Height;
                 user.Weight = Input.Weight;
+                user.City = Input.City;
+                user.StreetAddress = Input.StreetAddress;
+                user.State = Input.State;
+                user.PostalCode = Input.PostalCode;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)

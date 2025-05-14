@@ -32,25 +32,25 @@
                         <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Plan">Plans</a>
+                        <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Plan">Plan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Services">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Blog">Blogs</a>
+                        <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Blog">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="About">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Contact">Contacts</a>
+                        <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Contact">Contact</a>
                     </li>
                     @if (User.IsInRole(SD.Role_Admin))
                     {
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Content Managment
+                                Content Management
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
@@ -82,7 +82,7 @@
                     }
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="Customer" asp-controller="Cart" asp-action="Index">
-                            <i class="bi bi-cart"></i> &nbsp;(0)
+                            <i class="bi bi-cart"></i> &nbsp;
                         </a>
                     </li>
                 </ul>

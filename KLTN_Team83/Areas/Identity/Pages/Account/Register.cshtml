@@ -52,14 +52,30 @@
                     </div>
                     <div class="form-floating mb-3 col-md-6">
                         <input asp-for="Input.Height" class="form-control" placeholder="" />
-                        <label asp-for="Input.Height" class="ms-2 text-muted">Height</label>
+                        <label asp-for="Input.Height" class="ms-2 text-muted">Height (cm)</label>
                         <span asp-validation-for="Input.Height" class="text-danger"></span>
                     </div>
                     <div class="form-floating mb-3 col-md-6">
                         <input asp-for="Input.Weight" class="form-control" placeholder="" />
-                        <label asp-for="Input.Weight" class="ms-2 text-muted">Weight</label>
+                        <label asp-for="Input.Weight" class="ms-2 text-muted">Weight (kg)</label>
                         <span asp-validation-for="Input.Weight" class="text-danger"></span>
                     </div>
+                    <div class="form-floating mb-3 col-md-6">
+                        <input asp-for="Input.StreetAddress" class="form-control" placeholder="" />
+                        <label asp-for="Input.StreetAddress" class="ms-2 text-muted">StreetAddress</label>
+                        <span asp-validation-for="Input.StreetAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6">
+                        <input asp-for="Input.City" class="form-control" placeholder="" />
+                        <label asp-for="Input.City" class="ms-2 text-muted">City</label>
+                        <span asp-validation-for="Input.City" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3 col-md-6">
+                        <input asp-for="Input.State" class="form-control" placeholder="" />
+                        <label asp-for="Input.State" class="ms-2 text-muted">State</label>
+                        <span asp-validation-for="Input.State" class="text-danger"></span>
+                    </div>
+                    
                     @if(User.IsInRole(SD.Role_Admin)){
                     <div class="form-floating mb-3 col-md-6">
                         <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select">

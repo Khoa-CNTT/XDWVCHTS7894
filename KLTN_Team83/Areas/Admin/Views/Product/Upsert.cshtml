@@ -10,7 +10,6 @@
 		<div class="card-body">
 			<form method="post" class="row" enctype="multipart/form-data">
 				<input asp-for="Product.Id_Product" hidden />
-				<input asp-for="Product.ImgageUrl" hidden />
 				<div class="row">
 					<div class="col-10">
 						<div class="border p-3">
@@ -45,9 +44,9 @@
 								<span asp-validation-for="Product.Price100" class="text-danger"></span>
 							</div>
 							<div class="form-floating py-2 col-12">
-								<label asp-for="Product.ImgageUrl" class="ms-2"> Hình ảnh</label>
-								<input type="file" name="file" class="form-control border-0 shadow" />
-								<span asp-validation-for="Product.ImgageUrl" class="text-danger"></span>
+								<label asp-for="Product.ProductImages" class="ms-2"> Hình ảnh</label>
+								<input type="file" name="files" class="form-control border-0 shadow" multiple/>
+								<span asp-validation-for="Product.ProductImages" class="text-danger"></span>
 								@* <button type="submit">Upload</button> *@
 							</div>
 							<div class="form-floating py-2 col-12">
@@ -86,7 +85,18 @@
 						</div>
 					</div>
 					<div class="col-2">
-						<img src="@Model.Product.ImgageUrl" width="100%" style=" border-radius: 5px; border:1px solid #bbb9b9" />
+						@if(@Model.Product.ProductImages != null)
+						{
+							foreach (var image in Model.Product.ProductImages)
+							{
+								<div class="border p-1 m-2 text-center">
+									<img src="@image.ImageUrl" width="100%" style=" border-radius: 5px; border:1px solid #bbb9b9" />
+									<a asp-action="DeleteImg" class=" btn btn-danger" asp-route-imageId="@image.Id_ProductImg">
+										<i class="bi bi-trash-fill"></i>Delete
+									</a>
+								</div>
+							}
+						}
 					</div>
 				</div>
 			</form>

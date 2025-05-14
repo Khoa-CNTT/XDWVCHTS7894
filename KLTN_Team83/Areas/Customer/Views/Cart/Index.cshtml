@@ -23,10 +23,18 @@
                 </div>
                 <div class="col-md-10 offset-md-1">
 
-                    @foreach(var item in Model.ListShoppingCart ){
+                    @foreach (var item in Model.ShoppingCartList)
+                    {
                     <div class="row border-bottom pb-3">
                         <div class="d-none d-lg-block col-lg-1 text-center py-2">
-                            <img src="@item.Product.ImgageUrl" class="rounded" width="100%" />
+                                @if (item.Product.ProductImages != null && item.Product.ProductImages.Count() > 0)
+                                {
+                                    <img src="@item.Product.ProductImages.FirstOrDefault().ImageUrl" class="card-img-top rounded form-control" style="width:100%; height:100%" alt="@item.Product.NameProduct">
+                                }
+                                else
+                                {
+                                    <img src="https://placehold.co/500x600/png" class="card-img-top rounded w-100 form-control" style="width:100%; height:100%">
+                                }
                         </div>
                         <div class="col-12 col-lg-6 pt-md-3">
                             <h5 class="text-uppercase text-secondary"><strong>@item.Product.NameProduct</strong></h5>
@@ -41,23 +49,22 @@
                             </div>
                             <div class="col-6 col-sm-4 col-lg-6 pt-2">
                                 <div class="w-75 btn-group" role="group">
-                                    <a asp-action="plus" asp-route-cartId="@item.Id" class="btn btn-outline-primary bg-gradient py-2">
+                                        <a asp-action="plus" asp-route-cartId="@item.Id_SP" class="btn btn-outline-primary bg-gradient py-2">
                                         <i class="bi bi-plus-square"></i>
                                     </a> &nbsp;
-                                    <a asp-action="minus" asp-route-cartId="@item.Id" class="btn btn-outline-primary bg-gradient py-2">
+                                        <a asp-action="minus" asp-route-cartId="@item.Id_SP" class="btn btn-outline-primary bg-gradient py-2">
                                         <i class="bi bi-dash-square"></i>
                                     </a>
                                 </div>
 
                             </div>
                             <div class="col-3 col-sm-4 col-lg-2 offset-lg-1 text-right pt-2">
-                                <a asp-action="remove" asp-route-cartId="@item.Id" class="btn btn-danger bg-gradient py-2 ">
+                                    <a asp-action="remove" asp-route-cartId="@item.Id_SP" class="btn btn-danger bg-gradient py-2 ">
                                     <i class="bi bi-trash-fill"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-
                     }
                 </div>
             </div>

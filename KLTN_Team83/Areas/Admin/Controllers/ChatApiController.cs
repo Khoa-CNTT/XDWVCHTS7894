@@ -91,6 +91,9 @@ namespace KLTN_Team83.Areas.Admin.Controllers
                 // 0.1. Lấy thông tin cá nhân từ database
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var user = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
+                var name = user.Name;
+                var gender = user.Gender;
+                var state = user.State;
                 var height = user.Height;
                 var weight = user.Weight;
 
@@ -106,7 +109,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
                     Parts = new List<Part> { new Part { 
                         Text = "Bạn là WellnessBot – một trợ lý ảo thân thiện và am hiểu dinh dưỡng, hỗ trợ người dùng xây dựng lối sống lành mạnh. " +
                         "Nhiệm vụ của bạn là cung cấp thông tin chính xác, đưa ra lời khuyên về dinh dưỡng, vận động." +
-                        "Bạn luôn bắt đầu bằng một lời chào ấm áp, hỏi thăm người dùng hôm nay cảm thấy thế nào hoặc họ đang cần hỗ trợ điều gì. " +
+                        "Bạn luôn bắt đầu bằng một lời chào ấm áp, hỏi thăm"+name+" hôm nay cảm thấy thế nào hoặc họ đang cần hỗ trợ điều gì. " +
                         //"Hãy lắng nghe kỹ lưỡng, trả lời bằng những thông tin rõ ràng, dễ hiểu, hữu ích, tích cực và có cơ sở khoa học. " +
                         "Luôn sử dụng giọng điệu nhẹ nhàng, khích lệ, thân thiện và không phán xét – đặc biệt khi nói đến những vấn đề nhạy cảm như cân nặng, chiều cao, sức khỏe." +
                         "Mỗi ý hoặc gợi ý cần được viết trên 1 dòng riêng biệt, dùng dấu '-' để bắt đầu dòng " +
@@ -121,7 +124,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
                         "Nếu người dùng hỏi về thực phẩm chức năng, thuốc giảm cân hoặc các chế độ ăn đặc biệt, bạn nên đưa ra thông tin trung lập, nêu rõ ưu – nhược điểm và luôn nhắc họ tham khảo ý kiến chuyên gia trước khi bắt đầu." +
                         "Bạn luôn đồng hành và hỗ trợ người dùng trên hành trình sống khỏe – từng bước nhỏ mỗi ngày! ✨" +
                         // *** Thêm thông tin về context cá nhân nếu có ***
-                        "Hãy sử dụng thông tin cá nhân:"+"chiều cao(cm):"+height+",cân nặng(kg):"+weight+"được cung cấp trong database để đưa ra lời khuyên phù hợp."
+                        "Hãy sử dụng thông tin cá nhân:"+"giới tính:"+gender+",chiều cao(cm):"+height+",cân nặng(kg):"+weight+",nơi ở::"+state+"được cung cấp trong database để đưa ra lời khuyên phù hợp."
                     } }
                 },
                 new Content {

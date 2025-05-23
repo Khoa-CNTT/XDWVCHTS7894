@@ -4,6 +4,7 @@ using KLTN_Team83.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KLTN_Team83.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250518140137_addFKUserIdToGoalAndHabit")]
+    partial class addFKUserIdToGoalAndHabit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -229,14 +232,14 @@ namespace KLTN_Team83.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_Goal"));
 
-                    b.Property<int>("Id_GoalType")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("TargetDate")
                         .HasColumnType("datetime2");
 
                     b.Property<double>("TargetValue")
                         .HasColumnType("float");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -244,45 +247,9 @@ namespace KLTN_Team83.DataAccess.Migrations
 
                     b.HasKey("Id_Goal");
 
-                    b.HasIndex("Id_GoalType");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Goals");
-                });
-
-            modelBuilder.Entity("KLTN_Team83.Models.GoalType", b =>
-                {
-                    b.Property<int>("Id_GoalType")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_GoalType"));
-
-                    b.Property<string>("NameGoalType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id_GoalType");
-
-                    b.ToTable("GoalTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id_GoalType = 1,
-                            NameGoalType = "Weight"
-                        },
-                        new
-                        {
-                            Id_GoalType = 2,
-                            NameGoalType = "Height"
-                        },
-                        new
-                        {
-                            Id_GoalType = 3,
-                            NameGoalType = "Sleep"
-                        });
                 });
 
             modelBuilder.Entity("KLTN_Team83.Models.Habit", b =>
@@ -873,12 +840,6 @@ namespace KLTN_Team83.DataAccess.Migrations
 
             modelBuilder.Entity("KLTN_Team83.Models.Goal", b =>
                 {
-                    b.HasOne("KLTN_Team83.Models.GoalType", "GoalType")
-                        .WithMany()
-                        .HasForeignKey("Id_GoalType")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("KLTN_Team83.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -886,8 +847,6 @@ namespace KLTN_Team83.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("ApplicationUser");
-
-                    b.Navigation("GoalType");
                 });
 
             modelBuilder.Entity("KLTN_Team83.Models.Habit", b =>

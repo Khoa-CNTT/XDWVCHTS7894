@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Net.Sockets;
 
 namespace KLTN_Team83.DataAccess.Data
 {
@@ -23,6 +24,7 @@ namespace KLTN_Team83.DataAccess.Data
         //public DbSet<Message> Messages { get; set; }
         //public DbSet<Conversation> Conversations { get; set; }
         //public DbSet<Infomation> Infomations { get; set; }
+        public DbSet<GoalType> GoalTypes { get; set; }
         //mục tiêu
         public DbSet<Goal> Goals { get; set; }
         //thói quen
@@ -66,6 +68,14 @@ namespace KLTN_Team83.DataAccess.Data
                 new Blog { id_Blog = 10, id_TypeBlog = 2, tilte = "Bệnh ung thư", content = "Bệnh ung thư làm suy giảm hệ miễn dịch", ImageUrl = "ungthu.jpg" }
 
                 );
+            modelBuilder.Entity<GoalType>().HasData(
+                new GoalType { Id_GoalType = 1, NameGoalType="Weight" },
+                new GoalType { Id_GoalType=2, NameGoalType="Height"},
+                new GoalType { Id_GoalType = 3, NameGoalType = "Sleep" }
+                );
+            //modelBuilder.Entity<Goal>().HasData(
+            //    new Goal { UserId = "4d4f0cc1a09a", TargetValue = 56, Id_GoalType = 1 ,TargetDate=DateTime.Today}
+            //    );
             //        // Configure the primary key for the Admin entity
             //        modelBuilder.Entity<Admin>()
             //            .HasKey(a => a.id_Admin);

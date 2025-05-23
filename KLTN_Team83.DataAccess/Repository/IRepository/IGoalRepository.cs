@@ -10,6 +10,5 @@ namespace KLTN_Team83.DataAccess.Repository.IRepository
     public interface IGoalRepository : IRepository<Goal>
     {
         void Update(Goal obj);
-        void Save();
     }
 }

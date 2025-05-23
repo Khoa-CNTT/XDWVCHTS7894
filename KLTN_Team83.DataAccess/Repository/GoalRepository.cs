@@ -16,13 +16,16 @@ namespace KLTN_Team83.DataAccess.Repository
         {
             _db = db;
         }
-        public void Save()
-        {
-            _db.SaveChanges();
-        }
         public void Update(Goal obj)
         {
-            _db.Goals.Update(obj);
+            var objFromDb = _db.Goals.FirstOrDefault(u => u.Id_Goal == obj.Id_Goal);
+            if (objFromDb != null)
+            {
+                objFromDb.ApplicationUser.Id = obj.UserId;
+                objFromDb.GoalType = obj.GoalType;
+                objFromDb.TargetValue = obj.TargetValue;
+                objFromDb.TargetDate = obj.TargetDate;
+            }
         }
     }
     

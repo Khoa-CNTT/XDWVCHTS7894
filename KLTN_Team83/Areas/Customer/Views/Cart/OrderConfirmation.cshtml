@@ -1,14 +1,162 @@
 ﻿@model int
 
-<div class="container row pt-4">
-    <div class="col-12 text-center">
-        <h1 class="text-primary text-center">Order Successfully!</h1>
-        Your Order Number is : @Model <br /><br />
-        <img src="~/images/success.jpg" width="65%" />
-    </div>
-    <div class="col-12 text-center" style="color:maroon">
-        <br />
-        Your order has been placed successfully! <br />
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success - Wellness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Scoped Styles for Order Confirmation Container */
+        .order-confirmation-container {
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            border: 1px solid #e0e0e0;
+        }
 
-</div> 
+            .order-confirmation-container .success-icon {
+                font-size: 90px;
+                color: #2d7d46;
+                margin-bottom: 25px;
+                animation: fadeIn 0.5s ease-in;
+            }
+
+            .order-confirmation-container h1 {
+                color: #2d7d46;
+                font-size: 34px;
+                font-weight: 700;
+                margin-bottom: 15px;
+                letter-spacing: 0.5px;
+            }
+
+            .order-confirmation-container .order-number {
+                font-size: 18px;
+                font-weight: 600;
+                color: #333;
+                background-color: #f9f9f9;
+                padding: 10px 20px;
+                border-radius: 5px;
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+
+            .order-confirmation-container .success-message {
+                font-size: 16px;
+                color: #666;
+                margin-bottom: 25px;
+                line-height: 1.5;
+            }
+
+            .order-confirmation-container .delivery-info {
+                font-size: 15px;
+                font-weight: 600;
+                color: #8b0000;
+                background-color: rgba(139, 0, 0, 0.05);
+                padding: 10px;
+                border-radius: 5px;
+                margin-bottom: 30px;
+            }
+
+            .order-confirmation-container .cta-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .order-confirmation-container .cta-button {
+                display: inline-block;
+                padding: 12px 24px;
+                border-radius: 5px;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: 600;
+                transition: background-color 0.3s ease;
+            }
+
+                .order-confirmation-container .cta-button.primary {
+                    background-color: #2d7d46;
+                    color: #fff;
+                }
+
+                    .order-confirmation-container .cta-button.primary:hover {
+                        background-color: #1a5c2e;
+                    }
+
+        /* Animation for Icon */
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive Design */
+        @@media (max-width: 768px) {
+            .order-confirmation-container {
+                margin: 20px auto;
+                padding: 25px;
+            }
+
+                .order-confirmation-container h1 {
+                    font-size: 28px;
+                }
+
+                .order-confirmation-container .success-icon {
+                    font-size: 70px;
+                }
+
+                .order-confirmation-container .order-number {
+                    font-size: 16px;
+                }
+
+                .order-confirmation-container .success-message {
+                    font-size: 14px;
+                }
+
+                .order-confirmation-container .delivery-info {
+                    font-size: 14px;
+                }
+
+                .order-confirmation-container .cta-buttons {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+
+                .order-confirmation-container .cta-button {
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+        }
+    </style>
+</head>
+<body>
+    <!-- Assumed Navbar Here (Not Modified) -->
+    <div class="order-confirmation-container">
+        <i class="fas fa-check-circle success-icon" aria-hidden="true"></i>
+        <h1>Order Successfully Placed!</h1>
+        <div class="order-number">Your Order Number: @Model</div>
+        <div class="success-message">
+            Thank you for your purchase! Your order has been successfully placed, and a confirmation email has been sent to you.
+        </div>
+        <div class="delivery-info">
+            Estimated Arrival: @DateTime.Now.AddDays(7).ToShortDateString() - @DateTime.Now.AddDays(14).ToShortDateString()
+        </div>
+        <div class="cta-buttons">
+            <a href="@Url.Action("Services", "Home", new { area = "Customer" })" class="cta-button primary">Continue Shopping</a>
+        </div>
+    </div>
+    <!-- Assumed Footer Here (Not Modified) -->
+</body>
+</html>

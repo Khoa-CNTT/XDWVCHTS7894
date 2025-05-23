@@ -1,249 +1,241 @@
-﻿<!-- About Section -->
-<section class="about-section">
-    <h2>About</h2>
-    <p>
-        I'm a paragraph. Click here to add your own text and edit me. I'm a great place for you to tell a story and let your users know a little more about you.
-    </p>
-</section>
-
-<!-- Combined Content Section -->
-<div class="content">
-    <!-- Left layer with dark green background -->
-    <div class="left-layer">
-        <!-- Image section moved inside left-layer -->
-        <div class="image-section">
-            <img src="~/images/about/about.jpg" alt="Woman with plant">
+﻿<section class="about-wrapper">
+    <div class="about-header">
+        <h1>🌿 About Us</h1>
+        <p>Discover the story behind our wellness journey</p>
+    </div>
+    <div class="about-container">
+        <div class="content">
+            <div class="left-layer">
+                <div class="image-section">
+                    <img src="~/images/about/team.jpg" alt="Our Team" class="about-image">
+                </div>
+                <div class="three-image-layout">
+                    <div class="image-item">
+                        <img src="~/images/about/about1.jpg" alt="Fresh Vegetables" class="about-image">
+                        <span class="image-caption">Fresh Vegetables</span>
+                    </div>
+                    <div class="image-item">
+                        <img src="~/images/about/about2.jpg" alt="Healthy Ingredients" class="about-image">
+                        <span class="image-caption">Healthy Ingredients</span>
+                    </div>
+                    <div class="image-item">
+                        <img src="~/images/about/about3.jpg" alt="Nutritious Choices" class="about-image">
+                        <span class="image-caption">Nutritious Choices</span>
+                    </div>
+                </div>
+            </div>
+            <div class="right-layer">
+                <div class="text-section">
+                    <h2>Our Story</h2>
+                    <p>
+                        Welcome to Wellness, where our passion for health and well-being drives everything we do. Founded with a vision to promote natural living, we specialize in offering high-quality products and insightful content to support your wellness journey. Our team is dedicated to providing expert advice on nutrition, healthy cooking, and personalized diets, inspired by years of research and a commitment to sustainability.
+                    </p>
+                    <p>
+                        What sets us apart is our focus on individual needs, blending traditional wisdom with modern science. From digestive wellness to food sensitivities, we aim to empower you with the tools to thrive. Join us as we continue to innovate and inspire a healthier lifestyle for all.
+                    </p>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <!-- Right layer to contain text-button-section -->
-    <div class="right-layer">
-        <div class="text-button-section">
-            <h2>My Story</h2>
-            <p>
-                I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click "Edit Text" or double click me to add your own content and make changes to the font. Feel free to drag and drop me anywhere you like on your page. I'm a great place for you to tell a story and let your users know a little more about you.
-            </p>
-            <p>
-                This is a great space to write a long text about your company and your services. You can use this space to go into a little more detail about your company. Talk about your team and what services you provide. Tell your visitors the story of how you came up with the idea for your business and what makes you different from your competitors. Make your company stand out and show your visitors who you are.
-            </p>
+        <div class="specialties-container">
+            <h2>Our Specialties</h2>
+            <div class="specialties-list">
+                <span class="badge bg-success text-white">Digestive Wellness</span>
+                <span class="badge bg-success text-white">Food Allergies & Sensitivities</span>
+                <span class="badge bg-success text-white">Healthy Cooking & Meal Planning</span>
+                <span class="badge bg-success text-white">Diets & Detoxing</span>
+                <span class="badge bg-success text-white">Elimination Diets</span>
+            </div>
         </div>
-    </div>
-</div>
-
-<div class="three-image-layout">
-    <div class="image-item">
-        <img sizes="252px" src="~/images/about/ab1.jpg" alt="Image 1" width="252" height="370">
-    </div>
-    <div class="image-item">
-        <img sizes="201px" src="~/images/about/ab2.jpg" alt="Image 2" width="201" height="277">
-    </div>
-    <div class="image-item">
-        <img src="~/images/about/ab3.jpg" alt="Image 3" width="490" height="459">
-    </div>
-</div>
-
-<!-- Specialties Container -->
-<section class="specialties-container">
-    <h2>Specialties</h2>
-    <div>
-        <p>Digestive Wellness</p>
-        <p>Food Allergies & Sensitivities</p>
-        <p>Healthy Cooking & Meal Planning</p>
-        <p>Diets & Detoxing</p>
-        <p>Elimination Diets</p>
     </div>
 </section>
 
+<style>
+    /* About wrapper */
+    .about-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
+    /* About header */
+    .about-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, #2d7d46, #4CAF50);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 
+        .about-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
 
-        <style>
-    /* About page */
-    /* Style for the About section */
-    .about-section {
-        background-color: #e0e8d5;
-        width: 100%;
-        height: 100%;
+        .about-header p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+    /* About container */
+    .about-container {
+        padding: 2rem 0;
+    }
+
+    /* Combined content */
+    .content {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Equal width columns */
+        gap: 2rem;
+        align-items: stretch;
+        margin-bottom: 2rem;
+    }
+
+    /* Left layer */
+    .left-layer {
+        background-color: #1d3b2a;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 60px 20px; /* Add some vertical padding */
-    }
-
-        .about-section h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            color: #1d3b2a;
-            margin-bottom: 20px;
-        }
-
-        .about-section p {
-            font-family: 'Lato', sans-serif;
-            font-weight: 300; /* Light weight */
-            font-size: 18px;
-            color: #000000;
-            max-width: 600px;
-            margin: 0 auto; /* Center the paragraph */
-        }
-
-    /* Combined content class */
-    /* Combined content class */
-    .content {
-        position: relative;
-        width: 100%;
-        height: 100%; /* Set height to 100% of viewport height */
-        display: grid;
-        grid-template-columns: 50% 50%; /* Each layer takes 50% width */
-        gap: 0; /* Remove gap to stick layers to edges */
-        align-items: stretch; /* Make layers the same height */
-        max-width: 1400px;
-        margin: 0 auto;
-        z-index: 2;
-    }
-
-    /* Left layer with dark green background */
-    .left-layer {
-        background-color: rgb(29 59 42); /* Dark green */
-        position: relative;
-        min-height: 600px; /* Or any suitable height */
-        display: flex; /* Consider using flexbox for simpler centering */
-        justify-content: center; /* Center horizontally */
-        align-items: center; /* Center vertically */
-    }
-
-    /* Right layer */
-    .right-layer {
-        background-color: transparent; /* Match sample's white background */
-        display: flex;
-        justify-content: center;
-        align-items: center; /* Center content vertically */
-        /* min-height: 616px; Remove fixed height, will now stretch */
-        padding: 40px; /* Add some padding around the text content */
+        gap: 1rem;
     }
 
     /* Image section */
     .image-section {
-        /* position: absolute; Remove absolute positioning when using flexbox on parent */
-        /* top: 50%; Remove top when using flexbox on parent */
-        /* left: 50%; Remove left when using flexbox on parent */
-        /* transform: translate(-50%, -50%); Remove transform when using flexbox on parent */
-        width: auto; /* Adjust width to content */
-        height: auto; /* Adjust height to maintain aspect ratio */
-        max-width: 80%; /* Optional: Limit maximum width */
-        max-height: 80%; /* Optional: Limit maximum height */
-        overflow: hidden;
-        z-index: 3;
-    }
-
-        .image-section img {
-            width: 400px;
-            height: 300px; /* Maintain aspect ratio */
-            object-fit: cover;
-            display: block; /* Prevent extra space below image */
-            margin: 0 auto;
-        }
-
-    /* Text section styling */
-    .text-button-section {
-        background-color: transparent;
-        z-index: 2;
-        text-align: left;
-        max-width: 500px;
-    }
-
-        .text-button-section h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            color: #1d3b2a;
-            margin-bottom: 20px;
-        }
-
-        .text-button-section p {
-            font-family: 'Lato', sans-serif;
-            font-weight: 300; /* Light weight */
-            font-size: 18px;
-            color: #000000;
-            margin-bottom: 15px; /* Add spacing between paragraphs */
-        }
-
-    .three-image-layout {
-        display: flex;
-        justify-content: flex-start; /* Changed from space-between to flex-start */
-        align-items: flex-start;
         width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        margin-bottom: 60px;
-        padding: 20px 0;
-    }
-
-        .three-image-layout .image-item {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding-top: 0;
-            margin-right: auto; /* Added right margin to create space between images */
-        }
-
-            .three-image-layout .image-item:nth-child(1) {
-                margin-top: 335px;
-                margin-left: 0;
-                margin-right: auto;
-            }
-
-            .three-image-layout .image-item:nth-child(2) {
-                margin-top: 145px;
-                margin: auto;
-            }
-
-            .three-image-layout .image-item:nth-child(3) {
-                margin-top: 225px;
-                margin-right: 0;
-                margin-left: auto;
-            }
-
-        .three-image-layout img {
-            max-width: 100%;
-            height: auto;
-            object-fit: cover;
-            aspect-ratio: 1 / 1;
-        }
-
-
-    .specialties-container {
-        background-color: #e0e8d5;
-        width: 100%;
+        height: 300px;
         display: flex;
-        flex-direction: column; /* Stack heading and paragraphs */
+        justify-content: center;
         align-items: center;
-        justify-content: flex-start;
+    }
+
+    .about-image {
+        max-width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    /* Three-image layout */
+    .three-image-layout {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        padding: 0 1rem;
+        width: 100%;
+    }
+
+    .image-item {
+        position: relative;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+        .image-item img {
+            width: 100%;
+            height: 100px; /* Reduced height to fit below main image */
+            object-fit: cover;
+        }
+
+    .image-caption {
+        position: absolute;
+        bottom: 0.5rem;
+        left: 0.5rem;
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 0.25rem 0.5rem;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    /* Right layer */
+    .right-layer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+
+    /* Text section */
+    .text-section {
+        max-width: 600px;
+    }
+
+        .text-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a5c2e;
+            margin-bottom: 1.5rem;
+        }
+
+        .text-section p {
+            font-size: 1rem;
+            color: #495057;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+    /* Specialties container */
+    .specialties-container {
         text-align: center;
-        padding: 80px 20px;
-        margin-bottom: 60px;
+        padding: 2rem 1rem;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     }
 
         .specialties-container h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            color: #1e3a5f;
-            margin-bottom: 60px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a5c2e;
+            margin-bottom: 1.5rem;
         }
 
-        .specialties-container p {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            color: #1e3a5f;
-            margin: 0;
-            padding: 0;
-            display: inline-block; /* Make paragraphs display horizontally */
+    .specialties-list {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .badge {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        background-color: #28a745;
+        border-radius: 0.25rem;
+    }
+
+    /* Responsive design */
+    @@media (max-width: 768px) {
+        .about-wrapper {
+            padding: 1rem 0.5rem;
         }
 
-            .specialties-container p:not(:last-child)::after {
-                content: "|";
-                margin-left: 10px;
-                margin-right: 10px;
-                color: #000;
-            }
-        </style>
+        .about-header h1 {
+            font-size: 1.6rem;
+        }
+
+        .content {
+            grid-template-columns: 1fr;
+        }
+
+        .image-section .about-image {
+            height: 250px;
+        }
+
+        .three-image-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .image-item img {
+            height: 100px; /* Consistent height on mobile */
+        }
+    }
+</style>

@@ -20,7 +20,7 @@
         @foreach (var goal in Model)
         {
             <tr>
-                <td>@goal.Type</td>
+                <td>@goal.GoalType.NameGoalType</td>
                 <td>@goal.TargetValue</td>
                 <td>@goal.TargetDate.ToShortDateString()</td>
                 <td>

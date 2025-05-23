@@ -1,91 +1,294 @@
 ﻿@model ShoppingCartVM
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Wellness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        /* Scoped Styles for Cart Container */
+        .cart-container {
+            max-width: 1200px;
+            margin: 40px auto; /* Adjusted for spacing between navbar/footer */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: none;
+            background-color: #fff;
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+        }
 
-<form method="post">
-    <br />
-    <div class="card shadow border-0">
-        <div class="card-header bg-secondary bg-gradient text-light ml-0 py-4">
-            <div class="row px-4">
-                <div class="col-6">
-                    <h5 class="pt-2 text-white">
-                        Shopping Cart
-                    </h5>
-                </div>
+            .cart-container .card-header {
+                background-color: #2d7d46;
+                color: #fff;
+                padding: 20px;
+                border-radius: 10px 10px 0 0;
+            }
 
+                .cart-container .card-header h5 {
+                    margin: 0;
+                    font-size: 24px;
+                    font-weight: 600;
+                }
+
+            .cart-container .card-body {
+                padding: 20px;
+            }
+
+            .cart-container .continue-shopping {
+                display: inline-block;
+                background-color: #fff;
+                color: #2d7d46;
+                border: 1px solid #2d7d46;
+                padding: 8px 16px;
+                border-radius: 5px;
+                text-decoration: none;
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+
+                .cart-container .continue-shopping:hover {
+                    background-color: #2d7d46;
+                    color: #fff;
+                }
+
+            .cart-container .cart-items {
+                background-color: #f5f5f5; /* Moved background here for cart items */
+            }
+
+            .cart-container .cart-item {
+                display: flex;
+                align-items: center;
+                padding: 15px 0;
+                border-bottom: 1px solid #ddd;
+            }
+
+                .cart-container .cart-item img {
+                    width: 80px;
+                    height: 80px;
+                    object-fit: cover;
+                    border-radius: 5px;
+                    margin-right: 20px;
+                }
+
+            .cart-container .item-details {
+                flex: 1;
+            }
+
+                .cart-container .item-details h5 {
+                    color: #2d7d46;
+                    font-size: 18px;
+                    font-weight: 600;
+                    margin-bottom: 5px;
+                }
+
+                .cart-container .item-details p {
+                    color: #666;
+                    font-size: 14px;
+                    margin: 5px 0;
+                }
+
+            .cart-container .item-actions {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .cart-container .quantity-group {
+                display: flex;
+                align-items: center;
+            }
+
+            .cart-container .quantity-btn {
+                background-color: #2d7d46;
+                color: #fff;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .cart-container .quantity-btn:hover {
+                    background-color: #1a5c2e;
+                }
+
+            .cart-container .quantity-text {
+                margin: 0 10px;
+                font-weight: 600;
+            }
+
+            .cart-container .remove-btn {
+                background-color: transparent;
+                border: none;
+                color: #d9534f;
+                font-size: 18px;
+                cursor: pointer;
+            }
+
+            .cart-container .card-footer {
+                background-color: #f9f9f9;
+                padding: 20px;
+                border-radius: 0 0 10px 10px;
+                text-align: center;
+            }
+
+            .cart-container .promo-code {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+
+                .cart-container .promo-code input {
+                    padding: 8px;
+                    border: 1px solid #ddd;
+                    border-radius: 5px 0 0 5px;
+                    outline: none;
+                    width: 200px;
+                }
+
+                .cart-container .promo-code button {
+                    background-color: #2d7d46;
+                    color: #fff;
+                    border: none;
+                    padding: 8px 16px;
+                    border-radius: 0 5px 5px 0;
+                    cursor: pointer;
+                }
+
+                    .cart-container .promo-code button:hover {
+                        background-color: #1a5c2e;
+                    }
+
+            .cart-container .total-breakdown {
+                margin-bottom: 20px;
+            }
+
+                .cart-container .total-breakdown p {
+                    margin: 5px 0;
+                    font-size: 16px;
+                }
+
+            .cart-container .total-text {
+                color: #2d7d46;
+                font-size: 20px;
+                font-weight: 600;
+                margin-bottom: 15px;
+            }
+
+            .cart-container .total-amount {
+                font-size: 24px;
+                font-weight: 700;
+                color: #333;
+                margin-bottom: 20px;
+            }
+
+            .cart-container .summary-btn {
+                background-color: #2d7d46;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                width: 100%;
+                max-width: 200px;
+                text-decoration: none; /* Ensure no underline */
+            }
+
+                .cart-container .summary-btn:hover {
+                    background-color: #1a5c2e;
+                }
+
+        /* Responsive Design */
+        @@media (max-width: 768px) {
+            .cart-container {
+                margin: 20px auto;
+            }
+
+                .cart-container .cart-item {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                    .cart-container .cart-item img {
+                        margin-bottom: 10px;
+                    }
+
+                .cart-container .item-actions {
+                    margin-top: 10px;
+                }
+
+                .cart-container .promo-code input {
+                    width: 150px;
+                }
+        }
+    </style>
+</head>
+<body>
+    <!-- Assumed Navbar Here (Not Modified) -->
+    <form method="post">
+        <div class="cart-container">
+            <div class="card-header">
+                <h5>Shopping Cart</h5>
             </div>
-        </div>
-        <div class="card-body my-4">
-            <div class="row">
-            </div>
-            <div class="row mb-3 pb-3">
-                <div class="col-md-2 offset-md-1">
-                    <a asp-area="Customer" asp-controller="Home" asp-action="Services" class="btn btn-outline-primary text-uppercase mb-5 btn-sm"><small>Continue Shopping</small></a>
-                </div>
-                <div class="col-md-10 offset-md-1">
-
+            <div class="card-body">
+                <a asp-area="Customer" asp-controller="Home" asp-action="Services" class="continue-shopping">Continue Shopping</a>
+                <div class="cart-items">
                     @foreach (var item in Model.ShoppingCartList)
                     {
-                    <div class="row border-bottom pb-3">
-                        <div class="d-none d-lg-block col-lg-1 text-center py-2">
-                                @if (item.Product.ProductImages != null && item.Product.ProductImages.Count() > 0)
-                                {
-                                    <img src="@item.Product.ProductImages.FirstOrDefault().ImageUrl" class="card-img-top rounded form-control" style="width:100%; height:100%" alt="@item.Product.NameProduct">
-                                }
-                                else
-                                {
-                                    <img src="https://placehold.co/500x600/png" class="card-img-top rounded w-100 form-control" style="width:100%; height:100%">
-                                }
-                        </div>
-                        <div class="col-12 col-lg-6 pt-md-3">
-                            <h5 class="text-uppercase text-secondary"><strong>@item.Product.NameProduct</strong></h5>
-                            <p><small>@Html.Raw(item.Product.Description)</small></p>
-                        </div>
-                        <div class="col-12  col-lg-5 text-center row">
-                            <div class="col-3 text-md-right pt-2 pt-md-4">
-                                <h6 class="fw-semibold">
-										@item.Price.ToString("c")
-                                    <span class="text-muted">&nbsp;x&nbsp;</span>@item.Count
-                                </h6>
+                        <div class="cart-item">
+                            @if (item.Product.ProductImages != null && item.Product.ProductImages.Count() > 0)
+                            {
+                                <img src="@item.Product.ProductImages.FirstOrDefault().ImageUrl" alt="@item.Product.NameProduct">
+                            }
+                            else
+                            {
+                                <img src="https://placehold.co/80x80/png" alt="Placeholder Product Image">
+                            }
+                            <div class="item-details">
+                                <h5>@item.Product.NameProduct</h5>
+                                <p>Price: @item.Price.ToString("c")</p>
                             </div>
-                            <div class="col-6 col-sm-4 col-lg-6 pt-2">
-                                <div class="w-75 btn-group" role="group">
-                                        <a asp-action="plus" asp-route-cartId="@item.Id_SP" class="btn btn-outline-primary bg-gradient py-2">
-                                        <i class="bi bi-plus-square"></i>
-                                    </a> &nbsp;
-                                        <a asp-action="minus" asp-route-cartId="@item.Id_SP" class="btn btn-outline-primary bg-gradient py-2">
-                                        <i class="bi bi-dash-square"></i>
-                                    </a>
+                            <div class="item-actions">
+                                <div class="quantity-group">
+                                    <a asp-action="minus" asp-route-cartId="@item.Id_SP" class="quantity-btn" aria-label="Decrease quantity"><i class="bi bi-dash"></i></a>
+                                    <span class="quantity-text">@item.Count</span>
+                                    <a asp-action="plus" asp-route-cartId="@item.Id_SP" class="quantity-btn" aria-label="Increase quantity"><i class="bi bi-plus"></i></a>
                                 </div>
-
-                            </div>
-                            <div class="col-3 col-sm-4 col-lg-2 offset-lg-1 text-right pt-2">
-                                    <a asp-action="remove" asp-route-cartId="@item.Id_SP" class="btn btn-danger bg-gradient py-2 ">
-                                    <i class="bi bi-trash-fill"></i>
-                                </a>
+                                <a asp-action="remove" asp-route-cartId="@item.Id_SP" class="remove-btn" aria-label="Remove item from cart"><i class="fas fa-trash"></i></a>
                             </div>
                         </div>
-                    </div>
                     }
                 </div>
             </div>
-
-
-            <div class="card-footer bg-white border-0">
-                <div class="row">
-                    <div class="col-md-4 offset-md-4">
-                        <ul class="list-group mb-4">
-                            <li class="d-flex justify-content-between align-items-center">
-                                <h5 class="text-dark fw-semibold text-uppercase"> Total (USD)</h5>
-                                <h4 class="text-dark fw-bolder">@Model.OrderHeader.OrderTotal.ToString("c")</h4>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="card-footer">
+                <div class="promo-code">
+                    <input type="text" placeholder="Promo Code" aria-label="Enter promo code">
+                    <button type="button">Apply</button>
                 </div>
-                <div class="row">
-                    <div class="col-md-2 offset-md-5">
-                        <a asp-action="Summary" class="btn btn-primary border-0 bg-gradient w-100 py-2">Summary</a>
-                    </div>
+                <div class="total-breakdown">
+                    <p>Subtotal: @(Model.OrderHeader.OrderTotal > 0 ? (Model.OrderHeader.OrderTotal - 5).ToString("c") : "0.00")</p>
+                    <p>Shipping Estimate: $5.00</p>
                 </div>
+                <div class="total-text">Total (USD)</div>
+                <div class="total-amount">@Model.OrderHeader.OrderTotal.ToString("c")</div>
+                <a asp-action="Summary" class="summary-btn">Summary</a>
             </div>
         </div>
-</form>
+    </form>
+    <!-- Assumed Footer Here (Not Modified) -->
+    <script>
+        document.querySelectorAll('.remove-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (!confirm('Are you sure you want to remove this item from your cart?')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

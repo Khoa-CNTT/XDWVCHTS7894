@@ -1,125 +1,275 @@
 ﻿@model ShoppingCartVM
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary - Wellness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Scoped Styles for Summary Container */
+        .summary-container {
+            max-width: 1200px;
+            margin: 40px auto; /* Adjusted for spacing between navbar/footer */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: none;
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            background-color: #fff;
+        }
 
-<form method="post">
-	<br />
-	<div class="container">
-		<div class="card shadow border-0">
+            .summary-container .card-header {
+                background-color: #2d7d46;
+                color: #fff;
+                padding: 20px;
+                border-radius: 10px 10px 0 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
 
-			<div class="card-header bg-secondary bg-gradient text-light ml-0 py-4">
-				<div class="row px-4">
-					<div class="col-6">
-						<h5 class="pt-2 text-white">
-							Order Summary
-						</h5>
-					</div>
-					<div class="col-6 text-end text-light">
-						<a asp-action="Index" class="btn btn-outline-danger  btn-sm">Back to Cart</a>
-					</div>
-				</div>
-			</div>
-			<div class="card-body">
-				<div class="container rounded p-2">
-					<div class="row">
-						<div class="col-12 col-lg-6 pb-4">
-							<div class="row">
-								<h4 class="d-flex justify-content-between align-items-center mb-3">
-									<span class="text-info">Shipping Details:</span>
-								</h4>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>Name</label>
-								</div>
-								<div class="col-9">
-									<input asp-for="OrderHeader.Name" class="form-control" />
-									<span asp-validation-for="OrderHeader.Name" class="text-danger"></span>
-								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>Phone</label>
-								</div>
-								<div class="col-9">
-									<input asp-for="OrderHeader.PhoneNumber" class="form-control" />
-									<span asp-validation-for="OrderHeader.PhoneNumber" class="text-danger"></span>
-								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>Street Address</label>
-								</div>
-								<div class="col-9">
-									<input asp-for="OrderHeader.StreetAddress" class="form-control" />
-									<span asp-validation-for="OrderHeader.StreetAddress" class="text-danger"></span>
-								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>City</label>
-								</div>
-								<div class="col-9">
-									<input asp-for="OrderHeader.City" class="form-control" />
-									<span asp-validation-for="OrderHeader.City" class="text-danger"></span>
-								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>State</label>
-								</div>
-								<div class="col-9">
-									<input asp-for="OrderHeader.State" class="form-control" />
-									<span asp-validation-for="OrderHeader.State" class="text-danger"></span>
-								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>Postal Code</label>
-								</div>
-								<div class="col-9">
-									<input asp-for="OrderHeader.PostalCode" class="form-control" />
-									<span asp-validation-for="OrderHeader.PostalCode" class="text-danger"></span>
-								</div>
-							</div>
-						</div>
-						<div class="col-12 col-lg-5 offset-lg-1">
-							<h4 class="d-flex justify-content-between align-items-center mb-3">
-								<span class="text-info">Order Summary:</span>
-							</h4>
-							<ul class="list-group mb-3">
-								@foreach (var details in Model.ShoppingCartList)
-								{
-									<li class="list-group-item d-flex justify-content-between">
-										<div>
-											<h6 class="my-0">@details.Product.NameProduct</h6>
-											<small class="text-muted">Quantity: @details.Count</small>
-										</div>
-										<span class="text-muted">@((details.Price * details.Count).ToString("c")) </span>
-									</li>
-								}
+                .summary-container .card-header h5 {
+                    margin: 0;
+                    font-size: 24px;
+                    font-weight: 600;
+                }
 
-								<li class="list-group-item d-flex justify-content-between bg-light">
-									<small class="text-info">Total (USD)</small>
-									<strong class="text-info">@Model.OrderHeader.OrderTotal.ToString("c")</strong>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="card-footer">
-				<div class="row">
-					<div class="col-12 col-md-8 pt-2">
-						<p style="color:maroon; font-size:14px;">
-							Estimate Arrival Date:
-							@DateTime.Now.AddDays(7).ToShortDateString() - @DateTime.Now.AddDays(14).ToShortDateString()
-						</p>
-					</div>
-					<div class="col-12 col-md-4">
-						<button type="submit" value="Place Order" class="btn btn-primary form-control">Place Order</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</form>
+            .summary-container .back-to-cart {
+                background-color: transparent;
+                color: #fff;
+                border: 1px solid #fff;
+                padding: 8px 16px;
+                border-radius: 5px;
+                text-decoration: none;
+                font-size: 14px;
+            }
+
+                .summary-container .back-to-cart:hover {
+                    background-color: #fff;
+                    color: #2d7d46;
+                }
+
+            .summary-container .card-body {
+                padding: 20px;
+                background-color: #f5f5f5; /* Moved background here */
+            }
+
+            .summary-container .section-title {
+                color: #2d7d46;
+                font-size: 20px;
+                font-weight: 600;
+                margin-bottom: 15px;
+            }
+
+            .summary-container .form-group {
+                display: flex;
+                align-items: center;
+                margin-bottom: 15px;
+            }
+
+                .summary-container .form-group label {
+                    flex: 0 0 120px;
+                    font-size: 14px;
+                    color: #333;
+                }
+
+                .summary-container .form-group input {
+                    flex: 1;
+                    padding: 8px;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                    font-size: 14px;
+                    outline: none;
+                }
+
+                .summary-container .form-group .text-danger {
+                    font-size: 12px;
+                    margin-top: 5px;
+                }
+
+            .summary-container .summary-list {
+                margin-bottom: 20px;
+            }
+
+                .summary-container .summary-list .list-group-item {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 10px;
+                    border: none;
+                    border-bottom: 1px solid #ddd;
+                }
+
+                    .summary-container .summary-list .list-group-item:last-child {
+                        border-bottom: none;
+                    }
+
+                .summary-container .summary-list .product-name {
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #2d7d46;
+                }
+
+                .summary-container .summary-list .quantity {
+                    font-size: 14px;
+                    color: #666;
+                }
+
+                .summary-container .summary-list .price {
+                    font-size: 14px;
+                    color: #666;
+                }
+
+                .summary-container .summary-list .total {
+                    background-color: #f9f9f9;
+                    font-weight: 600;
+                    color: #2d7d46;
+                }
+
+            .summary-container .card-footer {
+                background-color: #f9f9f9;
+                padding: 20px;
+                border-radius: 0 0 10px 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .summary-container .arrival-date {
+                color: #8b0000;
+                font-size: 14px;
+                margin: 0;
+            }
+
+            .summary-container .place-order-btn {
+                background-color: #2d7d46;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                width: 100%;
+                max-width: 200px;
+            }
+
+                .summary-container .place-order-btn:hover {
+                    background-color: #1a5c2e;
+                }
+
+        /* Responsive Design */
+        @@media (max-width: 768px) {
+            .summary-container {
+                margin: 20px auto;
+            }
+
+                .summary-container .card-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .summary-container .back-to-cart {
+                    margin-top: 10px;
+                }
+
+                .summary-container .form-group {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                    .summary-container .form-group label {
+                        margin-bottom: 5px;
+                    }
+
+                .summary-container .card-footer {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .summary-container .place-order-btn {
+                    margin-top: 10px;
+                    width: 100%;
+                }
+        }
+    </style>
+</head>
+<body>
+    <!-- Assumed Navbar Here (Not Modified) -->
+    <form method="post">
+        <div class="summary-container">
+            <div class="card-header">
+                <h5>Order Summary</h5>
+                <a asp-action="Index" class="back-to-cart">Back to Cart</a>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <!-- Shipping Details -->
+                    <div class="col-12 col-lg-6 pb-4">
+                        <h4 class="section-title">Shipping Details</h4>
+                        <div class="form-group">
+                            <label for="OrderHeader_Name">Name</label>
+                            <input asp-for="OrderHeader.Name" id="OrderHeader_Name" class="form-control" />
+                            <span asp-validation-for="OrderHeader.Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="OrderHeader_PhoneNumber">Phone</label>
+                            <input asp-for="OrderHeader.PhoneNumber" id="OrderHeader_PhoneNumber" class="form-control" />
+                            <span asp-validation-for="OrderHeader.PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="OrderHeader_StreetAddress">Street Address</label>
+                            <input asp-for="OrderHeader.StreetAddress" id="OrderHeader_StreetAddress" class="form-control" />
+                            <span asp-validation-for="OrderHeader.StreetAddress" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="OrderHeader_City">City</label>
+                            <input asp-for="OrderHeader.City" id="OrderHeader_City" class="form-control" />
+                            <span asp-validation-for="OrderHeader.City" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="OrderHeader_State">State</label>
+                            <input asp-for="OrderHeader.State" id="OrderHeader_State" class="form-control" />
+                            <span asp-validation-for="OrderHeader.State" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="OrderHeader_PostalCode">Postal Code</label>
+                            <input asp-for="OrderHeader.PostalCode" id="OrderHeader_PostalCode" class="form-control" />
+                            <span asp-validation-for="OrderHeader.PostalCode" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- Order Summary -->
+                    <div class="col-12 col-lg-5 offset-lg-1">
+                        <h4 class="section-title">Order Summary</h4>
+                        <ul class="summary-list">
+                            @foreach (var details in Model.ShoppingCartList)
+                            {
+                                <li class="list-group-item">
+                                    <div>
+                                        <h6 class="product-name">@details.Product.NameProduct</h6>
+                                        <small class="quantity">Quantity: @details.Count</small>
+                                    </div>
+                                    <span class="price">@((details.Price * details.Count).ToString("c"))</span>
+                                </li>
+                            }
+                            <li class="list-group-item total">
+                                <small>Total (USD)</small>
+                                <strong>@Model.OrderHeader.OrderTotal.ToString("c")</strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <p class="arrival-date">
+                    Estimated Arrival Date: @DateTime.Now.AddDays(7).ToShortDateString() - @DateTime.Now.AddDays(14).ToShortDateString()
+                </p>
+                <button type="submit" value="Place Order" class="place-order-btn">Place Order</button>
+            </div>
+        </div>
+    </form>
+    <!-- Assumed Footer Here (Not Modified) -->
+</body>
+</html>

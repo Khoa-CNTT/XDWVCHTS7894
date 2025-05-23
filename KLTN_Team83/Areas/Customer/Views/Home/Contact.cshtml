@@ -1,30 +1,32 @@
-﻿<section class="contact-header-section shadow">
-        <h1>Contact</h1>
-        <p>I'm a paragraph. Click here to add your own text and edit me. I’m a great place for you to tell a story and let your users know a little more about you.</p>
-    </section>
+﻿<!-- Contact Section -->
+<section class="contact-wrapper">
+    <div class="contact-header-section">
+        <h1>🌿 Contact Us</h1>
+        <p>We're here to assist you on your wellness journey. Reach out with any questions or inquiries!</p>
+    </div>
 
-    <section class="get-in-touch-section border border-1 shadow">
+    <section class="get-in-touch-section">
         <h2>Get In Touch</h2>
-        <form class="contact-form">
+        <form class="contact-form" action="/Contact/Submit" method="post">
             <div class="form-group">
-                <label for="firstName">First name *</label>
-                <input type="text" id="firstName" name="firstName" required>
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" required aria-required="true" placeholder="Enter your first name">
             </div>
             <div class="form-group">
-                <label for="lastName">Last name *</label>
-                <input type="text" id="lastName" name="lastName" required>
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" required aria-required="true" placeholder="Enter your last name">
             </div>
             <div class="form-group">
                 <label for="email">Email *</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" required aria-required="true" placeholder="example@domain.com">
             </div>
-            <div class="form-group full-width">
+            <div class="form-group">
                 <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject">
+                <input type="text" id="subject" name="subject" placeholder="Enter the subject">
             </div>
             <div class="form-group full-width">
                 <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5"></textarea>
+                <textarea id="message" name="message" rows="5" placeholder="Write your message here"></textarea>
             </div>
             <button type="submit" class="submit-button">Submit</button>
         </form>
@@ -32,210 +34,196 @@
 
     <section class="contact-info-section">
         <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.3118980903823!2d108.1552256766271!3d16.04929670035895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31421938d61a3ce5%3A0x29d80f3ebbdcb44a!2zxJDhuqFpIEjhu41jIER1eSBUw6JuIEjDsmEgS2jDoW5oIE5hbQ!5e0!3m2!1svi!2s!4v1746692348855!5m2!1svi!2s" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.3118980903823!2d108.1552256766271!3d16.04929670035895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31421938d61a3ce5%3A0x29d80f3ebbdcb44a!2zxJDhuqFpIEjhu41jIER1eSBUw6JuIEjDsmEgS2jDoW5oIE5hbQ!5e0!3m2!1svi!2s!4v1746692348855!5m2!1svi!2s" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="contact-details">
             <p>120 Hoàng Minh Thảo, Hoà Khánh Nam, Liên Chiểu, Đà Nẵng</p>
-            <p>| 123-456-7890 |</p>
-            <p><a href="mailto:info@mysite.com">nhom83@gmail.com</a></p>
+            <p>Phone: 123-456-7890</p>
+            <p>Email: <a href="mailto:nhom83@gmail.com">nhom83@gmail.com</a></p>
         </div>
     </section>
+</section>
 
-    <aside class="social-icons">
-        <a href="https://www.facebook.com/nltkhanh3009" style="color: #00040a; font-size: 30px;"><i class="bi bi-facebook"></i></a>
-        <a href="https://github.com/Khoa-CNTT/XDWVCHTS7894" style="color: #00060f; font-size: 30px;"><i class="bi bi-github"></i></a>
-        <a href="https://drive.google.com/drive/folders/14KgZuP8ILvTrBoCo5Ds95zNf1fHD6GYn" style="color: #000000; font-size: 30px;"><i class="bi bi-google"></i> </a>
-        <a href="https://www.facebook.com/nltkhanh3009" style="color: #000000; font-size: 30px;"><i class="bi bi-instagram"></i> </a>
-    </aside>
 <style>
-    /* contact page */
-    .contact-header-section {
-        background-color: #e0e8d5;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 60px 20px; /* Add some vertical padding */
+    /* Contact wrapper */
+    .contact-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-        .contact-header-section h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            color: #1d3b2a;
-            margin-bottom: 20px;
+    /* Contact header */
+    .contact-header-section {
+        text-align: center;
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, #2d7d46, #4CAF50);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+        .contact-header-section h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
-    .contact-header-content p {
-        font-family: 'Lato', sans-serif;
-        font-weight: 300; /* Light weight */
-        font-size: 18px;
-        color: #000000;
-        max-width: 600px;
-        margin: 0 auto; /* Center the paragraph */
-    }
+        .contact-header-section p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
+    /* Get in touch section */
     .get-in-touch-section {
-        padding: 40px 20px;
+        padding: 2rem 1rem;
         text-align: center;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
     }
 
         .get-in-touch-section h2 {
-            font-size: 2em;
-            color: #333;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a5c2e;
+            margin-bottom: 1.5rem;
         }
 
     .contact-form {
         max-width: 800px;
-        margin: 20px auto;
+        margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
-        padding: 20px;
+        grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+        gap: 1.5rem;
+        padding: 1rem;
     }
-
-        .contact-form .form-group:nth-child(3) {
-            grid-column: 1 / -1;
-        }
 
     .form-group {
         display: flex;
         flex-direction: column;
+        gap: 0.5rem;
     }
 
         .form-group.full-width {
-            grid-column: 1 / -1;
+            grid-column: 1 / -1; /* Span both columns */
         }
 
         .form-group label {
-            margin-bottom: 5px;
+            margin-bottom: 0;
             color: #333;
-            font-weight: bold;
-            font-size: 0.9em;
+            font-weight: 600;
+            font-size: 0.9rem;
+            line-height: 1.2;
         }
 
         .form-group input[type="text"],
         .form-group input[type="email"],
         .form-group textarea {
-            padding: 10px;
+            padding: 0.75rem;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 1em;
+            font-size: 1rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: border-color 0.3s ease;
         }
+
+            .form-group input:focus,
+            .form-group textarea:focus {
+                border-color: #4CAF50;
+                outline: none;
+                box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+            }
 
         .form-group textarea {
             resize: vertical;
         }
 
     .submit-button {
-        background-color: #1e4d2b;
+        background: linear-gradient(135deg, #2d7d46, #4CAF50);
         color: white;
-        padding: 15px 30px;
+        padding: 0.75rem 2rem;
         border: none;
         border-radius: 5px;
-        font-size: 1.1em;
+        font-size: 1.1rem;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
         grid-column: 1 / -1;
         justify-self: center;
     }
 
         .submit-button:hover {
-            background-color: #15381e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(45, 125, 70, 0.3);
         }
 
+    /* Contact info section */
     .contact-info-section {
-        background-color: #d4edda; /* Màu xanh lá nhạt */
-        padding: 40px 20px;
+        padding: 2rem 1rem;
         text-align: center;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     }
 
     .map-container {
         width: 100%;
         max-width: 1200px;
-        margin: 0 auto 20px;
-        border-radius: 5px;
-        overflow: hidden; /* Để bo tròn góc iframe */
+        margin: 0 auto 1.5rem;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
+
+        .map-container iframe {
+            height: 400px;
+        }
 
     .contact-details {
         color: #333;
-        line-height: 1.6;
-        font-size: 0.95em;
-        margin-bottom: 20px;
+        line-height: 1.8;
+        font-size: 1rem;
     }
 
         .contact-details a {
-            color: #1e4d2b;
+            color: #1a5c2e;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
 
-    /* Footer */
-
-    .footer {
-        background-color: #1d3b2a;
-        color: white;
-        height: 221px;
-        display: flex;
-        align-items: center;
-    }
-
-    .footer-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-        width: 100%;
-    }
-
-    .footer-left {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .footer-logo {
-        width: 150px;
-        margin-bottom: 10px;
-    }
-
-    .copyright {
-        font-size: 12px;
-    }
-
-    .footer-right {
-        display: flex;
-        flex-direction: column; /* Stack social icons and links */
-        align-items: flex-end; /* Align to the right */
-    }
-
-    .social-icons {
-        display: flex;
-        margin-bottom: 15px; /* Add space between icons and links */
-    }
-
-        .social-icons a {
-            display: inline-block;
-            margin-left: 10px;
-            color: white;
-        }
-
-    .footer-links {
-        display: flex;
-    }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 15px;
-            font-size: 14px;
-        }
-
-            .footer-links a:hover {
-                text-decoration: underline;
+            .contact-details a:hover {
+                color: #4CAF50;
             }
+
+    /* Responsive design */
+    @@media (max-width: 768px) {
+        .contact-wrapper {
+            padding: 1rem 0.5rem;
+        }
+
+        .contact-header-section h1 {
+            font-size: 1.6rem;
+        }
+
+        .get-in-touch-section {
+            padding: 1rem 0.5rem;
+        }
+
+        .contact-form {
+            grid-template-columns: 1fr; /* Stack fields on mobile */
+        }
+
+        .map-container iframe {
+            height: 300px;
+        }
+
+        .submit-button {
+            width: 100%;
+        }
+    }
 </style>

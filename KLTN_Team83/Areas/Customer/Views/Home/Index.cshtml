@@ -1,94 +1,395 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-<style>
-    .banner-container {
-        position: relative;
-        width: 100%;
-        height: 600px;
-        background-image: url('images/banner.jpg');
-        background-size: cover;
-        background-position: center;
-        margin: 0 auto;
-    }
-</style>
-@* <main class="container-fluid p-0"> *@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <!-- Include Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Banner Section with Swiper */
+        .banner-container {
+            position: relative;
+            width: 100%;
+            height: 700px;
+            overflow: hidden;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            display: flex;
+            transition-property: transform;
+            transition-timing-function: var(--swiper-wrapper-transition-timing-function, initial);
+            box-sizing: content-box;
+        }
+
+        .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .banner-overlay {
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            background: linear-gradient(to bottom, rgba(45, 125, 70, 0.7), rgba(255, 255, 255, 0.3));
+            border-radius: 10px;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @@keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .banner-overlay h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        .banner-overlay a {
+            background: #fff;
+            color: #2d7d46;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+            .banner-overlay a:hover {
+                background: #e0e0e0;
+                transform: translateY(-2px);
+            }
+
+        /* Content Section */
+        .content-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 1rem auto 2rem auto;
+            padding: 0 1rem;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(211, 255, 224, 0.7), #fff);
+        }
+
+        .image-section img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-button-section {
+            padding: 0 2rem;
+            flex: 1;
+        }
+
+            .text-button-section h2 {
+                color: #1a5c2e;
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .text-button-section p {
+                line-height: 1.6;
+                color: #666;
+            }
+
+        .read-more-btn {
+            background: #2d7d46;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+            .read-more-btn:hover {
+                background: #1a5c2e;
+                transform: translateY(-2px);
+            }
+
+        /* Services Section */
+        .services-section {
+            background: #e8f0e9;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+            .services-section h2 {
+                color: #1a5c2e;
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+            }
+
+        .services-block {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto 2rem;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .services-info {
+            padding: 2rem;
+            width: 40%;
+            text-align: left;
+        }
+
+            .services-info h3 {
+                font-size: 1.8rem;
+                color: #2d7d46;
+                margin-bottom: 0.5rem;
+            }
+
+            .services-info p {
+                margin: 0.5rem 0;
+                color: #666;
+            }
+
+        .calculate-btn, .shop-btn {
+            background: #333;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+            .calculate-btn:hover, .shop-btn:hover {
+                background: #555;
+                transform: translateY(-2px);
+            }
+
+        .services-image {
+            width: 60%;
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+        }
+
+            .services-image img {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%);
+                mask-image: linear-gradient(to right, transparent 0%, black 30%);
+                transition: filter 0.3s ease;
+            }
+
+        .bmi-block .services-image {
+            border-right: 5px solid #2d7d46;
+        }
+
+            .bmi-block .services-image img {
+                filter: brightness(1.1);
+            }
+
+        .products-block .services-image {
+            border-right: 5px solid #1a5c2e;
+        }
+
+            .products-block .services-image img {
+                filter: contrast(1.2);
+            }
+
+        /* Responsive Design */
+        @@media (max-width: 768px) {
+            .banner-container {
+                height: 500px;
+            }
+
+            .banner-overlay h1 {
+                font-size: 1.8rem;
+            }
+
+            .content-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .image-section img {
+                max-width: 100%;
+            }
+
+            .services-block {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .services-info {
+                width: 100%;
+            }
+
+            .services-image {
+                width: 100%;
+                height: 200px;
+            }
+
+                .services-image img {
+                    height: 100%;
+                    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%);
+                    mask-image: linear-gradient(to right, transparent 0%, black 40%);
+                }
+
+            .bmi-block .services-image, .products-block .services-image {
+                border-right: none;
+                border-bottom: 5px solid #2d7d46;
+            }
+
+            .products-block .services-image {
+                border-bottom: 5px solid #1a5c2e;
+            }
+        }
+    </style>
+</head>
+<body>
     <div class="banner-container">
-        <div class="banner">
-            <div class="overlay">
-                <h1>"Our Food Should Be Our Medicine & Our Medicine Should Be Our Food"</h1>
-                <button class="btn btn-primary">Book a Session</button>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide" style="background-image: url('images/banner1.jpg');">
+                    <div class="banner-overlay">
+                        <h1>"Our Food Should Be Our Medicine & Our Medicine Should Be Our Food"</h1>
+                        <a href="#meet-wellness" class="btn btn-primary discover-btn">Discover Wellness</a>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide" style="background-image: url('images/banner2.jpg');">
+                    <div class="banner-overlay">
+                        <h1>"Wellness is a Journey, Not a Destination"</h1>
+                        <a href="#meet-wellness" class="btn btn-primary discover-btn">Start Your Journey</a>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="swiper-slide" style="background-image: url('images/banner3.jpg');">
+                    <div class="banner-overlay">
+                        <h1>"Empower Your Health with Expert Guidance"</h1>
+                        <a href="#meet-wellness" class="btn btn-primary discover-btn">Meet Our Team</a>
+                    </div>
+                </div>
             </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
     </div>
 
-    <section class="content-container">
+    <section class="content-container" id="meet-wellness">
         <div class="image-section">
-            <img src="images/woman.jpg" alt="Woman cooking healthy food">
+            <img src="images/team.jpg" alt="Wellness team working together">
         </div>
         <div class="text-button-section">
-            <h2>Meet Amy</h2>
-            <p>I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click "Edit Text" or double click me to add your own content, and make changes to the font. I'm a great place for you to tell a story and let your users know a little more about you.</p>
-            <button class="read-more-btn">Read More</button>
-            <div class="second-image-section">
-                <img src="images/vegetable.jpg" alt="Second image description">
+            <h2>Meet Wellness</h2>
+            <p>At Wellness, our team of health experts is dedicated to guiding you toward a balanced and sustainable lifestyle. With our integrated chatbot, you can access personalized advice and support anytime. Learn more about our team and how we can help you achieve your wellness goals.</p>
+            <a href="/Customer/Home/About" class="read-more-btn">Read More</a>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <h2>Our Services</h2>
+        <div class="services-block bmi-block">
+            <div class="services-info">
+                <h3>BMI Calculation & Personalized Plan</h3>
+                <p>Get started with a free BMI calculation and receive a tailored wellness plan.</p>
+                <a href="/Customer/Home/Plan" class="calculate-btn">Calculate Now</a>
+            </div>
+            <div class="services-image">
+                <img src="images/healthy-lifestyle.jpg" alt="Healthy lifestyle planning">
+            </div>
+        </div>
+        <div class="services-block products-block">
+            <div class="services-info">
+                <h3>Healthy Living Support Products</h3>
+                <p>Discover products designed to support your journey to a healthier lifestyle, from nutrition aids to wellness tools.</p>
+                <a href="/Customer/Home/Services" class="shop-btn">Shop Now</a>
+            </div>
+            <div class="services-image">
+                <img src="images/wellness-products.jpg" alt="Healthy living products">
             </div>
         </div>
     </section>
 
-    <div class="bottom-section">
-        <section class="dietitian-counseling-section">
-            <h2>Dietitian Counseling</h2>
-            <div class="counseling-block">
-                <div class="counseling-info">
-                    <h2>Initial Assessment</h2>
-                    <p>1 hr</p>
-                    <p>$75</p>
-                    <button class="book-now-btn">Book Now</button>
-                </div>
-                <div class="counseling-image">
-                    <img src="images/food.jpg" alt="Dietitian Counseling Food">
-                </div>
-            </div>
-            <button class="all-sessions-btn">All Sessions</button>
-        </section>
-    </div>
-
-    <section class="cloned-content-container">
-        <div class="image-section">
-            <img src="images/tips.jpg" alt="Tips">
-        </div>
-        <div class="text-button-section">
-            <h2>Meet Amy</h2>
-            <p>I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click "Edit Text" or double click me to add your own content, and make changes to the font. I'm a great place for you to tell a story and let your users know a little more about you.</p>
-            <button class="read-more-btn">Read More</button>
-            <div class="second-image-block">
-                <img src="images/vegetable.jpg" alt="Second image description" style="width: 400px; height: 510px;">
-                <div class="post-content">
-                    <div class="post-meta">
-                        <span>Admin</span>
-                        <span>Mar 22, 2023</span>
-                    </div>
-                    <h2>How Dietitians Fuel for the Morning</h2>
-                    <div class="post-footer">
-                        <span>0</span>
-                        <span>1</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-@* </main> *@
-
-<script>
-    document.querySelectorAll('.banner').forEach(banner => {
-        banner.addEventListener('mouseenter', () => {
-            banner.style.transform = 'scale(1.05)';
-            banner.style.transition = '0.5s';
+    <!-- Include Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper
+        const swiper = new Swiper('.swiper-container', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
         });
-        banner.addEventListener('mouseleave', () => {
-            banner.style.transform = 'scale(1)';
+
+        // Smooth scroll to Meet Wellness section
+        document.querySelectorAll('.discover-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetSection = document.querySelector('#meet-wellness');
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelector('.banner-container').style.opacity = '0.8';
+            });
         });
-    });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        // Restore banner opacity after scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY === 0) {
+                document.querySelector('.banner-container').style.opacity = '1';
+            }
+        });
+    </script>
+</body>
+</html>

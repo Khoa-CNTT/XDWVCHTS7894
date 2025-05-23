@@ -1,52 +1,155 @@
 ﻿@model IEnumerable<Product>
 
-
-<div class=" row pb-3">
-	@foreach(var product in Model){
-		<div class="col-lg-3 col-sm-6">
-			<div class="row p-2">
-				<div class="col-12 p-1">
-					<div class="card border-0 p-3 shadow border-top border-5 rounded">
-						<div class="card-header form-control" style="width: 100%;height:240px">
-							@if(product.ProductImages != null && product.ProductImages.Count() > 0)
-							{
-								<img src="@product.ProductImages.FirstOrDefault().ImageUrl" class="card-img-top rounded form-control" style="width:100%; height:100%" alt="@product.NameProduct">
-							}
-							else
-							{
-								<img src="https://placehold.co/500x600/png" class="card-img-top rounded form-control" style="width:100%; height:100%" alt="@product.NameProduct">
-							}
-							
-						</div>
-						<div class="card-body pb-0" style="height:200px">
-							<div class="pl-1 text-center">
-								<h5 class="card-title text-dark opacity-75 text-uppercase text-center">@product.NameProduct</h5>
-								<p class="card-title text-secondary text-center">@product.NCC</p>
-							</div>
-							<div class="pl-1">
-								<p class="card-title text-dark text-opacity-75 text-center mb-0">
-									Giá bán:
-									<span class=" text-decoration-line-through">
-										@product.Price.ToString("c")
-									</span>
-								</p>
-							</div>
-							<div class="pl-1">
-								<p class="card-title text-dark text-opacity-75 text-center">
-									Giá thấp nhất: 
-									<span>@product.Price100.ToString("c")
-									</span>
-								</p>
-							</div>
-						</div>
-						<div class="text-center">
-							<a asp-action="DetailProduct"
-							   asp-route-id="@product.Id_Product"
-							class="btn btn-primary">View Details</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	}
+<div class="product-container">
+    <div class="product-header">
+        <h1>🌿 Our Wellness & Lifestyle Products</h1>
+        <p>Explore our range of health-focused products</p>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 py-3">
+        @foreach (var product in Model)
+        {
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                    <div class="card-img-container">
+                        @if (product.ProductImages != null && product.ProductImages.Count() > 0)
+                        {
+                            <img src="@product.ProductImages.FirstOrDefault().ImageUrl" class="card-img-top img-fluid" alt="@product.NameProduct">
+                        }
+                        else
+                        {
+                            <img src="https://placehold.co/500x600/png" class="card-img-top img-fluid" alt="@product.NameProduct">
+                        }
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-dark fw-bold">@product.NameProduct</h5>
+                        <p class="card-text text-muted small">@product.NCC</p>
+                        <div class="price-section">
+                            <p class="card-text text-decoration-line-through text-danger mb-0">Giá bán: @product.Price.ToString("c")</p>
+                            <p class="card-text text-success fw-bold">Giá thấp nhất: @product.Price100.ToString("c")</p>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-center pb-3">
+                        <a asp-action="DetailProduct"
+                           asp-route-id="@product.Id_Product"
+                           class="btn btn-primary btn-sm rounded-pill">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
+
+<style>
+    /* Main container and layout */
+    .product-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Product header (adapted from blog-header) */
+    .product-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        background: linear-gradient(135deg, #2d7d46, #4CAF50);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+        .product-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .product-header p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+    /* Card styling */
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+    .card-img-container {
+        height: 240px;
+        overflow: hidden;
+        background: #fff;
+    }
+
+    .card-img-top {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.3s ease;
+    }
+
+        .card-img-top:hover {
+            transform: scale(1.05);
+        }
+
+    .card-body {
+        padding: 1.25rem;
+    }
+
+    .price-section {
+        margin-top: 1rem;
+    }
+
+    .card-footer {
+        padding-top: 0;
+    }
+
+    .btn-primary {
+        background-color: #2d7d46;
+        border-color: #2d7d46;
+        padding: 0.5rem 1.5rem;
+    }
+
+        .btn-primary:hover {
+            background-color: #1a5c2e;
+            border-color: #1a5c2e;
+            transform: translateY(-2px);
+        }
+
+    /* Responsive design */
+    @@media (max-width: 768px) {
+        .product-container {
+            padding: 1rem 0.5rem;
+        }
+
+        .row {
+            --bs-gutter-x: 1rem; /* Adjusted gutter for mobile */
+        }
+
+        .card-img-container {
+            height: 180px;
+        }
+
+        .card-body {
+            padding: 1rem;
+        }
+
+        .btn-primary {
+            padding: 0.4rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .product-header h1 {
+            font-size: 2rem;
+        }
+    }
+</style>

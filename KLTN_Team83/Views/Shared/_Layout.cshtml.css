@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 .navbar {
     background: white;
     padding: 15px 0;
@@ -36,9 +36,11 @@
 main {
     padding: 0 112px;
 }
+
 .container {
     flex: 1; /* Đẩy footer xuống dưới */
 }
+
 .banner-container {
     position: relative;
     width: 100%;
@@ -324,10 +326,12 @@ cloned-content-container .post-footer {
     font-size: 14px;
     color: #888;
 }
+
 footer {
     display: block;
     unicode-bidi: isolate;
 }
+
 .footer {
     background-color: #1d3b2a;
     color: white;

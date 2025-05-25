@@ -21,7 +21,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
     [Area("Admin")]
     [Route("api/chat")] // Định nghĩa route cho API
     [ApiController]
-    [Authorize(Roles = SD.Role_Customer)]
+    [Authorize]
     public class ChatApiController : ControllerBase
     {
         private readonly IHttpClientFactory _httpClientFactory;

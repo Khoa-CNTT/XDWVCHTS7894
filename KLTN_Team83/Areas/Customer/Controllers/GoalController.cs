@@ -6,6 +6,7 @@ using KLTN_Team83.DataAccess.Data;
 using Microsoft.AspNetCore.Identity;
 using KLTN_Team83.DataAccess.Repository.IRepository;
 using System.Security.Claims;
+using KLTN_Team83.Models.ViewModels;
 
 namespace KLTN_Team83.Areas.Customer.Controllers
 {
@@ -15,6 +16,8 @@ namespace KLTN_Team83.Areas.Customer.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<IdentityUser> _userManager;
+        [BindProperty]
+        public GoalVM GoalVM { get; set; }
 
         public GoalController(IUnitOfWork unitOfWork, UserManager<IdentityUser> userManager)
         {
@@ -24,8 +27,10 @@ namespace KLTN_Team83.Areas.Customer.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var goals = _unitOfWork.Goal.Get(g => g.UserId == userId);
+            // Lấy thông tin người dùng từ ClaimsIdentity
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var goals = _unitOfWork.Goal.GetAll(g => g.UserId == userId);
             return View(goals);
         }
 
@@ -37,15 +42,16 @@ namespace KLTN_Team83.Areas.Customer.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Goal obj)
         {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (ModelState.IsValid)
             {
-                obj.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 _unitOfWork.Goal.Add(obj);
-                _unitOfWork.Goal.Save();
+                _unitOfWork.Save();
                 TempData["success"] = "Goal created successfully!";
                 return RedirectToAction("Index");
             }
-            return View(obj);
+           return View();
         }
 
         public async Task<IActionResult> Edit(string? id)
@@ -70,7 +76,7 @@ namespace KLTN_Team83.Areas.Customer.Controllers
                 {
                     goal.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                     _unitOfWork.Goal.Update(goal);
-                    _unitOfWork.Goal.Save();
+                    _unitOfWork.Save();
                     return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
@@ -100,7 +106,7 @@ namespace KLTN_Team83.Areas.Customer.Controllers
             if (goal != null)
             {
                 _unitOfWork.Goal.Remove(goal);
-                _unitOfWork.Goal.Save();
+                _unitOfWork.Save();
             }
             return RedirectToAction(nameof(Index));
         }

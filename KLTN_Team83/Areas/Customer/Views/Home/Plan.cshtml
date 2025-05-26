@@ -5,126 +5,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Information - Wellness</title>
-    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>BMI Calculator - Wellness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
-    <!-- Assumed Navbar Here (Not Modified) -->
-    <div class="product-detail-wrapper">
-        <div class="product-detail-header">
-            <h1>🌿 User Information</h1>
-            <p class="text-muted">Update your personal details below</p>
+    <div class="blog-container">
+        <div class="blog-header">
+            <h1>🌿 Your Plan</h1>
+            <p>Calculate your BMI and get personalized health suggestions</p>
         </div>
-        <form method="post" class="mb-5" asp-action="Plan" asp-controller="Home">
-            @* Đảm bảo asp-controller="Home" *@
-            @Html.AntiForgeryToken()
-            <div class="container">
-                <div class="card shadow border-0 rounded-3 overflow-hidden">
-                    <div class="card-header text-white py-4" style="background: linear-gradient(135deg, #2d7d46, #4CAF50);">
-                        <div class="row px-4 align-items-center">
-                            <div class="col-12 text-center">
-                                <h3 class="pt-2 mb-0">TÍNH BMI & NHẬN GỢI Ý SỨC KHỎE</h3>
-                            </div>
-                        </div>
+
+        <div class="wellness-content">
+            @if (Model.IsSubmitted && ViewData.ModelState.IsValid && Model.BMI.HasValue && User.Identity.IsAuthenticated)
+            {
+                <!-- Results Section for Logged-In Users -->
+                <div class="results-card fade-in">
+                    <h3 class="results-title">Your Health Insights</h3>
+                    <div class="bmi-result">
+                        <h2 class="bmi-value">BMI: @Model.BMI.Value.ToString("0.00")</h2>
+                        <p class="bmi-category">Category: <span>@Model.BmiCategory</span></p>
                     </div>
-                    <div class="card-body">
-                        <div class="container rounded p-2">
-                            <div class="row">
-                                <div class="col-12 col-lg-7 pb-4">
-                                    <div class="row">
-                                        <h4 class="d-flex justify-content-between align-items-center mb-3">
-                                            <span class="text-dark">Nhập thông tin của bạn:</span>
-                                        </h4>
-                                    </div>
-                                    <div asp-validation-summary="ModelOnly" class="text-danger mb-2" role="alert"></div>
-
-                                    <div class="row my-2">
-                                        <div class="col-3">
-                                            <label asp-for="Gender" class="fw-semibold text-muted"></label>
-                                        </div>
-                                        <div class="col-9">
-                                            <select asp-for="Gender" class="form-select">
-                                                <option value="">-- Chọn giới tính --</option>
-                                                <option value="Nam">Nam</option>
-                                                <option value="Nữ">Nữ</option>
-                                            </select>
-                                            <span asp-validation-for="Gender" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="row my-2">
-                                        <div class="col-3">
-                                            <label asp-for="Weight" class="fw-semibold text-muted"></label>
-                                        </div>
-                                        <div class="col-9">
-                                            <input asp-for="Weight" type="number" step="0.1" class="form-control" placeholder="Ví dụ: 65.5" />
-                                            <span asp-validation-for="Weight" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="row my-2">
-                                        <div class="col-3">
-                                            <label asp-for="Height" class="fw-semibold text-muted"></label>
-                                        </div>
-                                        <div class="col-9">
-                                            <input asp-for="Height" type="number" step="0.1" class="form-control" placeholder="Ví dụ: 170" />
-                                            <span asp-validation-for="Height" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-4">
-                                        <div class="col-12 text-center">
-                                            <button type="submit" class="btn btn-lg btn-success bg-gradient text-uppercase fw-semibold px-5">Tính BMI & Xem Gợi Ý</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @if (Model.IsSubmitted && ViewData.ModelState.IsValid && Model.BMI.HasValue)
-                                {
-                                    <div class="col-12 col-lg-5 ps-lg-4 mt-4 mt-lg-0">
-                                        <div class="border p-3 rounded-3 bg-light">
-                                            <h4 class="text-primary">Kết quả của bạn:</h4>
-                                            <h2 class="display-5 fw-bold text-success">BMI: @Model.BMI.Value.ToString("0.00")</h2>
-                                            <p class="lead">Phân loại: <span class="fw-semibold">@Model.BmiCategory</span></p>
-                                            <hr />
-
-                                            @if (Model.NutritionalSuggestions.Any())
-                                            {
-                                                <h5 class="mt-3 text-success"><i class="bi bi-egg-fried"></i> Gợi ý Dinh dưỡng:</h5>
-                                                <ul class="list-unstyled">
-                                                    @foreach (var suggestion in Model.NutritionalSuggestions)
-                                                    {
-                                                        <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>@suggestion</li>
-                                                    }
-                                                </ul>
-                                            }
-
-                                            @if (Model.ExerciseSuggestions.Any())
-                                            {
-                                                <h5 class="mt-3 text-info"><i class="bi bi-bicycle"></i> Gợi ý Vận động:</h5>
-                                                <ul class="list-unstyled">
-                                                    @foreach (var suggestion in Model.ExerciseSuggestions)
-                                                    {
-                                                        <li class="mb-1"><i class="bi bi-check-circle-fill text-info me-2"></i>@suggestion</li>
-                                                    }
-                                                </ul>
-                                            }
-                                        </div>
-                                    </div>
-                                }
-                                else if (Model.IsSubmitted && !ViewData.ModelState.IsValid) // Trường hợp submit nhưng dữ liệu lỗi
-                                {
-                                    <div class="col-12 col-lg-5 ps-lg-4 mt-4 mt-lg-0">
-                                        <div class="alert alert-danger">Vui lòng kiểm tra lại thông tin bạn đã nhập.</div>
-                                    </div>
-                                }
+                    <div class="suggestions-section">
+                        @if (Model.NutritionalSuggestions.Any())
+                        {
+                            <div class="suggestion-box">
+                                <h5><i class="bi bi-egg-fried me-2"></i>Nutrition Tips</h5>
+                                <ul>
+                                    @foreach (var suggestion in Model.NutritionalSuggestions)
+                                    {
+                                        <li><i class="bi bi-check-circle-fill me-2"></i>@suggestion</li>
+                                    }
+                                </ul>
                             </div>
-                        </div>
+                        }
+                        else
+                        {
+                            <p class="text-warning">No nutritional suggestions available.</p>
+                        }
+
+                        @if (Model.ExerciseSuggestions.Any())
+                        {
+                            <div class="suggestion-box">
+                                <h5><i class="bi bi-bicycle me-2"></i>Exercise Recommendations</h5>
+                                <ul>
+                                    @foreach (var suggestion in Model.ExerciseSuggestions)
+                                    {
+                                        <li><i class="bi bi-check-circle-fill me-2"></i>@suggestion</li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-warning">No exercise suggestions available.</p>
+                        }
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="@Url.Action("Plan", "Home", new { area = "Customer" })" class="btn btn-outline-primary">Recalculate</a>
                     </div>
                 </div>
-            </div>
-        </form>
+            }
+            else
+            {
+                <!-- Form Section -->
+                <form method="post" asp-area="Customer" asp-action="Plan" asp-controller="Home" id="bmiForm" class="bmi-form fade-in">
+                    @Html.AntiForgeryToken()
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3>Enter Your Details</h3>
+                        </div>
+                        <div class="card-body">
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+                            <div class="mb-3">
+                                <label asp-for="Gender" class="form-label"></label>
+                                <select asp-for="Gender" class="form-select">
+                                    <option value="">-- Select Gender --</option>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                </select>
+                                <span asp-validation-for="Gender" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Height" class="form-label"></label>
+                                <input asp-for="Height" type="number" step="0.1" class="form-control" placeholder="e.g., 170" />
+                                <span asp-validation-for="Height" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Weight" class="form-label"></label>
+                                <input asp-for="Weight" type="number" step="0.1" class="form-control" placeholder="e.g., 65.5" />
+                                <span asp-validation-for="Weight" class="text-danger"></span>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Calculate BMI & Get Suggestions</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Results Section for Non-Logged-In Users -->
+                @if (Model.IsSubmitted && !User.Identity.IsAuthenticated)
+                {
+                    @if (ViewData.ModelState.IsValid && Model.BMI.HasValue)
+                    {
+                        <div class="results-card mt-4 fade-in">
+                            <h3 class="results-title">Your Results</h3>
+                            <div class="bmi-result">
+                                <h2 class="bmi-value">BMI: @Model.BMI.Value.ToString("0.00")</h2>
+                                <p class="bmi-category">Category: <span>@Model.BmiCategory</span></p>
+                            </div>
+                            <div class="text-center mt-3">
+                                <a href="/Identity/Account/Login" class="btn btn-primary">Log in to See Suggestions</a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger mt-3">Please check the information you entered.</div>
+                    }
+                }
+            }
+        </div>
     </div>
 
-    <!-- Toast Notification (Upper Right Corner) -->
+    <!-- Toast Notifications -->
     <div class="toast-container position-fixed top-0 end-0 p-3">
         <div id="updateToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
@@ -134,136 +139,316 @@
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
         </div>
+        <div id="loginPromptToast" class="toast align-items-center text-white bg-warning border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Please log in to use this feature.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
     </div>
 
-    <!-- Assumed Footer Here (Not Modified) -->
-
     <style>
-        /* Main wrapper */
-        .product-detail-wrapper {
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ffffff; /* Updated to white to match Blog page's outer layer */
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+
+        /* Blog container styling */
+        .blog-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1rem;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Product detail header */
-        .product-detail-header {
+        /* Blog header styling */
+        .blog-header {
             text-align: center;
             margin-bottom: 2rem;
+        }
+
+        .blog-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
             background: linear-gradient(135deg, #2d7d46, #4CAF50);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-            .product-detail-header h1 {
-                font-size: 2rem;
-                font-weight: 800;
-                margin-bottom: 0.5rem;
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            }
-
-            .product-detail-header p {
-                font-size: 1.1rem;
-                color: #666;
-            }
-
-        /* Card styling */
-        .card {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            transition: transform 0.3s ease;
+        .blog-header p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-            .card:hover {
-                transform: translateY(-5px);
-            }
+        /* Update form and results styling to include light gray inner layer */
+        .bmi-form .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); /* Added light gray gradient to match Blog page */
+        }
 
-        .card-header {
-            border-radius: 0.3rem 0.3rem 0 0;
+        .bmi-form .card-header {
+            background: linear-gradient(135deg, #2d7d46, #4CAF50);
+            color: #fff;
+            border-radius: 12px 12px 0 0;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .bmi-form .card-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .bmi-form .card-body {
+            padding: 2rem;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #444;
         }
 
         .form-control, .form-select {
-            border-color: #ced4da;
-            transition: border-color 0.3s ease;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-            .form-control:focus, .form-select:focus {
-                border-color: #2d7d46;
-                box-shadow: 0 0 5px rgba(45, 125, 70, 0.3);
-            }
+        .form-control:focus, .form-select:focus {
+            border-color: #2d7d46;
+            box-shadow: 0 0 8px rgba(45, 125, 70, 0.2);
+            outline: none;
+        }
 
         .btn-primary {
-            background-color: #2d7d46;
+            background: linear-gradient(135deg, #2d7d46, #4CAF50);
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 2rem;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1a5c2e, #2d7d46);
+        }
+
+        .btn-outline-primary {
             border-color: #2d7d46;
+            color: #2d7d46;
+            border-radius: 8px;
+            padding: 0.75rem 2rem;
+            font-weight: 500;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
-            .btn-primary:hover {
-                background-color: #1a5c2e;
-                border-color: #1a5c2e;
-            }
-
-        .btn-outline-light {
+        .btn-outline-primary:hover {
+            background: #2d7d46;
             color: #fff;
-            border-color: #fff;
         }
 
-            .btn-outline-light:hover {
-                color: #2d7d46;
-                background-color: #fff;
-                border-color: #fff;
-            }
+        .results-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); /* Added light gray gradient to match Blog page */
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
 
-        /* Media Query */
+        .results-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2d7d46;
+            margin-bottom: 1.5rem;
+        }
+
+        .bmi-result {
+            margin-bottom: 2rem;
+        }
+
+        .bmi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d7d46;
+        }
+
+        .bmi-category {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .bmi-category span {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .suggestions-section {
+            text-align: left;
+        }
+
+        .suggestion-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .suggestion-box h5 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #2d7d46;
+        }
+
+        .suggestion-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .suggestion-box li {
+            font-size: 0.95rem;
+            color: #444;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .suggestion-box i {
+            color: #2d7d46;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @@media (max-width: 768px) {
-            .product-detail-wrapper {
-                padding: 1rem 0.5rem;
+            .blog-container {
+                padding: 1rem;
             }
 
-            .product-detail-header h1 {
-                font-size: 1.6rem;
+            .blog-header h1 {
+                font-size: 2rem;
             }
 
-            .product-detail-header p {
+            .blog-header p {
                 font-size: 1rem;
             }
 
-            .btn {
-                width: 100%;
-                margin-bottom: 1rem;
+            .bmi-form .card-body {
+                padding: 1.5rem;
             }
 
-            .row.align-items-center {
-                text-align: center;
+            .results-card {
+                padding: 1.5rem;
+            }
+
+            .bmi-value {
+                font-size: 2rem;
             }
         }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.querySelector('form').addEventListener('submit', function(event) {
+        const isAuthenticated = @User.Identity.IsAuthenticated.ToString().ToLower();
+
+        function calculateBMI(weight, height) {
+            if (!weight || !height) return null;
+            const heightInMeters = height / 100;
+            return weight / (heightInMeters * heightInMeters);
+        }
+
+        function getBMICategory(bmi) {
+            if (bmi < 18.5) return 'Thiếu cân';
+            if (bmi >= 18.5 && bmi < 25) return 'Bình thường';
+            if (bmi >= 25 && bmi < 30) return 'Thừa cân';
+            return 'Béo phì';
+        }
+
+        function displayNonLoggedInResults(bmi, category) {
+            const resultsSection = document.querySelector('.wellness-content');
+            resultsSection.innerHTML = `
+                <div class="results-card fade-in">
+                    <h3 class="results-title">Your Results</h3>
+                    <div class="bmi-result">
+                        <h2 class="bmi-value">BMI: ${bmi.toFixed(2)}</h2>
+                        <p class="bmi-category">Category: <span>${category}</span></p>
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="/Identity/Account/Login" class="btn btn-primary">Log in to See Suggestions</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        document.getElementById('bmiForm').addEventListener('submit', function (event) {
             event.preventDefault();
-            fetch(this.action, {
-                method: 'POST',
-                body: new FormData(this),
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
+
+            const gender = document.querySelector('select[name="Gender"]').value;
+            const weight = parseFloat(document.querySelector('input[name="Weight"]').value);
+            const height = parseFloat(document.querySelector('input[name="Height"]').value);
+
+            // Client-side validation
+            if (!gender || isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+                const resultsSection = document.querySelector('.wellness-content');
+                resultsSection.innerHTML += `
+                    <div class="alert alert-danger mt-3 fade-in">Please enter valid information.</div>
+                `;
+                return;
+            }
+
+            // For non-logged-in users, calculate BMI client-side
+            if (!isAuthenticated) {
+                const bmi = calculateBMI(weight, height);
+                if (bmi) {
+                    const category = getBMICategory(bmi);
+                    displayNonLoggedInResults(bmi, category);
                 }
-            })
-            .then(response => {
-                if (response.ok) {
-                    const toast = new bootstrap.Toast(document.getElementById('updateToast'));
-                    toast.show();
-                } else {
-                    alert('Failed to update information. Please try again.');
-                }
-            })
-            .catch(error => {
-                alert('An error occurred. Please try again.');
-            });
+                return;
+            }
+
+            // For logged-in users, submit to server
+            this.submit();
         });
+
+        // Show toast if present
+        window.onload = function () {
+            const updateToast = document.getElementById('updateToast');
+            if (updateToast && @Model.IsSubmitted.ToString().ToLower() === 'true') {
+                const toast = new bootstrap.Toast(updateToast);
+                toast.show();
+            }
+        };
     </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿ @using KLTN_Team83.Utility
+﻿@using KLTN_Team83.Utility
 @using Microsoft.AspNetCore.Identity
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="~/css/chatbox.css" asp-append-version="true" />
     <link href="//cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    @* link toastr *@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 </head>
@@ -22,7 +21,7 @@
     <header class="navbar navbar-expand-lg navbar-light bg-white py-3">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" asp-area="Customer" asp-controller="Home" asp-action="Index">
-                <span class="fw-bold text-dark">WELLNESS</span>
+                <img src="~/images/wellness_logo_green.png" alt="Wellness Logo" style="height: 50px; width: auto; vertical-align: middle; margin-right: 10px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -57,7 +56,6 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
                                 </li>
-
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="Admin" asp-controller="Products" asp-action="Index">Product</a>
                                 </li>
@@ -83,7 +81,7 @@
                     }
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="Customer" asp-controller="Cart" asp-action="Index">
-                            <i class="bi bi-cart"></i> &nbsp;
+                            <i class="bi bi-cart"></i>
                         </a>
                     </li>
                 </ul>
@@ -109,14 +107,16 @@
             <div id="gemini-chatbox">
                 <div id="chatbox-header">
                     <span>WELLNESS & LIFESTYLE <i class="bi bi-robot"></i></span>
-                    <button id="chatbox-close-btn"><i class="bi bi-x-circle"></i></button>
+                    <button id="chatbox-close-btn"><i class="bi bi-x-lg"></i></button>
                 </div>
                 <div id="chatbox-messages">
-                    <!-- Tin nhắn sẽ được thêm vào đây bằng JavaScript -->
                     <div class="message bot-message">Welcome to Wellness & Lifestyle! Tôi có thể giúp gì cho bạn?</div>
                 </div>
                 <div id="chatbox-input-area">
                     <input type="text" id="chatbox-input" placeholder="Nhập câu hỏi của bạn...">
+                    <button id="chatbox-voice-btn">
+                        <i class="bi bi-mic-fill"></i>
+                    </button>
                     <button id="chatbox-send-btn">
                         <i class="bi bi-send"></i> Send
                     </button>
@@ -124,49 +124,28 @@
             </div>
             @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Expert) || User.IsInRole(SD.Role_Customer))
             {
-                <button id="chatbox-toggle-btn">Wellness ChatBot</button> <!-- Nút để mở/đóng chatbox -->
+                <div class="chatbox-toggle-container">
+                    <button id="chatbox-toggle-btn">
+                        <img src="~/images/chatbot-icon.png" alt="ChatBot" class="chatbot-icon" />
+                    </button>
+                    <span id="chatbox-toggle-text">Ask Wellness AI</span>
+                </div>
             }
             @if (User.IsInRole(SD.Role_Customer))
             {
-                <button id="chatbox-btn"><i class="bi bi-whatsapp"></i></button>
+                @* <button id="chatbox-btn"><i class="bi bi-whatsapp"></i></button> *@
             }
-            @if (User.IsInRole(SD.Role_Customer)) // SignInManager cần được inject vào _Layout hoặc View
+            @if (User.IsInRole(SD.Role_Customer))
             {
-                <!-- Thẻ ẩn để JS lấy UserId (cần ở _Layout hoặc trang chính) -->
                 @* <div id="user-info-data" data-userid="@UserManager.GetUserId(User)" style="display:none;"></div> *@
-
-                @* <div> *@
-                @*     <h3><button id="chatbox-btn"><i class="bi bi-whatsapp"></i></button></h3> *@
-                @*     <div id="expert-list"> *@
-                @*         <p>Chọn chuyên gia:</p> *@
-                @*         <button class="expert-select-btn" data-expertid="EXPERT_USER_ID_1">Chuyên gia A</button> *@
-                @*         <button class="expert-select-btn" data-expertid="EXPERT_USER_ID_2">Chuyên gia B</button> *@
-                @*     </div> *@
-
-                @*     <div id="p2p-chatbox" style="border:1px solid #ccc; width: 350px; height: 400px; display: flex; flex-direction: column; margin-top:10px;"> *@
-                @*         <div id="p2p-chatbox-messages" style="flex-grow: 1; overflow-y: auto; padding: 10px;"> *@
-                @*             <!-- Tin nhắn sẽ hiển thị ở đây --> *@
-                @*         </div> *@
-                @*         <div style="display:flex; padding: 5px;"> *@
-                @*             <input type="text" id="p2p-chatbox-input" style="flex-grow: 1;" placeholder="Nhập tin nhắn..." /> *@
-                @*             <button id="p2p-chatbox-send-btn">Gửi</button> *@
-                @*         </div> *@
-                @*     </div> *@
-                @* </div> *@
-
-                <!-- Link đến script P2P chat (đặt ở cuối body) -->
-                <!-- <script src="~/js/dompurify.min.js"></script>  Nếu chưa có DOMPurify -->
-                <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script> -->
-                <!-- <script src="~/js/chatbox-p2p.js" asp-append-version="true"></script> -->
             }
         </div>
-
 
         <footer class="footer">
             <div class="footer-container">
                 <div class="footer-left">
-                    <img src="your-logo.png" alt="Wellness Lifestyle" class="footer-logo">
-                    <p class="copyright">&copy; 2025 by DTU. Powered and secured by Team83.</p>
+                    <img src="~/images/wellness_logo_white.png" alt="Wellness Logo" style="height: 40px; width: auto; vertical-align: middle; margin-bottom: 10px;">
+                    <p class="copyright">© 2025 by DTU. Powered and secured by KLTN_Group83.</p>
                 </div>
                 <div class="footer-right">
                     <div class="footer-links">
@@ -185,27 +164,22 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <!-- Trước file script chatbox của bạn -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
-    <!-- Hoặc từ lib local: ~/lib/microsoft-signalr/signalr.js -->
     <script src="~/js/chatbox.js" asp-append-version="true"></script>
     <script src="//cdn.datatables.net/2.3.0/js/dataTables.min.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/5oz79wn4fkppwrjf1po83jhogr34p16i2wxp2t381mkrksuw/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
-    <!-- New script for navbar active state -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const navLinks = document.querySelectorAll('.nav-link');
             const currentPath = window.location.pathname.toLowerCase();
 
-            // Function to remove active class from all links
             function removeActiveClass() {
                 navLinks.forEach(link => link.classList.remove('active'));
             }
 
-            // On page load, set active class based on current URL
             navLinks.forEach(link => {
                 const linkPath = link.getAttribute('href')?.toLowerCase();
                 if (linkPath && currentPath === linkPath) {
@@ -214,10 +188,8 @@
                 }
             });
 
-            // On click, set active class
             navLinks.forEach(link => {
                 link.addEventListener('click', function (e) {
-                    // Exclude dropdown toggle and cart link
                     if (this.classList.contains('dropdown-toggle') || this.querySelector('i.bi-cart')) {
                         return;
                     }
@@ -232,5 +204,3 @@
     @RenderSection("Footer", required: false)
 </body>
 </html>
-
-

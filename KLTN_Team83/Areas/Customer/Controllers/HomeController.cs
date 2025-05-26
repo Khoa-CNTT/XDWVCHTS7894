@@ -6,14 +6,12 @@ using KLTN_Team83.Models.ViewModels;
 using KLTN_Team83.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis;
 
 namespace KLTN_Team83.Areas.Customer.Controllers
 {
-    [Area("Customer")] // Đánh dấu controller này thuộc area Customer
+    [Area("Customer")]
     public class HomeController : Controller
     {
-        // Khai báo logger để ghi log
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork _unitOfWork;
 
@@ -32,28 +30,31 @@ namespace KLTN_Team83.Areas.Customer.Controllers
         {
             return View();
         }
+
         public IActionResult Goal()
         {
             return View();
         }
+
         public IActionResult Blog()
         {
             IEnumerable<Blog> BlogList = _unitOfWork.Blog.GetAll(includeProperties: "TypeBlog");
             return View(BlogList);
         }
+
         // --- ACTION METHOD CHO TRANG PLAN (GET) ---
         [HttpGet]
-        [AllowAnonymous] // Cho phép truy cập khi chưa đăng nhập
+        [AllowAnonymous]
         public IActionResult Plan()
         {
             var viewModel = new PlanVM();
-            return View(viewModel); // Sẽ tìm View tại Views/Home/Plan.cshtml
+            return View(viewModel);
         }
 
         // --- ACTION METHOD CHO TRANG PLAN (POST) ---
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AllowAnonymous] // Cho phép truy cập khi chưa đăng nhập
+        [AllowAnonymous]
         public async Task<IActionResult> Plan(PlanVM model)
         {
             model.IsSubmitted = true;
@@ -66,15 +67,32 @@ namespace KLTN_Team83.Areas.Customer.Controllers
                     model.BMI = Math.Round(model.Weight.Value / (heightInMeters * heightInMeters), 2);
                     model.BmiCategory = GetBmiCategory(model.BMI.Value);
 
+                    // Populate suggestions
                     model.NutritionalSuggestions = await GetNutritionalSuggestionsAsync(model);
                     model.ExerciseSuggestions = await GetExerciseSuggestionsAsync(model);
+
+                    // Debug: Log the suggestions to verify they are set
+                    _logger.LogInformation("Nutritional Suggestions Count: {Count}", model.NutritionalSuggestions.Count);
+                    _logger.LogInformation("Exercise Suggestions Count: {Count}", model.ExerciseSuggestions.Count);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Vui lòng nhập cân nặng và chiều cao hợp lệ.");
                 }
             }
-            return View(model); // Sẽ tìm View tại Views/Home/Plan.cshtml
+            else
+            {
+                // Log ModelState errors for debugging
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    _logger.LogWarning("ModelState Error: {ErrorMessage}", error.ErrorMessage);
+                }
+            }
+
+            return View(model);
         }
 
-
-        // --- HELPER METHODS (giữ nguyên hoặc điều chỉnh từ câu trả lời trước) ---
+        // --- HELPER METHODS ---
         private string GetBmiCategory(double bmi)
         {
             if (bmi < 18.5) return "Gầy (Underweight)";
@@ -85,9 +103,6 @@ namespace KLTN_Team83.Areas.Customer.Controllers
 
         private async Task<List<string>> GetNutritionalSuggestionsAsync(PlanVM userInput)
         {
-            // Logic lấy gợi ý dựa trên userInput.Gender, userInput.Weight, userInput.Height, userInput.BMI, userInput.BmiCategory
-            // Có thể gọi Gemini ở đây hoặc dùng logic cứng
-            // (Copy code từ ví dụ trước)
             var suggestions = new List<string>();
             if (userInput.BMI.HasValue)
             {
@@ -120,7 +135,6 @@ namespace KLTN_Team83.Areas.Customer.Controllers
 
         private async Task<List<string>> GetExerciseSuggestionsAsync(PlanVM userInput)
         {
-            // (Copy code từ ví dụ trước)
             var suggestions = new List<string>();
             if (userInput.BMI.HasValue)
             {
@@ -145,7 +159,8 @@ namespace KLTN_Team83.Areas.Customer.Controllers
             return View(ProductList);
         }
 
-        public IActionResult DetailProduct(int id) {
+        public IActionResult DetailProduct(int id)
+        {
             ShoppingCart cart = new()
             {
                 Product = _unitOfWork.Product.Get(u => u.Id_Product == id, includeProperties: "Category,ProductImages"),
@@ -154,7 +169,7 @@ namespace KLTN_Team83.Areas.Customer.Controllers
             };
             if (cart.Product == null)
             {
-                return NotFound(); // hoặc redirect sang trang lỗi
+                return NotFound();
             }
             return View(cart);
         }
@@ -163,26 +178,21 @@ namespace KLTN_Team83.Areas.Customer.Controllers
         [Authorize]
         public IActionResult DetailProduct(ShoppingCart shoppingCart)
         {
-            // Lấy thông tin người dùng từ ClaimsIdentity
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
             shoppingCart.ApplicationUserId = userId;
 
-            // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
             ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ApplicationUserId == userId &&
             u.Id_Product == shoppingCart.Id_Product);
 
             if (cartFromDb != null)
             {
-                // Nếu sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
-                //shopping cart exists
                 cartFromDb.Count += shoppingCart.Count;
                 _unitOfWork.ShoppingCart.Update(cartFromDb);
                 _unitOfWork.Save();
             }
             else
             {
-                // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm mới
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
                 _unitOfWork.Save();
                 HttpContext.Session.SetInt32(SD.SessionCart,
@@ -192,19 +202,21 @@ namespace KLTN_Team83.Areas.Customer.Controllers
 
             return RedirectToAction(nameof(Services));
         }
+
         public IActionResult Contact()
         {
             return View();
         }
+
         public IActionResult Chat()
         {
             return View();
         }
+
         public IActionResult Login()
         {
             return View();
         }
-        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

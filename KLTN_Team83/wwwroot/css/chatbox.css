@@ -1,112 +1,219 @@
 ﻿.chat-group {
     position: fixed;
-    display: block;
     bottom: 20px;
     right: 20px;
-}
-/* Nút mở/đóng chính */
-#chatbox-toggle-btn {
-    padding: 10px 15px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    z-index: 999;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-#chatbox-btn {
-    padding: 10px 15px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    z-index: 999;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: block;
 }
 
-/* Container chính của chatbox */
+/* Social Icons */
+.social-icons {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 998;
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+    margin-bottom: 100px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%) translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(-50%) translateY(0);
+    }
+}
+
+.social-icons a {
+    font-size: 1.2rem;
+    color: gray;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+    .social-icons a:hover {
+        transform: scale(1.2);
+        color: #28a745;
+    }
+
+/* Toggle Button (Image) */
+#chatbox-toggle-btn {
+    padding: 0;
+    background: none;
+    border: 2px solid white;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+    position: fixed;
+    bottom: 20px;
+    right: 20px; /* Moved back to original right position */
+    z-index: 999;
+}
+
+    #chatbox-toggle-btn:hover {
+        transform: scale(1.2); /* Zoom in on hover */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    }
+
+.chatbot-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Toggle Text */
+#chatbox-toggle-text {
+    visibility: hidden;
+    color: white;
+    font-size: 1rem;
+    font-family: 'Calibri', 'Times New Roman', Times, serif;
+    background: linear-gradient(135deg, #28a745, #34c759);
+    padding: 5px 10px;
+    border-radius: 15px;
+    white-space: nowrap;
+    transition: visibility 0s linear 0.5s, opacity 0.5s ease;
+    opacity: 0;
+    position: absolute;
+    bottom: 20px; /* Align with button bottom */
+    right: calc(60px + 10px); /* Position to the left of the button (60px width + 10px gap) */
+    z-index: 999;
+}
+
+#chatbox-toggle-btn:hover + #chatbox-toggle-text {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s; /* Remove delay on hover */
+}
+
+/* WhatsApp Button */
+/*#chatbox-btn {
+    padding: 0;
+    background-color: #25d366;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    bottom: 20px;
+    right: 90px;*/ /* Moved to the right of chatbox-toggle-btn */
+    /*width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+    #chatbox-btn:hover {
+        transform: scale(1.1);
+    }
+
+    #chatbox-btn i {
+        font-size: 1.5rem;
+    }*/
+
+/* Chatbox Container */
 #gemini-chatbox {
     position: fixed;
-    bottom: 70px; /* Vị trí phía trên nút toggle */
+    bottom: 90px;
     right: 20px;
     width: 380px;
     height: 500px;
     background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Ẩn nội dung tràn */
+    overflow: hidden;
     z-index: 1000;
-    /* Mặc định ẩn đi */
     visibility: hidden;
     opacity: 0;
-    transform: translateY(20px); /* Hiệu ứng trượt lên */
+    transform: translateY(20px);
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 }
 
-    /* Lớp để hiển thị chatbox */
     #gemini-chatbox.visible {
         visibility: visible;
         opacity: 1;
         transform: translateY(0);
     }
 
+    #gemini-chatbox.no-whatsapp {
+        bottom: 90px;
+    }
 
 #chatbox-header {
-    background-color: #28a745;
+    background: linear-gradient(135deg, #28a745, #34c759);
     color: white;
     padding: 15px;
-    border-bottom: 1px solid #ccc;
-    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    font-weight: 600;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 10px 10px 0 0;
 }
 
 #chatbox-close-btn {
     background: none;
     border: none;
-    font-size: 1.2em;
+    font-size: 1.5em;
     cursor: pointer;
-    color: white;
+    color: #fff;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
+    #chatbox-close-btn:hover {
+        color: #ff4444;
+        transform: rotate(90deg);
+    }
+
 #chatbox-messages {
-    flex-grow: 1; /* Chiếm hết không gian còn lại */
-    padding: 10px;
-    overflow-y: auto; /* Cho phép cuộn khi tin nhắn nhiều */
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
     background-color: #f9f9f9;
     display: flex;
-    flex-direction: column; /* Tin nhắn xếp chồng lên nhau */
+    flex-direction: column;
 }
 
 .message {
-    margin-bottom: 10px;
-    padding: 8px 12px;
+    margin-bottom: 12px;
+    padding: 10px 15px;
     border-radius: 15px;
     max-width: 80%;
-    word-wrap: break-word; /* Tự xuống dòng nếu quá dài */
+    word-wrap: break-word;
+    font-family: 'Calibri', 'Times New Roman', Times, serif;
 }
 
 .user-message {
-    background-color: #47ef66;
+    background-color: #e6ffe6;
     color: #333;
-    align-self: flex-end; /* Tin nhắn người dùng căn phải */
-    border-bottom-right-radius: 5px; /* Bo góc khác một chút */
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
 }
 
 .bot-message {
-    background-color: #e9e9eb;
+    background-color: #f1f1f1;
     color: #333;
-    align-self: flex-start; /* Tin nhắn bot căn trái */
+    align-self: flex-start;
     border-bottom-left-radius: 5px;
 }
 
-    /* Hiển thị thinking indicator */
     .bot-message.thinking::after {
         content: '...';
         display: inline;
@@ -115,46 +222,88 @@
 
 @keyframes typing {
     from {
-        width: 0
+        width: 0;
     }
 
     to {
-        width: 3em
+        width: 3em;
     }
-    /* Điều chỉnh độ rộng của dấu ... */
 }
-
 
 #chatbox-input-area {
     display: flex;
     padding: 10px;
-    border-top: 1px solid #ccc;
-    background-color: #ccc;
+    border-top: 1px solid #e0e0e0;
+    background-color: #fff;
+    align-items: center;
+    gap: 10px;
 }
 
 #chatbox-input {
     flex-grow: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    margin-right: 5px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
 }
 
-#chatbox-send-btn {
-    padding: 8px 15px;
-    background-color: #28a745;
+    #chatbox-input:focus {
+        border-color: #28a745;
+        outline: none;
+        box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+    }
+
+#chatbox-voice-btn {
+    padding: 10px;
+    background: linear-gradient(135deg, #28a745, #34c759);
     color: white;
     border: none;
-    border-radius: 15px;
+    border-radius: 50%;
     cursor: pointer;
-    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
+
+    #chatbox-voice-btn:hover {
+        background: linear-gradient(135deg, #1a5c2e, #28a745);
+        transform: scale(1.1);
+    }
+
+    #chatbox-voice-btn.recording {
+        background: linear-gradient(135deg, #ff4444, #cc0000);
+    }
+
+    #chatbox-voice-btn i {
+        font-size: 1.2rem;
+    }
+
+#chatbox-send-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #28a745, #34c759);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+    #chatbox-send-btn:hover {
+        background: linear-gradient(135deg, #1a5c2e, #28a745);
+        transform: translateY(-2px);
+    }
 
     #chatbox-send-btn:disabled {
         background-color: #28a745;
         cursor: not-allowed;
+        opacity: 0.7;
     }
 
 p {
-    font-family:Calibri , "Times New Roman", Times, serif;
+    font-family: 'Calibri', 'Times New Roman', Times, serif;
 }

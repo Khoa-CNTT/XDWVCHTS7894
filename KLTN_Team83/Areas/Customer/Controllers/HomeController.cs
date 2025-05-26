@@ -43,6 +43,7 @@ namespace KLTN_Team83.Areas.Customer.Controllers
         }
         // --- ACTION METHOD CHO TRANG PLAN (GET) ---
         [HttpGet]
+        [AllowAnonymous] // Cho phép truy cập khi chưa đăng nhập
         public IActionResult Plan()
         {
             var viewModel = new PlanVM();
@@ -52,6 +53,7 @@ namespace KLTN_Team83.Areas.Customer.Controllers
         // --- ACTION METHOD CHO TRANG PLAN (POST) ---
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous] // Cho phép truy cập khi chưa đăng nhập
         public async Task<IActionResult> Plan(PlanVM model)
         {
             model.IsSubmitted = true;

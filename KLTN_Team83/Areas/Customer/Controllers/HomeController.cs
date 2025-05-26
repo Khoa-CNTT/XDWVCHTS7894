@@ -41,10 +41,102 @@ namespace KLTN_Team83.Areas.Customer.Controllers
             IEnumerable<Blog> BlogList = _unitOfWork.Blog.GetAll(includeProperties: "TypeBlog");
             return View(BlogList);
         }
+        // --- ACTION METHOD CHO TRANG PLAN (GET) ---
+        [HttpGet]
         public IActionResult Plan()
         {
-            return View();
+            var viewModel = new PlanVM();
+            return View(viewModel); // Sẽ tìm View tại Views/Home/Plan.cshtml
         }
+
+        // --- ACTION METHOD CHO TRANG PLAN (POST) ---
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Plan(PlanVM model)
+        {
+            model.IsSubmitted = true;
+
+            if (ModelState.IsValid)
+            {
+                if (model.Weight.HasValue && model.Height.HasValue && model.Height.Value > 0)
+                {
+                    double heightInMeters = model.Height.Value / 100.0;
+                    model.BMI = Math.Round(model.Weight.Value / (heightInMeters * heightInMeters), 2);
+                    model.BmiCategory = GetBmiCategory(model.BMI.Value);
+
+                    model.NutritionalSuggestions = await GetNutritionalSuggestionsAsync(model);
+                    model.ExerciseSuggestions = await GetExerciseSuggestionsAsync(model);
+                }
+            }
+            return View(model); // Sẽ tìm View tại Views/Home/Plan.cshtml
+        }
+
+
+        // --- HELPER METHODS (giữ nguyên hoặc điều chỉnh từ câu trả lời trước) ---
+        private string GetBmiCategory(double bmi)
+        {
+            if (bmi < 18.5) return "Gầy (Underweight)";
+            if (bmi < 24.9) return "Bình thường (Normal weight)";
+            if (bmi < 29.9) return "Thừa cân (Overweight)";
+            return "Béo phì (Obesity)";
+        }
+
+        private async Task<List<string>> GetNutritionalSuggestionsAsync(PlanVM userInput)
+        {
+            // Logic lấy gợi ý dựa trên userInput.Gender, userInput.Weight, userInput.Height, userInput.BMI, userInput.BmiCategory
+            // Có thể gọi Gemini ở đây hoặc dùng logic cứng
+            // (Copy code từ ví dụ trước)
+            var suggestions = new List<string>();
+            if (userInput.BMI.HasValue)
+            {
+                suggestions.Add($"Dựa trên giới tính ({userInput.Gender}) và chỉ số BMI ({userInput.BMI:F2} - {userInput.BmiCategory}):");
+                suggestions.Add("Luôn uống đủ nước (khoảng 2-2.5 lít/ngày tùy hoạt động).");
+                suggestions.Add("Tăng cường rau xanh, trái cây trong mỗi bữa ăn.");
+
+                if (userInput.BmiCategory.Contains("Thừa cân") || userInput.BmiCategory.Contains("Béo phì"))
+                {
+                    suggestions.Add("Hạn chế tối đa đồ ăn nhanh, thực phẩm chế biến sẵn, đồ ngọt và nước ngọt có ga.");
+                    suggestions.Add("Kiểm soát khẩu phần ăn, không ăn quá no.");
+                }
+                else if (userInput.BmiCategory.Contains("Gầy"))
+                {
+                    suggestions.Add("Chia nhỏ bữa ăn thành 5-6 bữa/ngày để dễ hấp thu và không bỏ bữa.");
+                    suggestions.Add("Đảm bảo đủ protein từ thịt, cá, trứng, sữa, các loại đậu, hạt để xây dựng cơ bắp.");
+                }
+                else
+                {
+                    suggestions.Add("Duy trì một chế độ ăn cân bằng, đa dạng các nhóm thực phẩm.");
+                }
+                suggestions.Add("Đây là những gợi ý chung, bạn nên tham khảo ý kiến chuyên gia dinh dưỡng để có kế hoạch phù hợp nhất.");
+            }
+            else
+            {
+                suggestions.Add("Vui lòng nhập đầy đủ thông tin cân nặng và chiều cao để nhận gợi ý.");
+            }
+            return await Task.FromResult(suggestions);
+        }
+
+        private async Task<List<string>> GetExerciseSuggestionsAsync(PlanVM userInput)
+        {
+            // (Copy code từ ví dụ trước)
+            var suggestions = new List<string>();
+            if (userInput.BMI.HasValue)
+            {
+                suggestions.Add($"Gợi ý vận động cho giới tính ({userInput.Gender}) và thể trạng ({userInput.BmiCategory}):");
+                suggestions.Add("Duy trì vận động thể chất đều đặn ít nhất 150 phút/tuần với cường độ vừa phải.");
+                if (userInput.BmiCategory.Contains("Thừa cân") || userInput.BmiCategory.Contains("Béo phì"))
+                {
+                    suggestions.Add("Ưu tiên các bài tập cardio đốt mỡ như đi bộ nhanh, chạy bộ, đạp xe, bơi lội.");
+                }
+                else if (userInput.BmiCategory.Contains("Gầy"))
+                {
+                    suggestions.Add("Tập trung vào các bài tập kháng lực để tăng cường sức mạnh và khối lượng cơ.");
+                }
+                suggestions.Add("Nếu có vấn đề sức khỏe, hãy tham khảo ý kiến bác sĩ trước khi bắt đầu một chương trình tập luyện mới.");
+            }
+            return await Task.FromResult(suggestions);
+        }
+
         public IActionResult Services()
         {
             IEnumerable<Product> ProductList = _unitOfWork.Product.GetAll(includeProperties: "Category,ProductImages");

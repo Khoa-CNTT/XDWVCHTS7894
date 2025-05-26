@@ -1,36 +1,98 @@
 ﻿.divider-text:before,
-.divider-text::after{
+.divider-text::after {
     color: white;
-    content:"";
-    flex:1;
+    content: "";
+    flex: 1;
     border-bottom: 1px solid #555;
     margin: auto 0.25rem;
     box-shadow: 0-2px;
 }
 
+/* Existing navbar styles (unchanged) */
 .navbar {
-    background: white;
+    background: #ffffff !important;
     padding: 15px 0;
     width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-brand {
-    font-family: 'Cursive', sans-serif;
+    font-family: 'Playfair Display', serif !important;
     font-size: 24px;
-    font-weight: bold;
-    color: #2c3e50;
+    font-weight: 700;
+    color: #1d3b2a !important;
     margin-right: 20px;
+    transition: color 0.3s ease;
 }
 
+    .navbar-brand:hover {
+        color: #4CAF50 !important;
+    }
+
 .nav-link {
-    color: #2c3e50;
+    color: #1d3b2a !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
     font-size: 13px;
     margin: 0 15px;
+    transition: color 0.3s ease;
+    position: relative; /* Needed for the horizontal line */
+    padding-bottom: 8px; /* Adjusted padding to make space for the line */
 }
 
     .nav-link:hover {
-        color: #1d3b2a;
+        color: #4CAF50 !important;
     }
+
+    /* New active state styling */
+    .nav-link.active {
+        color: #1d3b2a !important; /* Keep the text color consistent */
+        font-weight: 600; /* Slightly bolder for emphasis */
+    }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px; /* Thickness of the line */
+            background-color: #1d3b2a; /* Dark green to match theme */
+        }
+
+    /* Ensure dropdown toggle and cart icon don’t get the line */
+    .nav-link.dropdown-toggle::after,
+    .nav-link:has(i.bi-cart)::after {
+        display: none; /* Prevent the horizontal line on dropdown and cart */
+    }
+
+/* Existing dropdown and toggler styles (unchanged) */
+.navbar-nav .d-flex a:hover {
+    color: #4CAF50 !important;
+}
+
+.dropdown-menu {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+}
+
+.dropdown-item {
+    color: #1d3b2a;
+    font-size: 14px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+    .dropdown-item:hover {
+        color: #4CAF50;
+        background-color: #e8f5e9;
+    }
+
+.navbar-toggler {
+    border-color: #1d3b2a;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%231d3b2a' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
 
 .login-btn {
     color: #2c3e50;
@@ -45,21 +107,26 @@
 main {
     padding: 0 112px;
 }
+
 html, body {
     height: 100%;
     margin: 0;
 }
+
 .page-wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
+
 .flex-grow-1 {
     flex-grow: 1;
 }
+
 .container {
     flex: 1;
 }
+
 .banner-container {
     position: relative;
     width: 100%;
@@ -203,10 +270,6 @@ h2, .read-more-btn {
         display: block;
     }
 
-.navbar-nav .d-flex a:hover {
-    color: #1d3b2a;
-}
-
 .bottom-section {
     background-color: #c9d8bf;
     width: 100%;
@@ -349,9 +412,10 @@ cloned-content-container .post-footer {
 .footer {
     background-color: #1d3b2a;
     color: white;
-    height: 221px;
+    height: 80px; /* Reduced from 221px to match the compact footer height */
     display: flex;
     align-items: center;
+    padding: 10px 0; /* Added padding for better spacing */
 }
 
 .footer-container {
@@ -362,31 +426,35 @@ cloned-content-container .post-footer {
     margin: 0 auto;
     padding: 0 20px;
     width: 100%;
+    font-size: 14px; /* Adjusted for readability */
 }
 
 .footer-left {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Changed to row to align logo and text side by side */
+    align-items: center;
 }
 
 .footer-logo {
-    width: 150px;
-    margin-bottom: 10px;
+    width: 120px; /* Adjusted to fit the smaller logo size in the image */
+    margin-right: 10px; /* Added space between logo and text */
 }
 
 .copyright {
     font-size: 12px;
+    margin: 0; /* Removed default margin for tighter layout */
+    color: #d9d9d9; /* Slightly lighter gray for contrast */
 }
 
 .footer-right {
     display: flex;
-    flex-direction: column; /* Stack social icons and links */
-    align-items: flex-end; /* Align to the right */
+    flex-direction: row; /* Changed to row for horizontal links */
+    align-items: center;
 }
 
 .social-icons {
-    display: flex;
-    margin-bottom: 15px; /* Add space between icons and links */
+    display: none; /* Removed social icons to match the image (add back if needed) */
+    margin-bottom: 15px;
 }
 
     .social-icons a {
@@ -397,17 +465,19 @@ cloned-content-container .post-footer {
 
 .footer-links {
     display: flex;
+    gap: 20px; /* Increased gap for better spacing between links */
 }
 
     .footer-links a {
         color: white;
         text-decoration: none;
-        margin-left: 15px;
         font-size: 14px;
+        transition: color 0.3s ease; /* Smooth hover effect */
     }
 
         .footer-links a:hover {
-            text-decoration: underline;
+            color: #4CAF50; /* Green hover effect to match the theme */
+            text-decoration: none; /* Removed underline on hover for a modern look */
         }
 
 /* đăng nhập **/

@@ -29,30 +29,21 @@
 									<option value="">--Select Role--</option>
 								</select>
 							</div>
-							@* @{ *@
-							@* 	var companyVisible = "display:none;"; *@
-							@* } *@
-							@* @if (Model.ApplicationUser.Role==SD.Role_Company) *@
-							@* { *@
-							@* 	companyVisible = "display:block;"; *@
-							@* } *@
-							@* <div class="form-floating py-2 col-12" style="@companyVisible"> *@
-							<div class="form-floating py-2 col-12">
-								<label asp-for="ApplicationUser.Id_Company" class="ms-2 text-muted">Display Order</label>
-								<select asp-for="ApplicationUser.Id_Company" asp-items="@Model.CompanyList" class="form-select">
-									<option value="">--Select Company--</option>
-								</select>
-							</div>
+							@* <div class="form-floating py-2 col-12"> *@
+							@* 	<label asp-for="ApplicationUser.Id_Company" class="ms-2 text-muted">Display Order</label> *@
+							@* 	<select asp-for="ApplicationUser.Id_Company" asp-items="@Model.CompanyList" class="form-select"> *@
+							@* 		<option value="">--Select Company--</option> *@
+							@* 	</select> *@
+							@* </div> *@
 							 @* thẻ tông kết lỗi: *@
 							<div asp-validation-summary="ModelOnly"></div>
 
-							<div class="row mt-3">
+							<div class="row pt-2">
 								<div class="col-6 col-md-3">
-									<button type="submit" class="btn btn-primary form-control" style="width: 150px">Update</button>
-
+									<button type="submit" class="btn btn-primary form-control">Update Role</button>
 								</div>
 								<div class="col-6 col-md-3">
-									<a asp-controller="User" asp-action="Index" class="btn btn-secondary border form-control" style="width:150px">
+									<a asp-action="Index" class="btn btn-outline-primary border  form-control">
 										Back to List
 									</a>
 								</div>
@@ -67,19 +58,20 @@
 
 
 @section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
 	<script>
 		$(document).ready(function () {
-			$('#InputRole').change(function (e) {
+			$('#ApplicationUser_Role').change(function () {
 				var selection = $('#ApplicationUser_Role Option:Selected').text();
-				if (selection=='Company') {
-					$('#ApplicationUser_Id_Company').show();
-				} else {
-					$('ApplicationUser_Id_Company').hide();
+				if (selection == 'Company') {
+					$('#ApplicationUser_CompanyId').show();
+				}
+				else {
+					$('#ApplicationUser_CompanyId').hide();
 				}
 			})
 		})
 	</script>
-	@{
-		<partial name="_ValidationScriptsPartial" />
-	}
 }

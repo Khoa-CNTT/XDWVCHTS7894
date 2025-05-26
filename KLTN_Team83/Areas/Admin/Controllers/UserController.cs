@@ -39,41 +39,48 @@ namespace KLTN_Team83.Areas.Admin.Controllers
                     Text = i.Name,
                     Value = i.Name
                 }),
-               
+                CompanyList = _unitOfWork.Company.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id_Company.ToString()
+                }),
             };
-            RoleVM.ApplicationUser.Role = _userManager.GetRolesAsync(_unitOfWork.ApplicationUser.Get(u=>u.Id==userId)).
-                GetAwaiter().GetResult().FirstOrDefault();
+
+            RoleVM.ApplicationUser.Role = _userManager.GetRolesAsync(_unitOfWork.ApplicationUser.Get(u => u.Id == userId))
+                    .GetAwaiter().GetResult().FirstOrDefault();
             return View(RoleVM);
         }
 
         [HttpPost]
         public IActionResult RoleManagment(RoleManagmentVM roleManagmentVM)
         {
-            string oldRole = _userManager.GetRolesAsync(_unitOfWork.ApplicationUser.Get(u => u.Id == roleManagmentVM.ApplicationUser.Id)).
-                GetAwaiter().GetResult().FirstOrDefault();
+            string oldRole = _userManager.GetRolesAsync(_unitOfWork.ApplicationUser.Get(u => u.Id == roleManagmentVM.ApplicationUser.Id))
+                    .GetAwaiter().GetResult().FirstOrDefault();
 
             ApplicationUser applicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == roleManagmentVM.ApplicationUser.Id);
 
 
             if (!(roleManagmentVM.ApplicationUser.Role == oldRole))
             {
+                //a role was updated
                 if (roleManagmentVM.ApplicationUser.Role == SD.Role_Company)
                 {
                     applicationUser.Id_Company = roleManagmentVM.ApplicationUser.Id_Company;
                 }
-                if(oldRole == SD.Role_Company)
+                if (oldRole == SD.Role_Company)
                 {
                     applicationUser.Id_Company = null;
                 }
                 _unitOfWork.ApplicationUser.Update(applicationUser);
                 _unitOfWork.Save();
-                
+
                 _userManager.RemoveFromRoleAsync(applicationUser, oldRole).GetAwaiter().GetResult();
                 _userManager.AddToRoleAsync(applicationUser, roleManagmentVM.ApplicationUser.Role).GetAwaiter().GetResult();
+
             }
             else
             {
-                if (oldRole==SD.Role_Company&&applicationUser.Id_Company !=roleManagmentVM.ApplicationUser.Id_Company)
+                if (oldRole == SD.Role_Company && applicationUser.Id_Company != roleManagmentVM.ApplicationUser.Id_Company)
                 {
                     applicationUser.Id_Company = roleManagmentVM.ApplicationUser.Id_Company;
                     _unitOfWork.ApplicationUser.Update(applicationUser);
@@ -81,7 +88,7 @@ namespace KLTN_Team83.Areas.Admin.Controllers
                 }
             }
 
-                return RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
 
 
@@ -91,21 +98,20 @@ namespace KLTN_Team83.Areas.Admin.Controllers
         {
             List<ApplicationUser> objUserList = _unitOfWork.ApplicationUser.GetAll(includeProperties: "Company").ToList();
 
-
             foreach (var user in objUserList)
             {
-                //Role
+
                 user.Role = _userManager.GetRolesAsync(user).GetAwaiter().GetResult().FirstOrDefault();
 
-                //Company
                 if (user.Company == null)
                 {
-                    user.Company = new()
+                    user.Company = new Company()
                     {
                         Name = ""
                     };
                 }
             }
+
             return Json(new { data = objUserList });
         }
         // CHỨC NĂNG LOCK/UNLOCK USER
@@ -117,23 +123,19 @@ namespace KLTN_Team83.Areas.Admin.Controllers
             {
                 return Json(new { success = false, message = "Error while Locking/Unlocking" });
             }
+
             if (objFromDb.LockoutEnd != null && objFromDb.LockoutEnd > DateTime.Now)
             {
-                // Đang khóa, cần mở khóa
+                //user is currently locked and we need to unlock them
                 objFromDb.LockoutEnd = DateTime.Now;
-
-                // Hoặc:
-                //objFromDb.LockoutEnd = null;
             }
             else
             {
-                // Chưa khóa, cần khóa
-                objFromDb.LockoutEnd = DateTime.Now.AddYears(10);
+                objFromDb.LockoutEnd = DateTime.Now.AddYears(1000);
             }
             _unitOfWork.ApplicationUser.Update(objFromDb);
             _unitOfWork.Save();
-
-            return Json(new { success = true, message = "Lock/Unlock Successful" });
+            return Json(new { success = true, message = "Operation Successful" });
         }
         #endregion
     }

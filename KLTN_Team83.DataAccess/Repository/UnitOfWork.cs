@@ -20,6 +20,8 @@ namespace KLTN_Team83.DataAccess.Repository
         public IShoppingCartRepository ShoppingCart { get; private set; }
         public ICompanyRepository Company { get; private set; }
         public IGoalRepository Goal { get; private set; }
+        public IHabitRepository Habit { get; private set; }
+        public IHabitLogRepository HabitLog { get; private set; }
         public IOrderHeaderRepository OrderHeader { get; private set; }
         public IOrderDetailRepository OrderDetail { get; private set; }
         public UnitOfWork(ApplicationDbContext db)

@@ -29,20 +29,19 @@ namespace KLTN_Team83.Areas.Customer.Controllers
             var goals = await _context.Goals.Where(g => g.UserId == userId).ToListAsync();
             var habits = await _context.Habits.Where(h => h.UserId == userId).ToListAsync();
             var today = DateTime.Today;
-            var todayHabitEntries = await _context.HabitEntries
-                .Where(e => e.Date == today && habits.Select(h => h.Id_Habit).Contains(e.HabitId))
-                .ToListAsync();
-            var todaySchedule = await _context.ScheduleItems
-                .Where(s => s.UserId == userId && s.StartTime.Date == today)
-                .ToListAsync();
+            //var todayHabitEntries = await _context.HabitEntries
+                //.Where(e => e.Date == today && habits.Select(h => h.Id_Habit).Contains(e.HabitId))
+                //.ToListAsync();
+            //var todaySchedule = await _context.ScheduleItems
+            //    .Where(s => s.UserId == userId && s.StartTime.Date == today)
+            //    .ToListAsync();
 
             var model = new DashboardVM
             {
                 User = (ApplicationUser)user,
                 Goals = goals,
                 Habits = habits,
-                TodayHabitEntries = todayHabitEntries,
-                TodaySchedule = todaySchedule
+                //TodaySchedule = todaySchedule
             };
 
             return View(model);

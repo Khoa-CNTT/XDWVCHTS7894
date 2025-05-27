@@ -24,6 +24,8 @@ namespace KLTN_Team83.DataAccess.Repository
             {
                 objFromDb.tilte = obj.tilte;
                 objFromDb.content = obj.content;
+                objFromDb.id_TypeBlog = obj.id_TypeBlog;
+                objFromDb.ngayTao = obj.ngayTao;
                 if (obj.ImageUrl != null)
                 {
                     objFromDb.ImageUrl = obj.ImageUrl;

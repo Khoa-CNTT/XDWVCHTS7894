@@ -22,7 +22,12 @@ namespace KLTN_Team83.DataAccess.Repository
         }
         public void Update(Category obj)
         {
-            _db.Categories.Update(obj);
+            var objFromDb = _db.Categories.FirstOrDefault(u => u.Id_Category == obj.Id_Category);
+            if (objFromDb != null)
+            {
+                objFromDb.Name = obj.Name;
+                objFromDb.DisplayOrder = obj.DisplayOrder;
+            }
         }
     }
     

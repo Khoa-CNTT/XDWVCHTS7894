@@ -26,6 +26,7 @@ namespace KLTN_Team83.DataAccess.Repository
             objFromDb.Gender = obj.Gender;
             objFromDb.HealthGoal = obj.HealthGoal;
             objFromDb.Id_Company = obj.Id_Company;
+            objFromDb.Role = obj.Role;
         }
 
     }

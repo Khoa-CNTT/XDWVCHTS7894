@@ -18,7 +18,7 @@
 <ul>
     @foreach (var goal in Model.Goals)
     {
-        <li>@goal.GoalType - @goal.TargetValue (đến @goal.TargetDate.ToShortDateString())</li>
+        <li>@goal.Title - @goal.TargetValue (đến @goal.TargetDate.ToShortDateString())</li>
     }
 </ul>
 
@@ -27,7 +27,7 @@
     @foreach (var habit in Model.Habits)
     {
         var entry = Model.TodayHabitEntries.FirstOrDefault(e => e.HabitId == habit.Id_Habit);
-        <li>@habit.Name - @(entry?.IsCompleted == true ? "✅ Hoàn thành" : "❌ Chưa")</li>
+        <li>@habit.Title - @(entry?.IsCompleted == true ? "✅ Hoàn thành" : "❌ Chưa")</li>
     }
 </ul>
 

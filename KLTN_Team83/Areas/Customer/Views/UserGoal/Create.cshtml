@@ -1,0 +1,59 @@
+﻿@model Goal
+@* @{ *@
+@*     ViewData["Title"] = Model.Id_Goal == 0 ? "Tạo mục tiêu" : "Chỉnh sửa mục tiêu"; *@
+@* } *@
+
+<div class="modal fade" id="goalModal" tabindex="-1" aria-labelledby="goalModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="goalModalLabel">Tạo/Sửa Mục tiêu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="goalForm">
+                    <input type="hidden" id="goalIdInput" />
+                    <div class="mb-3">
+                        <label for="goalTitle" class="form-label">Tên mục tiêu</label>
+                        <input type="text" class="form-control" id="goalTitle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="goalDescription" class="form-label">Mô tả (tùy chọn)</label>
+                        <textarea class="form-control" id="goalDescription" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="goalTargetDate" class="form-label">Ngày hoàn thành (tùy chọn)</label>
+                        <input type="date" class="form-control" id="goalTargetDate">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <label for="goalTargetValue" class="form-label">Giá trị mục tiêu (ví dụ: 5, 10)</label>
+                            <input type="number" step="any" class="form-control" id="goalTargetValue">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="goalUnit" class="form-label">Đơn vị (kg, lần)</label>
+                            <input type="text" class="form-control" id="goalUnit">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="goalCurrentValue" class="form-label">Giá trị hiện tại (để cập nhật tiến độ)</label>
+                        <input type="number" step="any" class="form-control" id="goalCurrentValue">
+                    </div>
+                    <div class="mb-3">
+                        <label for="goalStatus" class="form-label">Trạng thái</label>
+                        <select class="form-select" id="goalStatus">
+                            <option value="InProgress">Đang tiến hành</option>
+                            <option value="Achieved">Đã đạt được</option>
+                            <option value="Paused">Tạm dừng</option>
+                            <option value="Abandoned">Đã từ bỏ</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" id="saveGoalButton">Lưu Mục tiêu</button>
+            </div>
+        </div>
+    </div>
+</div>

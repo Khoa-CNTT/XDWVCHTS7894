@@ -1,0 +1,34 @@
+﻿<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>@ViewData["Title"]</h2>
+        <button id="btnCreateHabit" class="btn btn-success"><i class="bi bi-check2-square"></i> Tạo Thói quen mới</button>
+    </div>
+
+    @* Có thể có bộ lọc theo ngày hoặc mục tiêu *@
+    <div class="mb-3">
+        <label for="filterDate" class="form-label">Xem thói quen cho ngày:</label>
+        <input type="date" id="filterDate" class="form-control d-inline-block" style="width: auto;" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+    </div>
+
+
+    <div id="habitListContainer" class="list-group">
+        <!-- Thói quen sẽ được load vào đây -->
+        <!-- Ví dụ một item thói quen:-->
+        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mb-1">Tên Thói quen</h5>
+                <p class="mb-1"><small>Tần suất: Hàng ngày / Thứ 2, 4, 6</small></p>
+            </div>
+            <div>
+                <input type="checkbox" class="form-check-input me-2 habit-checkbox" data-habitid="HABIT_ID" id="habit-check-HABIT_ID" />
+                <label class="form-check-label" for="habit-check-HABIT_ID">Hoàn thành</label>
+                <button class="btn btn-sm btn-outline-info btn-edit-habit ms-2" data-id="HABIT_ID"><i class="bi bi-pencil"></i></button>
+                <button class="btn btn-sm btn-outline-danger btn-delete-habit ms-1" data-id="HABIT_ID"><i class="bi bi-trash"></i></button>
+            </div>
+        </div>
+        
+    </div>
+
+    <h3 class="mt-5">Lịch Theo dõi Thói quen</h3>
+    <div id="habitCalendar" style="max-width: 900px; margin: 0 auto;"></div>
+</div>

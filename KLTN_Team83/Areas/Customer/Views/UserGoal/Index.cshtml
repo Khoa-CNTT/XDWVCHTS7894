@@ -1,0 +1,37 @@
+﻿@* @model IEnumerable<Goal> *@
+@* @{ *@
+@*     ViewData["Title"] = "Mục tiêu sức khỏe"; *@
+@* } *@
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>@ViewData["Title"]</h2>
+        <button id="btnCreateGoal" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Tạo Mục tiêu mới</button>
+    </div>
+
+    <div id="goalListContainer" class="row">
+        <!-- Mục tiêu sẽ được load vào đây bằng JavaScript -->
+        <!-- Ví dụ một thẻ mục tiêu:-->
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Tên Mục tiêu</h5>
+                    <p class="card-text">Mô tả ngắn...</p>
+                    <p class="card-text"><small class="text-muted">Ngày bắt đầu: DD/MM/YYYY</small></p>
+                    <p class="card-text"><small class="text-muted">Mục tiêu đến: DD/MM/YYYY</small></p>
+                    <div class="progress mb-2">
+                        <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                    </div>
+                    <button class="btn btn-sm btn-info btn-edit-goal" data-id="GOAL_ID">Sửa</button>
+                    <button class="btn btn-sm btn-danger btn-delete-goal" data-id="GOAL_ID">Xóa</button>
+                    <button class="btn btn-sm btn-success btn-update-progress" data-id="GOAL_ID">Cập nhật Tiến độ</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/goals.js" asp-append-version="true"></script>
+}

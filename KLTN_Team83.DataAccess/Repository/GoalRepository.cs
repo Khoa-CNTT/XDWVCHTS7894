@@ -18,14 +18,14 @@ namespace KLTN_Team83.DataAccess.Repository
         }
         public void Update(Goal obj)
         {
-            var objFromDb = _db.Goals.FirstOrDefault(u => u.Id_Goal == obj.Id_Goal);
-            if (objFromDb != null)
-            {
-                objFromDb.ApplicationUser.Id = obj.UserId;
-                objFromDb.GoalType = obj.GoalType;
-                objFromDb.TargetValue = obj.TargetValue;
-                objFromDb.TargetDate = obj.TargetDate;
-            }
+            //var objFromDb = _db.Goals.FirstOrDefault(u => u.Id_Goal == obj.Id_Goal);
+            //if (objFromDb != null)
+            //{
+            //    objFromDb.ApplicationUser.Id = obj.UserId;
+                
+            //    objFromDb.TargetValue = obj.TargetValue;
+            //    objFromDb.TargetDate = obj.TargetDate;
+            //}
         }
     }
     

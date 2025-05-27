@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Collections.Generic;
 using System.Net.Sockets;
 
@@ -21,16 +23,13 @@ namespace KLTN_Team83.DataAccess.Data
         public DbSet<Company> Companies { get; set; }
         public DbSet<OrderHeader> OrderHeaders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
-        //public DbSet<Message> Messages { get; set; }
-        //public DbSet<Conversation> Conversations { get; set; }
-        //public DbSet<Infomation> Infomations { get; set; }
         public DbSet<GoalType> GoalTypes { get; set; }
         //mục tiêu
         public DbSet<Goal> Goals { get; set; }
         //thói quen
         public DbSet<Habit> Habits { get; set; }
-        //nhập thói quen
-        public DbSet<HabitEntry> HabitEntries { get; set; }
+        //Nhật ký thực hiện thói quen
+        public DbSet<HabitLog> HabitLogs { get; set; }
         //thời gian biểu
         public DbSet<ScheduleItem> ScheduleItems { get; set; }
 
@@ -73,21 +72,21 @@ namespace KLTN_Team83.DataAccess.Data
                 new GoalType { Id_GoalType=2, NameGoalType="Height"},
                 new GoalType { Id_GoalType = 3, NameGoalType = "Sleep" }
                 );
-            //modelBuilder.Entity<Goal>().HasData(
-            //    new Goal { UserId = "4d4f0cc1a09a", TargetValue = 56, Id_GoalType = 1 ,TargetDate=DateTime.Today}
-            //    );
-            //        // Configure the primary key for the Admin entity
-            //        modelBuilder.Entity<Admin>()
-            //            .HasKey(a => a.id_Admin);
-            //        // Configure the primary key for the Blog entity
-            //        modelBuilder.Entity<Blog>()
-            //            .HasKey(b => b.id_Blog);
-            //        // Configure the primary key for the Expert entity
-            //        modelBuilder.Entity<Expert>()
-            //            .HasKey(e => e.id_Expert);
-            //        // Configure the primary key for the Blog entity
-            //        modelBuilder.Entity<Blog>()
-            //            .HasKey(a => a.id_Acc);
+
+            var daysOfWeekConverter = new ValueConverter<List<DayOfWeek>, string>(
+        v => string.Join(',', v),
+        v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(d => Enum.Parse<DayOfWeek>(d)).ToList());
+
+            var daysOfWeekComparer = new ValueComparer<List<DayOfWeek>>(
+                (c1, c2) => c1.SequenceEqual(c2),
+                c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                c => c.ToList());
+
+            modelBuilder.Entity<Habit>()
+                .Property(h => h.DaysOfWeek)
+                .HasConversion(daysOfWeekConverter)
+                .Metadata.SetValueComparer(daysOfWeekComparer);
+            modelBuilder.Entity<HabitLog>().HasOne(h => h.Habit).WithMany(h => h.HabitLogs).HasForeignKey(h => h.Id_Habit).OnDelete(DeleteBehavior.Restrict); // hoặc .NoAction
         }
 
     }
